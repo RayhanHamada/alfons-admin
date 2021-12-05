@@ -1,4 +1,5 @@
 import { CabangCreate, CabangList } from '@components/cabang';
+import { ServiceCategoryList } from '@components/serviceCategory/list';
 import Title from '@components/Title';
 import { Icons, Refine } from '@pankod/refine';
 import routerProvider from '@pankod/refine-nextjs-router';
@@ -20,6 +21,12 @@ const resources: RefineProps['resources'] = [
     canDelete: true,
     list: CabangList,
     create: CabangCreate,
+  },
+  {
+    name: 'service_category',
+    options: { label: 'Kategori Service' },
+    canDelete: true,
+    list: ServiceCategoryList,
   },
 ];
 

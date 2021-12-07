@@ -4,3 +4,7 @@ export type ICabang = Omit<definitions['cabang'], 'id'> & { id?: string };
 export type IServiceCategory = Omit<definitions['service_category'], 'id'> & {
   id?: string;
 };
+
+export type IService = Omit<definitions['service'], 'id'> & {
+  id?: string;
+};

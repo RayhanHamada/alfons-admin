@@ -1,4 +1,5 @@
 import { CabangCreate, CabangList } from '@components/cabang';
+import { ServiceList } from '@components/service';
 import {
   ServiceCategoryCreate,
   ServiceCategoryList,
@@ -31,6 +32,11 @@ const resources: RefineProps['resources'] = [
     canDelete: true,
     list: ServiceCategoryList,
     create: ServiceCategoryCreate,
+  },
+  {
+    name: 'service',
+    options: { label: 'Service' },
+    list: ServiceList,
   },
 ];
 

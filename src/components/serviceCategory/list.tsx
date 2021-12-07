@@ -132,8 +132,10 @@ export const ServiceCategoryList: React.FC<
                 }
                 return (
                   <Space>
-                    <EditButton {...editButtonProps(record.id!)} size="small" />
-                    <DeleteButton recordItemId={record.id} />
+                    <EditButton {...editButtonProps(record.id!)} size="small">
+                      Ubah
+                    </EditButton>
+                    <DeleteButton recordItemId={record.id}>Hapus</DeleteButton>
                   </Space>
                 );
               }}

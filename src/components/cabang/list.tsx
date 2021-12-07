@@ -128,8 +128,10 @@ export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
                 }
                 return (
                   <Space>
-                    <EditButton {...editButtonProps(record.id!)} size="small" />
-                    <DeleteButton recordItemId={record.id} />
+                    <EditButton {...editButtonProps(record.id!)} size="small">
+                      Ubah
+                    </EditButton>
+                    <DeleteButton recordItemId={record.id}>Hapus</DeleteButton>
                   </Space>
                 );
               }}

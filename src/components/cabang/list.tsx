@@ -67,13 +67,21 @@ export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
         canCreate
       >
         <Form {...formProps}>
-          <Table<ICabang> {...tableProps} rowKey="id">
+          <Table {...tableProps} rowKey="id">
             <Table.Column<ICabang>
               title="No"
               render={(_, __, i) => {
-                if (tableProps.pagination && tableProps.pagination.current) {
+                if (
+                  tableProps.pagination &&
+                  tableProps.pagination.current &&
+                  tableProps.pagination.pageSize
+                ) {
                   return (
-                    <p>{(tableProps.pagination.current - 1) * 10 + (i + 1)}</p>
+                    <p>
+                      {(tableProps.pagination.current - 1) *
+                        tableProps.pagination.pageSize +
+                        (i + 1)}
+                    </p>
                   );
                 }
 

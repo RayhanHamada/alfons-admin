@@ -71,13 +71,21 @@ export const ServiceCategoryList: React.FC<
         canCreate
       >
         <Form {...formProps}>
-          <Table<IServiceCategory> {...tableProps} rowKey="id">
+          <Table {...tableProps} rowKey="id">
             <Table.Column<IServiceCategory>
               title="No"
               render={(_, __, i) => {
-                if (tableProps.pagination && tableProps.pagination.current) {
+                if (
+                  tableProps.pagination &&
+                  tableProps.pagination.current &&
+                  tableProps.pagination.pageSize
+                ) {
                   return (
-                    <p>{(tableProps.pagination.current - 1) * 10 + (i + 1)}</p>
+                    <p>
+                      {(tableProps.pagination.current - 1) *
+                        tableProps.pagination.pageSize +
+                        (i + 1)}
+                    </p>
                   );
                 }
 

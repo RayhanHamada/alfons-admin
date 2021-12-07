@@ -14,7 +14,6 @@ import {
   SaveButton,
   Space,
   Table,
-  TablePaginationConfig,
   TextField,
   useEditableTable,
 } from '@pankod/refine';
@@ -71,15 +70,15 @@ export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
           <Table<ICabang> {...tableProps} rowKey="id">
             <Table.Column<ICabang>
               title="No"
-              render={(_, __, i) => (
-                <p>
-                  {((tableProps.pagination as TablePaginationConfig).current! -
-                    1) *
-                    10 +
-                    (i + 1)}
-                </p>
-              )}
-              sorter
+              render={(_, __, i) => {
+                if (tableProps.pagination && tableProps.pagination.current) {
+                  return (
+                    <p>{(tableProps.pagination.current - 1) * 10 + (i + 1)}</p>
+                  );
+                }
+
+                return <p>-</p>;
+              }}
             />
             <Table.Column<ICabang>
               key="name"

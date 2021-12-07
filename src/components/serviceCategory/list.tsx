@@ -14,7 +14,6 @@ import {
   SaveButton,
   Space,
   Table,
-  TablePaginationConfig,
   TextField,
   useEditableTable,
 } from '@pankod/refine';
@@ -75,15 +74,15 @@ export const ServiceCategoryList: React.FC<
           <Table<IServiceCategory> {...tableProps} rowKey="id">
             <Table.Column<IServiceCategory>
               title="No"
-              render={(_, __, i) => (
-                <p>
-                  {((tableProps.pagination as TablePaginationConfig).current! -
-                    1) *
-                    10 +
-                    (i + 1)}
-                </p>
-              )}
-              sorter
+              render={(_, __, i) => {
+                if (tableProps.pagination && tableProps.pagination.current) {
+                  return (
+                    <p>{(tableProps.pagination.current - 1) * 10 + (i + 1)}</p>
+                  );
+                }
+
+                return <p>-</p>;
+              }}
             />
             <Table.Column<IServiceCategory>
               key="name"

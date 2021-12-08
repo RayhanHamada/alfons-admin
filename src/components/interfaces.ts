@@ -1,10 +1,12 @@
 import { definitions } from 'src/types/supabase';
 
-export type ICabang = Omit<definitions['cabang'], 'id'> & { id?: string };
-export type IServiceCategory = Omit<definitions['service_category'], 'id'> & {
+type GeneratedToProvider<E extends Record<string, unknown>> = Omit<E, 'id'> & {
   id?: string;
 };
 
-export type IService = Omit<definitions['service'], 'id'> & {
-  id?: string;
-};
+export type ICabang = GeneratedToProvider<definitions['cabang']>;
+export type IServiceCategory = GeneratedToProvider<
+  definitions['service_category']
+>;
+
+export type IService = GeneratedToProvider<definitions['service']>;

@@ -1,5 +1,5 @@
 import { CabangCreate, CabangList } from '@components/cabang';
-import { ServiceList } from '@components/service';
+import { ServiceCreate, ServiceList } from '@components/service';
 import {
   ServiceCategoryCreate,
   ServiceCategoryList,
@@ -37,6 +37,7 @@ const resources: RefineProps['resources'] = [
     name: 'service',
     options: { label: 'Service' },
     list: ServiceList,
+    create: ServiceCreate,
   },
 ];
 

@@ -4,18 +4,23 @@ import {
   Col,
   DeleteButton,
   EditButton,
+  FilterDropdown,
   Form,
   HttpError,
   Icons,
   Input,
   IResourceComponentsProps,
   List,
+  NumberField,
+  Row,
   SaveButton,
+  Select,
   Space,
   Table,
   TextField,
   useEditableTable,
   useMany,
+  useSelect,
 } from '@pankod/refine';
 
 export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
@@ -29,23 +34,33 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
     cancelButtonProps,
     searchFormProps,
     formProps,
-  } = useEditableTable<IService, HttpError, {}, IService>({
+  } = useEditableTable<
+    IService,
+    HttpError,
+    {},
+    { name: string; category: string }
+  >({
     submitOnEnter: true,
-    initialSorter: [
-      {
-        field: 'id',
-        order: 'asc',
-      },
-    ],
-    onSearch: ({ name }) => {
+    onSearch: ({ name, category }) => {
       return [
         {
           field: 'name',
           operator: 'containss',
           value: name,
         },
+        {
+          field: 'service_category_id',
+          operator: 'eq',
+          value: category,
+        },
       ];
     },
+    initialSorter: [
+      {
+        field: 'name',
+        order: 'asc',
+      },
+    ],
   });
 
   const serviceCategoryIds =
@@ -60,17 +75,32 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
     },
   });
 
+  const { selectProps } = useSelect<IServiceCategory>({
+    resource: 'service_category',
+    optionLabel: 'name',
+    optionValue: 'id',
+    sort: [
+      {
+        field: 'id',
+        order: 'asc',
+      },
+    ],
+    debounce: 500,
+  });
+
   return (
     <Col>
       <Form layout="vertical" {...searchFormProps}>
         <Form.Item label="Cari Service" name="name">
           <Input placeholder="Service" prefix={<Icons.SearchOutlined />} />
         </Form.Item>
-        <Form.Item>
-          <Button htmlType="submit" type="primary">
-            Cari Service
-          </Button>
-        </Form.Item>
+        <Row style={{ columnGap: 10 }}>
+          <Form.Item>
+            <Button htmlType="submit" type="primary">
+              Cari Service
+            </Button>
+          </Form.Item>
+        </Row>
       </Form>
       <List
         title="Service"
@@ -122,13 +152,56 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
               key="cost_estimate"
               dataIndex="cost_estimate"
               title="Perkiraan Harga"
+              render={(value, record) => {
+                if (isEditing(record.id!)) {
+                  return (
+                    <Form.Item
+                      name="cost_estimate"
+                      initialValue={value}
+                      style={{ margin: 0 }}
+                    >
+                      <Input />
+                    </Form.Item>
+                  );
+                }
+
+                return (
+                  <NumberField
+                    value={value}
+                    options={{ currency: 'idr', style: 'currency' }}
+                  />
+                );
+              }}
             />
             <Table.Column<IService>
+              key="service_category_id"
               dataIndex="service_category_id"
               title="Kategori Service"
-              render={(value) => {
+              filterDropdown={(props) => (
+                <FilterDropdown {...props}>
+                  <Select
+                    mode="tags"
+                    placeholder="Select Category"
+                    style={{ width: 200 }}
+                    {...selectProps}
+                  />
+                </FilterDropdown>
+              )}
+              render={(value: any, record) => {
                 if (isLoading) {
                   return <TextField value="Loading..." />;
+                }
+
+                if (isEditing(record.id!)) {
+                  return (
+                    <Form.Item
+                      name="service_category_id"
+                      initialValue={value}
+                      style={{ margin: 0 }}
+                    >
+                      <Select {...selectProps} />
+                    </Form.Item>
+                  );
                 }
 
                 return (
@@ -141,7 +214,6 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
                   />
                 );
               }}
-              sorter
             />
 
             <Table.Column<IService>

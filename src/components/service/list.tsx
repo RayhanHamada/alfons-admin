@@ -9,6 +9,7 @@ import {
   HttpError,
   Icons,
   Input,
+  InputNumber,
   IResourceComponentsProps,
   List,
   NumberField,
@@ -160,7 +161,18 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
                       initialValue={value}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <InputNumber
+                        defaultValue={0}
+                        formatter={(value) =>
+                          `IDR ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+                        }
+                        parser={(value) =>
+                          value === null
+                            ? '0'
+                            : (value!.replace(/IDR\s?|(\.*)/g, '') as any)
+                        }
+                        style={{ width: 300 }}
+                      />
                     </Form.Item>
                   );
                 }

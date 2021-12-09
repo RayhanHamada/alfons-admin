@@ -1,20 +1,54 @@
-import { IService } from '@components/interfaces';
+import { IService, IServiceCategory } from '@components/interfaces';
 import {
   Create,
   Form,
   Input,
   InputNumber,
   IResourceComponentsProps,
-  NumberField,
   Row,
+  Select,
+  Skeleton,
   TextField,
   useForm,
+  useList,
 } from '@pankod/refine';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const ServiceCreate: React.FC<IResourceComponentsProps<IService>> = (
   _props
 ) => {
+  const {
+    data,
+    isFetched,
+    isLoading: isCategoryLoading,
+  } = useList<IServiceCategory>({
+    resource: 'service_category',
+    config: {
+      pagination: {
+        pageSize: 100,
+      },
+      sort: [{ field: 'name', order: 'asc' }],
+    },
+  });
+
+  const [categories, setCategories] = useState<
+    { label: string; value: string; key?: string }[]
+  >([]);
+
+  useEffect(() => {
+    if (isFetched) {
+      if (data) {
+        setCategories(
+          data.data.map((v) => ({
+            label: v.name,
+            value: `${v.id!}`,
+            key: `${v.id!}`,
+          }))
+        );
+      }
+    }
+  }, [data]);
+
   const { saveButtonProps, formProps } = useForm<IService>();
 
   const [harga, setHarga] = useState(0);
@@ -33,7 +67,7 @@ export const ServiceCreate: React.FC<IResourceComponentsProps<IService>> = (
       title="Buat Service Baru"
       saveButtonProps={saveButtonProps}
     >
-      <Form {...formProps} layout="vertical">
+      <Form {...formProps} autoComplete="off" layout="vertical">
         <Form.Item
           label="Nama Service"
           name="name"
@@ -47,27 +81,44 @@ export const ServiceCreate: React.FC<IResourceComponentsProps<IService>> = (
         >
           <Input />
         </Form.Item>
+
+        {isCategoryLoading ? (
+          <Skeleton active={isCategoryLoading} />
+        ) : categories ? (
+          <Form.Item
+            label="Kategori Service"
+            name="service_category_id"
+            initialValue="1"
+            required
+          >
+            <Select defaultValue="1" showSearch>
+              {categories.map((c) => (
+                <Select.Option key={c.value} value={c.value}>
+                  {c.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        ) : (
+          <p>Error fetching categories</p>
+        )}
+
         <Row style={{ columnGap: 10 }} align="middle">
           <Form.Item label="Perkiraan Harga" name="cost_estimate" required>
             <InputNumber
               defaultValue={0}
               formatter={(value) =>
-                `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+                `IDR ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
               }
               parser={(value) =>
                 value === null
                   ? '0'
-                  : (value!.replace(/Rp\.\s?|(\.*)/g, '') as any)
+                  : (value!.replace(/IDR\s?|(\.*)/g, '') as any)
               }
               style={{ width: 300 }}
               onChange={onHargaChange}
             />
           </Form.Item>
-          <NumberField
-            value={harga}
-            // options={{ currency: 'idr', style: 'currency' }}
-            style={{ width: 400 }}
-          />
           <TextField
             value={harga}
             // options={{ currency: 'idr', style: 'currency' }}

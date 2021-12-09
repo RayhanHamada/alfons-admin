@@ -16,13 +16,15 @@ import {
   Row,
   SaveButton,
   Select,
+  Skeleton,
   Space,
   Table,
   TextField,
   useEditableTable,
+  useList,
   useMany,
-  useSelect,
 } from '@pankod/refine';
+import { useEffect, useState } from 'react';
 
 export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
   _props
@@ -76,18 +78,37 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
     },
   });
 
-  const { selectProps } = useSelect<IServiceCategory>({
+  const {
+    data: serviceCategories,
+    isFetched: isServiceCategoryFetched,
+    isLoading: isCategoryLoading,
+  } = useList<IServiceCategory>({
     resource: 'service_category',
-    optionLabel: 'name',
-    optionValue: 'id',
-    sort: [
-      {
-        field: 'id',
-        order: 'asc',
+    config: {
+      pagination: {
+        pageSize: 100,
       },
-    ],
-    debounce: 500,
+      sort: [{ field: 'name', order: 'asc' }],
+    },
   });
+
+  const [categories, setCategories] = useState<
+    { label: string; value: string; key?: string }[]
+  >([]);
+
+  useEffect(() => {
+    if (isServiceCategoryFetched) {
+      if (serviceCategories) {
+        setCategories(
+          serviceCategories.data.map((v) => ({
+            label: v.name,
+            value: `${v.id!}`,
+            key: `${v.id!}`,
+          }))
+        );
+      }
+    }
+  }, [serviceCategories]);
 
   return (
     <Col>
@@ -192,11 +213,22 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
               filterDropdown={(props) => (
                 <FilterDropdown {...props}>
                   <Select
-                    mode="tags"
                     placeholder="Select Category"
                     style={{ width: 200 }}
-                    {...selectProps}
-                  />
+                    showSearch
+                  >
+                    {isCategoryLoading ? (
+                      <Skeleton />
+                    ) : categories.length === 0 ? (
+                      <p>Error Fetching Categories</p>
+                    ) : (
+                      categories.map((c) => (
+                        <Select.Option key={c.key} value={c.value}>
+                          {c.label}
+                        </Select.Option>
+                      ))
+                    )}
+                  </Select>
                 </FilterDropdown>
               )}
               render={(value: any, record) => {
@@ -205,13 +237,31 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
                 }
 
                 if (isEditing(record.id!)) {
+                  if (isCategoryLoading) {
+                    return <Skeleton active />;
+                  }
+
+                  if (categories.length === 0) {
+                    return <p>Error Fetching Categories</p>;
+                  }
+
                   return (
                     <Form.Item
                       name="service_category_id"
-                      initialValue={value}
+                      initialValue={`${value}`}
                       style={{ margin: 0 }}
                     >
-                      <Select {...selectProps} />
+                      <Select
+                        placeholder="Select Category"
+                        style={{ width: 200 }}
+                        defaultValue={`${value}`}
+                      >
+                        {categories.map((c) => (
+                          <Select.Option key={c.key} value={c.value}>
+                            {c.label}
+                          </Select.Option>
+                        ))}
+                      </Select>
                     </Form.Item>
                   );
                 }

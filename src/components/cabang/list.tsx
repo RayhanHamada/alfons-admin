@@ -1,4 +1,4 @@
-import { ICabang } from '@components/interfaces';
+import type { ICabang } from '@components';
 import {
   Button,
   Col,
@@ -17,7 +17,7 @@ import {
   TextField,
   useEditableTable,
 } from '@pankod/refine';
-import dayjs from '@utility/dayjs';
+import { dayjs } from '@utility';
 
 export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
   _props

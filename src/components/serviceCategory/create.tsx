@@ -1,4 +1,4 @@
-import { IServiceCategory } from '@components/interfaces';
+import type { IServiceCategory } from '@components';
 import {
   Create,
   Form,

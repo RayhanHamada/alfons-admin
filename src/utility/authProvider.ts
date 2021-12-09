@@ -1,6 +1,6 @@
 import { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
-import { supabaseClient } from './utility';
+import { supabaseClient } from '.';
 
 type LoginParam = {
   username: string;

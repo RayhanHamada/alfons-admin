@@ -1,6 +1,6 @@
 import { checkAuthentication } from '@pankod/refine-nextjs-router';
+import { authProvider } from '@utility';
 import { GetServerSideProps } from 'next';
-import { authProvider } from 'src/authProvider';
 export { NextRouteComponent as default } from '@pankod/refine-nextjs-router';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

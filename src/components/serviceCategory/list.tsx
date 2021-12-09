@@ -1,4 +1,4 @@
-import { IServiceCategory } from '@components/interfaces';
+import type { IServiceCategory } from '@components';
 import {
   Button,
   Col,
@@ -17,7 +17,7 @@ import {
   TextField,
   useEditableTable,
 } from '@pankod/refine';
-import dayjs from '@utility/dayjs';
+import { dayjs } from '@utility/dayjs';
 
 export const ServiceCategoryList: React.FC<
   IResourceComponentsProps<IServiceCategory>
@@ -30,7 +30,6 @@ export const ServiceCategoryList: React.FC<
     cancelButtonProps,
     searchFormProps,
     formProps,
-    tableQueryResult,
   } = useEditableTable<IServiceCategory, HttpError, {}, { name: string }>({
     submitOnEnter: true,
     initialSorter: [

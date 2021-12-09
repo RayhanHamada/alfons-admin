@@ -3,4 +3,4 @@ import idLocale from 'dayjs/locale/id';
 
 dayjs.locale(idLocale);
 
-export default dayjs;
+export { dayjs };

@@ -1,4 +1,4 @@
-import { ICabang } from '@components/interfaces';
+import type { ICabang } from '@components';
 import {
   Create,
   Form,

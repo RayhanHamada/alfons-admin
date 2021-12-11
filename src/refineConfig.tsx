@@ -1,6 +1,7 @@
 import {
   CabangCreate,
   CabangList,
+  Login,
   ServiceCategoryCreate,
   ServiceCategoryList,
   ServiceCreate,
@@ -44,6 +45,7 @@ const refineProps: RefineProps = {
   routerProvider: routerProvider,
   resources: resources,
   Title: Title,
+  LoginPage: Login,
 };
 
 export default refineProps;

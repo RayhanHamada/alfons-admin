@@ -2,15 +2,15 @@ import { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
 import { supabaseClient } from '.';
 
-type LoginParam = {
-  username: string;
+export type ILoginParam = {
+  email: string;
   password: string;
 };
 
 export const authProvider: AuthProvider = {
-  login: async ({ username, password }: LoginParam) => {
+  login: async ({ email, password }: ILoginParam) => {
     const { user, error, session } = await supabaseClient.auth.signIn({
-      email: username,
+      email,
       password,
     });
 

@@ -10,6 +10,7 @@ import {
 import logo from '@public/logo.svg';
 import { ILoginParam } from '@utility';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const { Title } = Typography;
 
@@ -71,6 +72,9 @@ export const Login: React.FC = (_props) => {
             Masuk
           </Button>
         </Form>
+        <u>
+          <Link href="/forgotPassword">Lupa password</Link>
+        </u>
       </Col>
     </AntdLayout>
   );

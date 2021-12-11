@@ -1,11 +1,11 @@
 import {
   AntdLayout,
   Button,
-  Checkbox,
   Col,
   Form,
   Input,
   Typography,
+  useLogin,
 } from '@pankod/refine';
 import logo from '@public/logo.svg';
 import { ILoginParam } from '@utility';
@@ -13,8 +13,16 @@ import Image from 'next/image';
 
 const { Title } = Typography;
 
+type OnFinish = (v: ILoginParam) => void;
+
 export const Login: React.FC = (_props) => {
   const [form] = Form.useForm<ILoginParam>();
+
+  const { mutate: login } = useLogin<ILoginParam>();
+
+  const onFinish: OnFinish = (v) => {
+    login(v);
+  };
 
   return (
     <AntdLayout style={{ height: '100vh', width: '100%' }}>
@@ -43,9 +51,10 @@ export const Login: React.FC = (_props) => {
             alignContent: 'center',
             justifyContent: 'center',
           }}
+          onFinish={onFinish}
         >
           <Title level={3} className="title" style={{ textAlign: 'center' }}>
-            Masuk ke Dashboard
+            Masuk
           </Title>
           <Form.Item name="email" label="Email" rules={[{ required: true }]}>
             <Input type="email" size="large" placeholder="budi@example.com" />
@@ -58,15 +67,8 @@ export const Login: React.FC = (_props) => {
           >
             <Input type="password" placeholder="●●●●●●●●" size="large" />
           </Form.Item>
-          <Form.Item
-            name="remember"
-            rules={[{ required: false }]}
-            style={{ marginBottom: '12px' }}
-          >
-            <Checkbox>Ingat email saya</Checkbox>
-          </Form.Item>
           <Button type="primary" size="large" htmlType="submit" block>
-            Sign in
+            Masuk
           </Button>
         </Form>
       </Col>

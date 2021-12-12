@@ -439,6 +439,7 @@ export interface paths {
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
+          phone_number?: parameters["rowFilter.klien.phone_number"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -495,6 +496,7 @@ export interface paths {
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
+          phone_number?: parameters["rowFilter.klien.phone_number"];
         };
         header: {
           /** Preference */
@@ -515,6 +517,7 @@ export interface paths {
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
+          phone_number?: parameters["rowFilter.klien.phone_number"];
         };
         body: {
           /** klien */
@@ -1040,6 +1043,7 @@ export interface definitions {
     jenis_kelamin: "PRIA" | "WANITA";
     created_at: string;
     updated_at: string;
+    phone_number?: string;
   };
   rendered_service: {
     /**
@@ -1175,6 +1179,7 @@ export interface parameters {
   "rowFilter.klien.jenis_kelamin": string;
   "rowFilter.klien.created_at": string;
   "rowFilter.klien.updated_at": string;
+  "rowFilter.klien.phone_number": string;
   /** rendered_service */
   "body.rendered_service": definitions["rendered_service"];
   "rowFilter.rendered_service.id": string;

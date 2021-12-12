@@ -435,7 +435,6 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.klien.id"];
           name?: parameters["rowFilter.klien.name"];
-          supabase_user_id?: parameters["rowFilter.klien.supabase_user_id"];
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
@@ -492,7 +491,6 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.klien.id"];
           name?: parameters["rowFilter.klien.name"];
-          supabase_user_id?: parameters["rowFilter.klien.supabase_user_id"];
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
@@ -513,7 +511,6 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.klien.id"];
           name?: parameters["rowFilter.klien.name"];
-          supabase_user_id?: parameters["rowFilter.klien.supabase_user_id"];
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
@@ -1039,7 +1036,6 @@ export interface definitions {
      */
     id: number;
     name: string;
-    supabase_user_id?: string;
     jenis_kelamin: "PRIA" | "WANITA";
     created_at: string;
     updated_at: string;
@@ -1175,7 +1171,6 @@ export interface parameters {
   "body.klien": definitions["klien"];
   "rowFilter.klien.id": string;
   "rowFilter.klien.name": string;
-  "rowFilter.klien.supabase_user_id": string;
   "rowFilter.klien.jenis_kelamin": string;
   "rowFilter.klien.created_at": string;
   "rowFilter.klien.updated_at": string;

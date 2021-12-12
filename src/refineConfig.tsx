@@ -1,6 +1,7 @@
 import {
-  CabangCreate,
   CabangList,
+  KlienCreate,
+  KlienList,
   Login,
   ServiceCategoryCreate,
   ServiceCategoryList,
@@ -22,7 +23,7 @@ const resources: RefineProps['resources'] = [
     options: { label: 'Cabang' },
     canDelete: true,
     list: CabangList,
-    create: CabangCreate,
+    create: KlienCreate,
   },
   {
     name: 'service_category',
@@ -36,6 +37,12 @@ const resources: RefineProps['resources'] = [
     options: { label: 'Service' },
     list: ServiceList,
     create: ServiceCreate,
+  },
+  {
+    name: 'klien',
+    options: { label: 'Klien' },
+    list: KlienList,
+    create: KlienCreate,
   },
 ];
 

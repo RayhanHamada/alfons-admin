@@ -10,3 +10,4 @@ export type IServiceCategory = GeneratedToProvider<
 >;
 
 export type IService = GeneratedToProvider<definitions['service']>;
+export type IKlien = GeneratedToProvider<definitions['klien']>;

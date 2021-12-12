@@ -19,6 +19,9 @@ export interface paths {
           id?: parameters["rowFilter.admin.id"];
           supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
           name?: parameters["rowFilter.admin.name"];
+          email?: parameters["rowFilter.admin.email"];
+          phone_number?: parameters["rowFilter.admin.phone_number"];
+          otp?: parameters["rowFilter.admin.otp"];
           created_at?: parameters["rowFilter.admin.created_at"];
           updated_at?: parameters["rowFilter.admin.updated_at"];
           cabang_id?: parameters["rowFilter.admin.cabang_id"];
@@ -75,6 +78,9 @@ export interface paths {
           id?: parameters["rowFilter.admin.id"];
           supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
           name?: parameters["rowFilter.admin.name"];
+          email?: parameters["rowFilter.admin.email"];
+          phone_number?: parameters["rowFilter.admin.phone_number"];
+          otp?: parameters["rowFilter.admin.otp"];
           created_at?: parameters["rowFilter.admin.created_at"];
           updated_at?: parameters["rowFilter.admin.updated_at"];
           cabang_id?: parameters["rowFilter.admin.cabang_id"];
@@ -95,6 +101,9 @@ export interface paths {
           id?: parameters["rowFilter.admin.id"];
           supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
           name?: parameters["rowFilter.admin.name"];
+          email?: parameters["rowFilter.admin.email"];
+          phone_number?: parameters["rowFilter.admin.phone_number"];
+          otp?: parameters["rowFilter.admin.otp"];
           created_at?: parameters["rowFilter.admin.created_at"];
           updated_at?: parameters["rowFilter.admin.updated_at"];
           cabang_id?: parameters["rowFilter.admin.cabang_id"];
@@ -436,9 +445,11 @@ export interface paths {
           id?: parameters["rowFilter.klien.id"];
           name?: parameters["rowFilter.klien.name"];
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
+          phone_number?: parameters["rowFilter.klien.phone_number"];
+          phone_verified?: parameters["rowFilter.klien.phone_verified"];
+          otp?: parameters["rowFilter.klien.otp"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
-          phone_number?: parameters["rowFilter.klien.phone_number"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -492,9 +503,11 @@ export interface paths {
           id?: parameters["rowFilter.klien.id"];
           name?: parameters["rowFilter.klien.name"];
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
+          phone_number?: parameters["rowFilter.klien.phone_number"];
+          phone_verified?: parameters["rowFilter.klien.phone_verified"];
+          otp?: parameters["rowFilter.klien.otp"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
-          phone_number?: parameters["rowFilter.klien.phone_number"];
         };
         header: {
           /** Preference */
@@ -512,9 +525,11 @@ export interface paths {
           id?: parameters["rowFilter.klien.id"];
           name?: parameters["rowFilter.klien.name"];
           jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
+          phone_number?: parameters["rowFilter.klien.phone_number"];
+          phone_verified?: parameters["rowFilter.klien.phone_verified"];
+          otp?: parameters["rowFilter.klien.otp"];
           created_at?: parameters["rowFilter.klien.created_at"];
           updated_at?: parameters["rowFilter.klien.updated_at"];
-          phone_number?: parameters["rowFilter.klien.phone_number"];
         };
         body: {
           /** klien */
@@ -962,6 +977,9 @@ export interface definitions {
     id: number;
     supabase_user_id?: string;
     name: string;
+    email: string;
+    phone_number: string;
+    otp?: string;
     created_at: string;
     updated_at: string;
     /**
@@ -1037,9 +1055,11 @@ export interface definitions {
     id: number;
     name: string;
     jenis_kelamin: "PRIA" | "WANITA";
+    phone_number: string;
+    phone_verified?: boolean;
+    otp?: string;
     created_at: string;
     updated_at: string;
-    phone_number?: string;
   };
   rendered_service: {
     /**
@@ -1137,6 +1157,9 @@ export interface parameters {
   "rowFilter.admin.id": string;
   "rowFilter.admin.supabase_user_id": string;
   "rowFilter.admin.name": string;
+  "rowFilter.admin.email": string;
+  "rowFilter.admin.phone_number": string;
+  "rowFilter.admin.otp": string;
   "rowFilter.admin.created_at": string;
   "rowFilter.admin.updated_at": string;
   "rowFilter.admin.cabang_id": string;
@@ -1172,9 +1195,11 @@ export interface parameters {
   "rowFilter.klien.id": string;
   "rowFilter.klien.name": string;
   "rowFilter.klien.jenis_kelamin": string;
+  "rowFilter.klien.phone_number": string;
+  "rowFilter.klien.phone_verified": string;
+  "rowFilter.klien.otp": string;
   "rowFilter.klien.created_at": string;
   "rowFilter.klien.updated_at": string;
-  "rowFilter.klien.phone_number": string;
   /** rendered_service */
   "body.rendered_service": definitions["rendered_service"];
   "rowFilter.rendered_service.id": string;

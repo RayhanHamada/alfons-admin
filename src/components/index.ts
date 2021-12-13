@@ -5,4 +5,5 @@ export * from './Login';
 export * from './resourceInterface';
 export * from './service';
 export * from './serviceCategory';
+export * from './stylish';
 export * from './Title';

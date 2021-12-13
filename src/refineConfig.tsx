@@ -7,6 +7,9 @@ import {
   ServiceCategoryList,
   ServiceCreate,
   ServiceList,
+  StylishCreate,
+  StylishEdit,
+  StylishList,
   Title,
 } from '@components';
 import { Icons } from '@pankod/refine';
@@ -43,6 +46,13 @@ const resources: RefineProps['resources'] = [
     options: { label: 'Klien' },
     list: KlienList,
     create: KlienCreate,
+  },
+  {
+    name: 'stylish',
+    options: { label: 'Stylish' },
+    list: StylishList,
+    create: StylishCreate,
+    edit: StylishEdit,
   },
 ];
 

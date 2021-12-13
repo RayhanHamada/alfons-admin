@@ -1,10 +1,16 @@
 import { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
-import { supabaseClient } from '.';
+import { definitions } from '../types/supabase';
+import { supabaseClient } from './supabaseClient';
 
 export type ILoginParam = {
   email: string;
   password: string;
+};
+
+export type IUserIdentity = ReturnType<typeof supabaseClient.auth.user> & {
+  name?: string;
+  cabangId: number;
 };
 
 export const authProvider: AuthProvider = {
@@ -55,14 +61,27 @@ export const authProvider: AuthProvider = {
       return Promise.resolve(user.role);
     }
   },
-  getUserIdentity: async () => {
+  getUserIdentity: async (): Promise<IUserIdentity | undefined> => {
     const user = supabaseClient.auth.user();
 
     if (user) {
+      const { data, error } = await supabaseClient
+        .from<definitions['admin']>('admin')
+        .select('cabang_id', { count: 'exact' })
+        .eq('supabase_user_id', user.id);
+
+      if (error || !data) {
+        console.log('Error mengambil data user.');
+        return undefined;
+      }
+
       return Promise.resolve({
         ...user,
         name: user.email,
+        cabangId: data[0].cabang_id,
       });
     }
+
+    return undefined;
   },
 };

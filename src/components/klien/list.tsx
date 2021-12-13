@@ -11,6 +11,7 @@ import {
   IResourceComponentsProps,
   List,
   SaveButton,
+  Select,
   Space,
   Table,
   TextField,
@@ -114,11 +115,15 @@ export const KlienList: React.FC<IResourceComponentsProps<IKlien>> = (
                 if (isEditing(record.id!)) {
                   return (
                     <Form.Item
-                      name="jk"
+                      name="jenis_kelamin"
+                      key="jenis_kelamin"
                       initialValue={value}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <Select>
+                        <Select.Option value="PRIA">Pria</Select.Option>
+                        <Select.Option value="WANITA">Wanita</Select.Option>
+                      </Select>
                     </Form.Item>
                   );
                 }

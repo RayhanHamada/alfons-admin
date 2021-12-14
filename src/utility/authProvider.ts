@@ -11,6 +11,7 @@ export type ILoginParam = {
 export type IUserIdentity = ReturnType<typeof supabaseClient.auth.user> & {
   name?: string;
   cabangId: number;
+  adminId: number;
 };
 
 export const authProvider: AuthProvider = {
@@ -67,7 +68,7 @@ export const authProvider: AuthProvider = {
     if (user) {
       const { data, error } = await supabaseClient
         .from<definitions['admin']>('admin')
-        .select('cabang_id', { count: 'exact' })
+        .select('id,cabang_id', { count: 'exact' })
         .eq('supabase_user_id', user.id);
 
       if (error || !data) {
@@ -79,6 +80,7 @@ export const authProvider: AuthProvider = {
         ...user,
         name: user.email,
         cabangId: data[0].cabang_id,
+        adminId: data[0].id,
       });
     }
 

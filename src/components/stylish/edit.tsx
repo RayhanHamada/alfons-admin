@@ -4,7 +4,7 @@ import {
   Form,
   HttpError,
   Input,
-  Select,
+  Radio,
   Typography,
   useForm,
   useGetIdentity,
@@ -60,9 +60,6 @@ export const StylishEdit: React.FC = (_props) => {
         >
           <Input autoComplete="off" />
         </Form.Item>
-        {/* <Form.Item label="Senin" name="senin_available" required>
-          <Input autoComplete="off" />
-        </Form.Item> */}
         <Title level={4}>Penjadwalan</Title>
         <Form.Item
           label="Senin"
@@ -71,10 +68,10 @@ export const StylishEdit: React.FC = (_props) => {
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value={true as any}>Available</Select.Option>
-            <Select.Option value={false as any}>Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value={true as any}>Available</Radio>
+            <Radio value={false as any}>Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Selasa"
@@ -83,10 +80,10 @@ export const StylishEdit: React.FC = (_props) => {
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value={true as any}>Available</Select.Option>
-            <Select.Option value={false as any}>Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value={true as any}>Available</Radio>
+            <Radio value={false as any}>Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="rabu"
@@ -95,10 +92,10 @@ export const StylishEdit: React.FC = (_props) => {
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value={true as any}>Available</Select.Option>
-            <Select.Option value={false as any}>Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value={true as any}>Available</Radio>
+            <Radio value={false as any}>Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Kamis"
@@ -107,10 +104,10 @@ export const StylishEdit: React.FC = (_props) => {
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value={true as any}>Available</Select.Option>
-            <Select.Option value={false as any}>Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value={true as any}>Available</Radio>
+            <Radio value={false as any}>Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Jumat"
@@ -119,10 +116,10 @@ export const StylishEdit: React.FC = (_props) => {
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value={true as any}>Available</Select.Option>
-            <Select.Option value={false as any}>Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value={true as any}>Available</Radio>
+            <Radio value={false as any}>Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Sabtu"
@@ -131,10 +128,10 @@ export const StylishEdit: React.FC = (_props) => {
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value={true as any}>Available</Select.Option>
-            <Select.Option value={false as any}>Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value={true as any}>Available</Radio>
+            <Radio value={false as any}>Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Minggu"
@@ -143,10 +140,10 @@ export const StylishEdit: React.FC = (_props) => {
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value={true as any}>Available</Select.Option>
-            <Select.Option value={false as any}>Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value={true as any}>Available</Radio>
+            <Radio value={false as any}>Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Cabang Id"

@@ -5,7 +5,7 @@ import {
   HttpError,
   Input,
   IResourceComponentsProps,
-  Select,
+  Radio,
   Typography,
   useForm,
   useGetIdentity,
@@ -71,10 +71,10 @@ export const StylishCreate: React.FC<IResourceComponentsProps<IStylish>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="true">Available</Select.Option>
-            <Select.Option value="false">Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="true">Available</Radio>
+            <Radio value="false">Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Selasa"
@@ -84,10 +84,10 @@ export const StylishCreate: React.FC<IResourceComponentsProps<IStylish>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="true">Available</Select.Option>
-            <Select.Option value="false">Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="true">Available</Radio>
+            <Radio value="false">Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="rabu"
@@ -97,10 +97,10 @@ export const StylishCreate: React.FC<IResourceComponentsProps<IStylish>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="true">Available</Select.Option>
-            <Select.Option value="false">Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="true">Available</Radio>
+            <Radio value="false">Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Kamis"
@@ -110,10 +110,10 @@ export const StylishCreate: React.FC<IResourceComponentsProps<IStylish>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="true">Available</Select.Option>
-            <Select.Option value="false">Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="true">Available</Radio>
+            <Radio value="false">Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Jumat"
@@ -123,10 +123,10 @@ export const StylishCreate: React.FC<IResourceComponentsProps<IStylish>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="true">Available</Select.Option>
-            <Select.Option value="false">Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="true">Available</Radio>
+            <Radio value="false">Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Sabtu"
@@ -136,10 +136,10 @@ export const StylishCreate: React.FC<IResourceComponentsProps<IStylish>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="true">Available</Select.Option>
-            <Select.Option value="false">Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="true">Available</Radio>
+            <Radio value="false">Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Minggu"
@@ -149,10 +149,10 @@ export const StylishCreate: React.FC<IResourceComponentsProps<IStylish>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="true">Available</Select.Option>
-            <Select.Option value="false">Not Available</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="true">Available</Radio>
+            <Radio value="false">Not Available</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Cabang Id"

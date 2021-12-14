@@ -4,7 +4,7 @@ import {
   Form,
   Input,
   IResourceComponentsProps,
-  Select,
+  Radio,
   useForm,
 } from '@pankod/refine';
 
@@ -41,10 +41,10 @@ export const KlienCreate: React.FC<IResourceComponentsProps<ICabang>> = (
           requiredMark
           required
         >
-          <Select>
-            <Select.Option value="PRIA">Pria</Select.Option>
-            <Select.Option value="WANITA">Wanita</Select.Option>
-          </Select>
+          <Radio.Group>
+            <Radio value="PRIA">Pria</Radio>
+            <Radio value="WANITA">Wanita</Radio>
+          </Radio.Group>
         </Form.Item>
         <Form.Item
           label="Nomor Telepon"

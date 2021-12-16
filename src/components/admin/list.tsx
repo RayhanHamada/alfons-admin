@@ -118,7 +118,7 @@ export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
             <Table.Column<IAdmin>
               key="supabase_user_id"
               dataIndex="supabase_user_id"
-              title="Telah Terkonfirmasi"
+              title="Status konfirmasi"
               render={(v) => {
                 return <p>{v ? 'Sudah' : 'Belum'}</p>;
               }}

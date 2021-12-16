@@ -1,6 +1,7 @@
 import {
   AdminCreate,
   AdminList,
+  AdminShow,
   CabangList,
   KlienCreate,
   KlienList,
@@ -61,6 +62,7 @@ const resources: RefineProps['resources'] = [
     options: { label: 'Admin' },
     list: AdminList,
     create: AdminCreate,
+    show: AdminShow,
   },
 ];
 

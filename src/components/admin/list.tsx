@@ -10,6 +10,7 @@ import {
   IResourceComponentsProps,
   List,
   SaveButton,
+  ShowButton,
   Space,
   Table,
   TextField,
@@ -143,6 +144,9 @@ export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
                   return (
                     <Space>
                       <Button size="small">Akun Saya</Button>
+                      <ShowButton recordItemId={record.id} size="small">
+                        Lihat Detail
+                      </ShowButton>
                     </Space>
                   );
                 }
@@ -152,6 +156,9 @@ export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
                     <EditButton {...editButtonProps(record.id!)} size="small">
                       Ubah
                     </EditButton>
+                    <ShowButton recordItemId={record.id} size="small">
+                      Lihat Detail
+                    </ShowButton>
                   </Space>
                 );
               }}

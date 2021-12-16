@@ -1,3 +1,4 @@
+export * from './admin';
 export * from './cabang';
 export * from './ForgotPassword';
 export * from './klien';

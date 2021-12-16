@@ -12,3 +12,4 @@ export type IServiceCategory = GeneratedToProvider<
 export type IService = GeneratedToProvider<definitions['service']>;
 export type IKlien = GeneratedToProvider<definitions['klien']>;
 export type IStylish = GeneratedToProvider<definitions['stylish']>;
+export type IAdmin = GeneratedToProvider<definitions['admin']>;

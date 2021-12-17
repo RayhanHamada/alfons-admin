@@ -8,7 +8,7 @@ import {
   useShow,
 } from '@pankod/refine';
 import dayjs from 'dayjs';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useCallback } from 'react';
 
 const { Title, Text } = Typography;
 
@@ -18,12 +18,15 @@ export const AdminShow: React.FC = () => {
     showId,
   } = useShow<IAdmin>();
 
-  const onHapusAdmin: MouseEventHandler<HTMLButtonElement> = async (e) => {
-    e.preventDefault();
-    if (showId) {
-      //   TODO trigger DELETE /user dan /admin ke API
-    }
-  };
+  const onHapusAdmin: MouseEventHandler<HTMLButtonElement> = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (showId) {
+        //   TODO trigger DELETE /user dan /admin ke API
+      }
+    },
+    [showId]
+  );
 
   if (!adminData) return <p>Mengambil data admin</p>;
 

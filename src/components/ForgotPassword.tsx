@@ -16,6 +16,7 @@ export const ForgotPasswordForm: React.FC = (_props) => {
       return;
     }
 
+    // TODO panggil resetPasswordForEmail di api
     await supabaseBrowserClient.auth.api
       .resetPasswordForEmail(v.email)
       .then(({ error }) => {

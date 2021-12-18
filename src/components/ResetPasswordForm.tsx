@@ -24,6 +24,7 @@ export const ResetPasswordForm: React.FC<Props> = ({ accessToken }) => {
       return;
     }
 
+    // TODO: panggil updateUser di api
     await supabaseBrowserClient.auth.api
       .updateUser(accessToken, { password })
       .then(({ user, error }) => {

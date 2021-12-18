@@ -5,6 +5,7 @@ specifiers:
   '@pankod/refine-nextjs-router': ^2.4.5
   '@pankod/refine-supabase': ^2.4.5
   '@supabase/supabase-js': ^1.28.5
+  '@types/cors': ^2.8.12
   '@types/node': ^16.11.12
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
@@ -13,6 +14,7 @@ specifiers:
   ky: ^0.28.7
   next: 12.0.7
   next-compose-plugins: ^2.2.1
+  nextjs-cors: ^2.1.0
   nookies: ^2.5.2
   react: ^17.0.2
   react-dom: ^17.0.2
@@ -27,11 +29,13 @@ dependencies:
   ky: 0.28.7
   next: 12.0.7_react-dom@17.0.2+react@17.0.2
   next-compose-plugins: 2.2.1
+  nextjs-cors: 2.1.0_next@12.0.7
   nookies: 2.5.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
 
 devDependencies:
+  '@types/cors': 2.8.12
   '@types/node': 16.11.14
   '@types/react': 17.0.37
   '@types/react-dom': 17.0.11
@@ -425,6 +429,10 @@ packages:
       '@supabase/realtime-js': 1.3.3
       '@supabase/storage-js': 1.5.0
     dev: false
+
+  /@types/cors/2.8.12:
+    resolution: {integrity: sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==}
+    dev: true
 
   /@types/hast/2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
@@ -957,6 +965,14 @@ packages:
     resolution: {integrity: sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==}
     dependencies:
       toggle-selection: 1.0.6
+    dev: false
+
+  /cors/2.8.5:
+    resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
     dev: false
 
   /create-ecdh/4.0.4:
@@ -2118,6 +2134,15 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - webpack
+    dev: false
+
+  /nextjs-cors/2.1.0_next@12.0.7:
+    resolution: {integrity: sha512-FC1LJMebe6E9fQ3hapW/4Q6zpz1Xpq8O8A2mYWma3S5EY8BP/t+IiTFsHm8Js5lRNyJ3DzQG/3VQu9pTA2LS/Q==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
+    dependencies:
+      cors: 2.8.5
+      next: 12.0.7_react-dom@17.0.2+react@17.0.2
     dev: false
 
   /node-fetch/2.6.1:
@@ -3473,6 +3498,11 @@ packages:
       is-typed-array: 1.1.8
       safe-buffer: 5.2.1
       which-typed-array: 1.1.7
+    dev: false
+
+  /vary/1.1.2:
+    resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
+    engines: {node: '>= 0.8'}
     dev: false
 
   /vfile-message/2.0.4:

@@ -1,6 +1,7 @@
 import { createClient } from '@pankod/refine-supabase';
 
-const supabaseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_SECRET_KEY;
-
-export const supabaseClient = createClient(supabaseURL, supabaseKey);
+export const supabaseClient = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  //   TODO ganti NEXT_PUBLIC_TEMP_SERVICE_ROLE_KEY jadi SUPABASE_SERVICE_ROLE_KEY
+  process.env.NEXT_PUBLIC_TEMP_SUPABASE_SERVICE_ROLE_KEY
+);

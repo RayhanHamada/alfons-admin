@@ -1,5 +1,5 @@
 import { Button, Form, Input, message } from '@pankod/refine';
-import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
+import { ky } from '@utility/ky';
 
 type IForm = {
   email: string;
@@ -16,12 +16,21 @@ export const ForgotPasswordForm: React.FC = (_props) => {
       return;
     }
 
-    // TODO panggil resetPasswordForEmail di api
-    await supabaseBrowserClient.auth.api
-      .resetPasswordForEmail(v.email)
-      .then(({ error }) => {
-        if (error) {
-          message.error('Email tidak valid');
+    await ky
+      .post('api/resetPassword', {
+        json: {
+          email: v.email,
+        },
+        mode: 'cors',
+      })
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 404) {
+            message.error('Email tidak terdaftar');
+          } else if (res.status === 500) {
+            message.error('Terjadi kesalahan pada server');
+          }
+          return;
         }
 
         message.success(
@@ -31,6 +40,9 @@ export const ForgotPasswordForm: React.FC = (_props) => {
           </p>,
           5
         );
+      })
+      .catch(() => {
+        message.error('Terjadi kesalahan');
       });
   };
 

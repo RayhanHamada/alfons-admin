@@ -18,7 +18,8 @@ import {
 import { Icons } from '@pankod/refine';
 import routerProvider from '@pankod/refine-nextjs-router';
 import type { RefineProps } from '@pankod/refine/dist/components/containers/refine';
-import { authProvider, dataProvider } from '@utility';
+import { authProvider } from '@utility/authProvider';
+import { dataProvider } from '@utility/dataProvider';
 
 const { ApartmentOutlined } = Icons;
 

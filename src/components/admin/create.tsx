@@ -8,7 +8,7 @@ import {
   useForm,
   useGetIdentity,
 } from '@pankod/refine';
-import { IUserIdentity } from '@utility';
+import { IUserIdentity } from '@utility/authProvider';
 
 export const AdminCreate: React.FC<IResourceComponentsProps<IAdmin>> = (
   _props

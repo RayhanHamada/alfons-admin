@@ -8,7 +8,7 @@ import {
   useLogin,
 } from '@pankod/refine';
 import logo from '@public/logo.svg';
-import { ILoginParam } from '@utility';
+import { ILoginParam } from '@utility/authProvider';
 import Image from 'next/image';
 import Link from 'next/link';
 

@@ -1,5 +1,5 @@
 import { checkAuthentication } from '@pankod/refine-nextjs-router';
-import { authProvider } from '@utility';
+import { authProvider } from '@utility/authProvider';
 import { GetServerSideProps } from 'next';
 export { NextRouteComponent as default } from '@pankod/refine-nextjs-router';
 

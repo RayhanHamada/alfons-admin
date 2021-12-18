@@ -17,7 +17,7 @@ import {
   TextField,
   useEditableTable,
 } from '@pankod/refine';
-import { dayjs } from '@utility';
+import { dayjs } from '@utility/dayjs';
 
 export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
   _props

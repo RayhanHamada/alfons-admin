@@ -9,7 +9,7 @@ import {
   useForm,
   useGetIdentity,
 } from '@pankod/refine';
-import { IUserIdentity } from '@utility';
+import { IUserIdentity } from '@utility/authProvider';
 
 const { Text, Title } = Typography;
 

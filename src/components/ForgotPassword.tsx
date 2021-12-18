@@ -1,5 +1,5 @@
 import { Button, Form, Input, message } from '@pankod/refine';
-import { supabaseBrowserClient } from '@utility';
+import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
 
 type IForm = {
   email: string;

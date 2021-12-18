@@ -1,6 +1,7 @@
 import { checkAuthentication } from '@pankod/refine-nextjs-router';
 import { dataProvider } from '@pankod/refine-supabase';
-import { authProvider, supabaseBrowserClient } from '@utility';
+import { authProvider } from '@utility/authProvider';
+import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
 import { GetServerSideProps } from 'next';
 import nookies from 'nookies';
 export { NextRouteComponent as default } from '@pankod/refine-nextjs-router';

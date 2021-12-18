@@ -1,6 +1,6 @@
 import { checkAuthentication } from '@pankod/refine-nextjs-router';
-import { dataProvider } from '@pankod/refine-supabase';
 import { authProvider } from '@utility/authProvider';
+import { dataProvider } from '@utility/dataProvider';
 import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
 import { GetServerSideProps } from 'next';
 import nookies from 'nookies';
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { token } = nookies.get(context);
     await supabaseBrowserClient.auth.setAuth(token);
 
-    const data = await dataProvider(supabaseBrowserClient).getList({
+    const data = await dataProvider.getList({
       resource: query['resource'] as string,
     });
 

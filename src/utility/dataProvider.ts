@@ -1,4 +1,4 @@
 import { dataProvider as supabaseDataProvider } from '@pankod/refine-supabase';
-import { supabaseClient } from '@utility/supabaseClient';
+import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
 
-export const dataProvider = supabaseDataProvider(supabaseClient);
+export const dataProvider = supabaseDataProvider(supabaseBrowserClient);

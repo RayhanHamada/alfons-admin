@@ -1,14 +1,16 @@
 import { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
 import { definitions } from '../types/supabase';
-import { supabaseClient } from './supabaseClient';
+import { supabaseBrowserClient } from './supabaseBrowserClient';
 
 export type ILoginParam = {
   email: string;
   password: string;
 };
 
-export type IUserIdentity = ReturnType<typeof supabaseClient.auth.user> & {
+export type IUserIdentity = ReturnType<
+  typeof supabaseBrowserClient.auth.user
+> & {
   name?: string;
   cabangId: number;
   adminId: number;
@@ -16,7 +18,7 @@ export type IUserIdentity = ReturnType<typeof supabaseClient.auth.user> & {
 
 export const authProvider: AuthProvider = {
   login: async ({ email, password }: ILoginParam) => {
-    const { user, error, session } = await supabaseClient.auth.signIn({
+    const { user, error, session } = await supabaseBrowserClient.auth.signIn({
       email,
       password,
     });
@@ -36,7 +38,7 @@ export const authProvider: AuthProvider = {
   },
   logout: async () => {
     nookies.destroy(null, 'token');
-    const { error } = await supabaseClient.auth.signOut();
+    const { error } = await supabaseBrowserClient.auth.signOut();
 
     if (error) {
       return Promise.reject(error);
@@ -47,7 +49,8 @@ export const authProvider: AuthProvider = {
   checkError: () => Promise.resolve(),
   checkAuth: async (ctx) => {
     const { token } = nookies.get(ctx);
-    const { data: user } = await supabaseClient.auth.api.getUser(token);
+    // TODO bikin ganti proses getUser di api
+    const { data: user } = await supabaseBrowserClient.auth.api.getUser(token);
 
     if (user) {
       return Promise.resolve();
@@ -56,17 +59,17 @@ export const authProvider: AuthProvider = {
     return Promise.reject();
   },
   getPermissions: async () => {
-    const user = supabaseClient.auth.user();
+    const user = supabaseBrowserClient.auth.user();
 
     if (user) {
       return Promise.resolve(user.role);
     }
   },
   getUserIdentity: async (): Promise<IUserIdentity | undefined> => {
-    const user = supabaseClient.auth.user();
+    const user = supabaseBrowserClient.auth.user();
 
     if (user) {
-      const { data, error } = await supabaseClient
+      const { data, error } = await supabaseBrowserClient
         .from<definitions['admin']>('admin')
         .select('id,cabang_id', { count: 'exact' })
         .eq('supabase_user_id', user.id);

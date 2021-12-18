@@ -1,5 +1,5 @@
 import { Button, Form, Input, message } from '@pankod/refine';
-import { supabaseClient } from '@utility';
+import { supabaseBrowserClient } from '@utility';
 
 type IForm = {
   email: string;
@@ -16,7 +16,7 @@ export const ForgotPasswordForm: React.FC = (_props) => {
       return;
     }
 
-    await supabaseClient.auth.api
+    await supabaseBrowserClient.auth.api
       .resetPasswordForEmail(v.email)
       .then(({ error }) => {
         if (error) {

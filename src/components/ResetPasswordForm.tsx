@@ -1,5 +1,5 @@
 import { Button, Form, Input, message } from '@pankod/refine';
-import { supabaseClient } from '@utility/supabaseClient';
+import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
 import { useRouter } from 'next/router';
 
 const { Password } = Input;
@@ -24,7 +24,7 @@ export const ResetPasswordForm: React.FC<Props> = ({ accessToken }) => {
       return;
     }
 
-    await supabaseClient.auth.api
+    await supabaseBrowserClient.auth.api
       .updateUser(accessToken, { password })
       .then(({ user, error }) => {
         if (error) {

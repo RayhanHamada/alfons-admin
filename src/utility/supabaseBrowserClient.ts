@@ -5,3 +5,5 @@ export const supabaseBrowserClient = createClient(
   //   TODO ganti NEXT_PUBLIC_TEMP_SERVICE_ROLE_KEY jadi SUPABASE_SERVICE_ROLE_KEY
   process.env.NEXT_PUBLIC_TEMP_SUPABASE_SERVICE_ROLE_KEY
 );
+
+export type SupabaseBrowserClient = typeof supabaseBrowserClient;

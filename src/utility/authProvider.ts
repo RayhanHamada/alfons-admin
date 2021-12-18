@@ -1,20 +1,8 @@
+import { ILoginParam, IUserIdentity } from '@customTypes/authProvider';
 import { definitions } from '@customTypes/supabase';
 import { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
 import { supabaseBrowserClient } from './supabaseBrowserClient';
-
-export type ILoginParam = {
-  email: string;
-  password: string;
-};
-
-export type IUserIdentity = ReturnType<
-  typeof supabaseBrowserClient.auth.user
-> & {
-  name?: string;
-  cabangId: number;
-  adminId: number;
-};
 
 export const authProvider: AuthProvider = {
   login: async ({ email, password }: ILoginParam) => {

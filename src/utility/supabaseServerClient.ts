@@ -5,4 +5,4 @@ export const supabaseServerClient = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-export type SupabaseBrowserClient = typeof supabaseServerClient;
+export type SupabaseServerClient = typeof supabaseServerClient;

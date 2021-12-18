@@ -10,6 +10,7 @@ specifiers:
   '@types/react-dom': ^17.0.0
   '@typescript-eslint/parser': ^5.7.0
   dayjs: ^1.10.7
+  ky: ^0.28.7
   next: 12.0.7
   next-compose-plugins: ^2.2.1
   nookies: ^2.5.2
@@ -23,6 +24,7 @@ dependencies:
   '@pankod/refine-supabase': 2.4.9_5539cae010396b202b015f3568914e95
   '@supabase/supabase-js': 1.28.5
   dayjs: 1.10.7
+  ky: 0.28.7
   next: 12.0.7_react-dom@17.0.2+react@17.0.2
   next-compose-plugins: 2.2.1
   nookies: 2.5.2
@@ -1712,6 +1714,11 @@ packages:
     hasBin: true
     dependencies:
       minimist: 1.2.5
+    dev: false
+
+  /ky/0.28.7:
+    resolution: {integrity: sha512-a23i6qSr/ep15vdtw/zyEQIDLoUaKDg9Jf04CYl/0ns/wXNYna26zJpI+MeIFaPeDvkrjLPrKtKOiiI3IE53RQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /loader-utils/1.2.3:

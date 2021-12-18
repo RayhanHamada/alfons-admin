@@ -1,6 +1,6 @@
+import { definitions } from '@customTypes/supabase';
 import { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
-import { definitions } from '../types/supabase';
 import { supabaseBrowserClient } from './supabaseBrowserClient';
 
 export type ILoginParam = {

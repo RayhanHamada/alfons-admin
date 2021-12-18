@@ -1,4 +1,4 @@
-import { definitions } from 'src/types/supabase';
+import { definitions } from 'src/customTypes/supabase';
 
 type GeneratedToProvider<E extends Record<string, unknown>> = Omit<E, 'id'> & {
   id?: string;

@@ -21,8 +21,8 @@
       "@styles": ["src/styles"],
       "@utility/*": ["src/utility/*"],
       "@utility": ["src/utility"],
-      "@types/*": ["src/types/*"],
-      "@types": ["src/types"],
+      "@customTypes/*": ["src/customTypes/*"],
+      "@customTypes": ["src/customTypes"],
       "@public/*": ["public/*"],
       "@public": ["public"]
     },

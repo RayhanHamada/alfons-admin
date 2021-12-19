@@ -1,11 +1,12 @@
 import { Button, Form, Input, message } from '@pankod/refine';
-import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
+import { ky } from '@utility/ky';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const { Password } = Input;
 
 type IForm = {
-  password: string;
+  password?: string;
 };
 
 type OnFinish = (v: IForm) => void;
@@ -18,29 +19,46 @@ export const ResetPasswordForm: React.FC<Props> = ({ accessToken }) => {
   const router = useRouter();
   const [form] = Form.useForm<IForm>();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onFinish: OnFinish = async ({ password }) => {
-    if (password === null || password === '') {
+    if (!password || password === '') {
       message.error('Password tidak boleh kosong', 3);
       return;
     }
 
-    // TODO: panggil updateUser di api
-    await supabaseBrowserClient.auth.api
-      .updateUser(accessToken, { password })
-      .then(({ user, error }) => {
-        if (error) {
+    setIsSubmitting(true);
+    await ky
+      .post('api/updatePassword', {
+        json: {
+          accessToken,
+          password,
+        },
+      })
+      .then(async (res) => {
+        if (!res.ok) {
           message.error(
             'Terjadi kesalahan. Silahkan request lagi untuk ubah password.',
             4
           );
         }
 
-        message.success(`Password untuk ${user!.email} berhasil direset !`);
+        const user = (await res.json()) as { email: string };
 
-        setTimeout(() => {
-          router.push('/login');
-        }, 3000);
+        message.success(`Password untuk ${user.email} berhasil direset !`);
+      })
+      .catch(() => {
+        message.error(
+          'Terjadi kesalahan. Silahkan request lagi untuk ubah password.',
+          4
+        );
       });
+
+    setIsSubmitting(false);
+
+    setTimeout(() => {
+      router.push('/login');
+    }, 1000);
   };
 
   return (
@@ -58,6 +76,7 @@ export const ResetPasswordForm: React.FC<Props> = ({ accessToken }) => {
       >
         <Password placeholder="Password baru anda" minLength={8} />
       </Form.Item>
+
       <Button type="primary" size="large" htmlType="submit">
         Reset Password !
       </Button>

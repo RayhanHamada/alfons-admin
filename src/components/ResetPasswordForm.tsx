@@ -1,9 +1,11 @@
-import { Button, Form, Input, message } from '@pankod/refine';
+import { Button, Form, Icons, Input, message, Spin } from '@pankod/refine';
 import { ky } from '@utility/ky';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const { Password } = Input;
+const { LoadingOutlined } = Icons;
 
 type IForm = {
   password?: string;
@@ -71,15 +73,26 @@ export const ResetPasswordForm: React.FC<Props> = ({ accessToken }) => {
     >
       <Form.Item
         name="password"
-        rules={[{ required: true }]}
+        rules={[{ required: true, min: 8 }]}
         style={{ marginBottom: '12px' }}
       >
         <Password placeholder="Password baru anda" minLength={8} />
       </Form.Item>
 
-      <Button type="primary" size="large" htmlType="submit">
-        Reset Password !
-      </Button>
+      <Spin indicator={<LoadingOutlined spin />} spinning={isSubmitting}>
+        <Button
+          type="primary"
+          size="large"
+          htmlType="submit"
+          disabled={isSubmitting}
+        >
+          Reset Password !
+        </Button>
+      </Spin>
+      <br />
+      <u hidden={isSubmitting}>
+        <Link href="/login">Batalkan dan ke login</Link>
+      </u>
     </Form>
   );
 };

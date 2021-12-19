@@ -2,6 +2,7 @@ import { ILoginParam, IUserIdentity } from '@customTypes/authProvider';
 import { definitions } from '@customTypes/supabase';
 import { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
+import { ky } from './ky';
 import { supabaseBrowserClient } from './supabaseBrowserClient';
 
 export const authProvider: AuthProvider = {
@@ -37,8 +38,15 @@ export const authProvider: AuthProvider = {
   checkError: () => Promise.resolve(),
   checkAuth: async (ctx) => {
     const { token } = nookies.get(ctx);
-    // TODO bikin ganti proses getUser di api
-    const { data: user } = await supabaseBrowserClient.auth.api.getUser(token);
+
+    let user: ReturnType<typeof supabaseBrowserClient.auth.user> = null;
+
+    await ky
+      .get(`api/getAdmin?token=${token}`)
+      .then(async (res) => {
+        user = await res.json();
+      })
+      .catch(() => {});
 
     if (user) {
       return Promise.resolve();

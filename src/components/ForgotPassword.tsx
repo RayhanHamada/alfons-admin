@@ -1,5 +1,6 @@
-import { Button, Form, Input, message } from '@pankod/refine';
+import { Button, Form, Icons, Input, message, Spin } from '@pankod/refine';
 import { ky } from '@utility/ky';
+import { useState } from 'react';
 
 type IForm = {
   email: string;
@@ -7,14 +8,19 @@ type IForm = {
 
 type OnFinish = (v: IForm) => void;
 
+const { LoadingOutlined } = Icons;
+
 export const ForgotPasswordForm: React.FC = (_props) => {
   const [form] = Form.useForm<IForm>();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onFinish: OnFinish = async (v) => {
     if (v.email === '' || v.email === null) {
       message.error('Email tidak valid');
       return;
     }
+
+    setIsSubmitting(true);
 
     await ky
       .post('api/resetPassword', {
@@ -44,6 +50,9 @@ export const ForgotPasswordForm: React.FC = (_props) => {
       .catch(() => {
         message.error('Terjadi kesalahan');
       });
+
+    form.resetFields();
+    setIsSubmitting(false);
   };
 
   return (
@@ -61,9 +70,16 @@ export const ForgotPasswordForm: React.FC = (_props) => {
       >
         <Input type="email" placeholder="budi@example.com" />
       </Form.Item>
-      <Button type="primary" size="large" htmlType="submit">
-        Kirim permintaan reset password
-      </Button>
+      <Spin indicator={<LoadingOutlined spin />} spinning={isSubmitting}>
+        <Button
+          type="primary"
+          size="large"
+          htmlType="submit"
+          disabled={isSubmitting}
+        >
+          Kirim permintaan reset password
+        </Button>
+      </Spin>
     </Form>
   );
 };

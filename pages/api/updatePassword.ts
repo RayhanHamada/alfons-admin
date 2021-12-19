@@ -5,8 +5,6 @@ import cors from 'nextjs-cors';
 const updatePassword: NextApiHandler = async (req, res) => {
   await cors(req, res, {
     origin: process.env.NEXT_PUBLIC_BASE_URL,
-    methods: ['POST'],
-    optionsSuccessStatus: 200,
   });
 
   const { accessToken, password } = req.body as {

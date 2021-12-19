@@ -82,7 +82,7 @@ export const ForgotPasswordForm: React.FC = (_props) => {
         </Button>
       </Spin>
       <br />
-      <u>
+      <u hidden={isSubmitting}>
         <Link href="/login">Kembali ke login</Link>
       </u>
     </Form>

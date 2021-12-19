@@ -1,5 +1,6 @@
 import { Button, Form, Icons, Input, message, Spin } from '@pankod/refine';
 import { ky } from '@utility/ky';
+import Link from 'next/link';
 import { useState } from 'react';
 
 type IForm = {
@@ -80,6 +81,10 @@ export const ForgotPasswordForm: React.FC = (_props) => {
           Kirim permintaan reset password
         </Button>
       </Spin>
+      <br />
+      <u>
+        <Link href="/login">Kembali ke login</Link>
+      </u>
     </Form>
   );
 };

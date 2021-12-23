@@ -19,7 +19,6 @@ export interface paths {
           id?: parameters["rowFilter.admin.id"];
           supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
           name?: parameters["rowFilter.admin.name"];
-          email?: parameters["rowFilter.admin.email"];
           phone_number?: parameters["rowFilter.admin.phone_number"];
           otp?: parameters["rowFilter.admin.otp"];
           created_at?: parameters["rowFilter.admin.created_at"];
@@ -78,7 +77,6 @@ export interface paths {
           id?: parameters["rowFilter.admin.id"];
           supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
           name?: parameters["rowFilter.admin.name"];
-          email?: parameters["rowFilter.admin.email"];
           phone_number?: parameters["rowFilter.admin.phone_number"];
           otp?: parameters["rowFilter.admin.otp"];
           created_at?: parameters["rowFilter.admin.created_at"];
@@ -101,7 +99,6 @@ export interface paths {
           id?: parameters["rowFilter.admin.id"];
           supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
           name?: parameters["rowFilter.admin.name"];
-          email?: parameters["rowFilter.admin.email"];
           phone_number?: parameters["rowFilter.admin.phone_number"];
           otp?: parameters["rowFilter.admin.otp"];
           created_at?: parameters["rowFilter.admin.created_at"];
@@ -975,13 +972,12 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: number;
-    supabase_user_id?: string;
+    supabase_user_id: string;
     name: string;
-    email: string;
     phone_number: string;
     otp?: string;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `cabang.id`.<fk table='cabang' column='id'/>
@@ -998,8 +994,8 @@ export interface definitions {
     cancel?: boolean;
     done?: boolean;
     note?: string;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `cabang.id`.<fk table='cabang' column='id'/>
@@ -1028,8 +1024,8 @@ export interface definitions {
      */
     id: number;
     name: string;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
   };
   jam: {
     /**
@@ -1039,8 +1035,8 @@ export interface definitions {
     id: number;
     jam_ke: number;
     pukul: string;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `cabang.id`.<fk table='cabang' column='id'/>
@@ -1058,8 +1054,8 @@ export interface definitions {
     phone_number: string;
     phone_verified?: boolean;
     otp?: string;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
   };
   rendered_service: {
     /**
@@ -1077,8 +1073,8 @@ export interface definitions {
      * This is a Foreign Key to `appointment.id`.<fk table='appointment' column='id'/>
      */
     appointment_id: number;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
   };
   service: {
     /**
@@ -1088,8 +1084,8 @@ export interface definitions {
     id: number;
     name: string;
     cost_estimate: number;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `service_category.id`.<fk table='service_category' column='id'/>
@@ -1103,8 +1099,8 @@ export interface definitions {
      */
     id: number;
     name: string;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
   };
   stylish: {
     /**
@@ -1121,8 +1117,8 @@ export interface definitions {
     jumat_available: boolean;
     sabtu_available: boolean;
     minggu_available: boolean;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `cabang.id`.<fk table='cabang' column='id'/>
@@ -1157,7 +1153,6 @@ export interface parameters {
   "rowFilter.admin.id": string;
   "rowFilter.admin.supabase_user_id": string;
   "rowFilter.admin.name": string;
-  "rowFilter.admin.email": string;
   "rowFilter.admin.phone_number": string;
   "rowFilter.admin.otp": string;
   "rowFilter.admin.created_at": string;

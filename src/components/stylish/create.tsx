@@ -1,4 +1,5 @@
 import type { IStylish } from '@components';
+import { IUserIdentity } from '@customTypes/authProvider';
 import {
   Create,
   Form,
@@ -10,7 +11,6 @@ import {
   useForm,
   useGetIdentity,
 } from '@pankod/refine';
-import { IUserIdentity } from '@utility/authProvider';
 
 const { Title, Text } = Typography;
 

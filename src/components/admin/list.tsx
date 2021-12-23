@@ -1,4 +1,5 @@
 import type { IAdmin } from '@components';
+import { IUserIdentity } from '@customTypes/authProvider';
 import {
   Button,
   Col,
@@ -17,7 +18,6 @@ import {
   useEditableTable,
   useGetIdentity,
 } from '@pankod/refine';
-import { IUserIdentity } from '@utility/authProvider';
 
 export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
   _props

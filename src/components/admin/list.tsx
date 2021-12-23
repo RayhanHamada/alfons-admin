@@ -14,7 +14,6 @@ import {
   ShowButton,
   Space,
   Table,
-  TextField,
   useEditableTable,
   useGetIdentity,
 } from '@pankod/refine';
@@ -99,31 +98,9 @@ export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
               key="name"
               dataIndex="name"
               title="Nama"
-              render={(value, record) => {
-                if (isEditing(record.id!)) {
-                  return (
-                    <Form.Item
-                      name="name"
-                      initialValue={value}
-                      style={{ margin: 0 }}
-                    >
-                      <Input />
-                    </Form.Item>
-                  );
-                }
-                return <TextField value={value} />;
-              }}
               sorter
             />
-            <Table.Column<IAdmin> key="email" dataIndex="email" title="Email" />
-            <Table.Column<IAdmin>
-              key="supabase_user_id"
-              dataIndex="supabase_user_id"
-              title="Status konfirmasi"
-              render={(v) => {
-                return <p>{v ? 'Sudah' : 'Belum'}</p>;
-              }}
-            />
+
             <Table.Column<IAdmin>
               title="Aksi"
               dataIndex="actions"

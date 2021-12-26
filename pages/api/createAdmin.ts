@@ -1,15 +1,8 @@
+import { CreateAdminBody } from '@customTypes/api/createAdmin';
 import { definitions } from '@customTypes/supabase';
 import { supabaseServerClient } from '@utility/supabaseServerClient';
 import { NextApiHandler } from 'next';
 import cors from 'nextjs-cors';
-
-type Body = {
-  email: string;
-  name: string;
-  password: string;
-  phone_number: string;
-  cabang_id: number;
-};
 
 type Response = ReturnType<typeof supabaseServerClient.auth.user>;
 
@@ -18,35 +11,42 @@ const createAdmin: NextApiHandler<Response> = async (req, res) => {
     origin: process.env.NEXT_PUBLIC_BASE_URL,
   });
 
-  const { email, password, phone_number, name, cabang_id } = req.body as Body;
+  const { email, password, phone_number, name, cabang_id, adminRole } =
+    req.body as CreateAdminBody;
 
   /**
    * daftarkan user ke supabase (table auth.users)
    */
-  const { data, error } = await supabaseServerClient.auth.api.createUser({
-    email,
-    password,
-  });
+  const { user, error } = await supabaseServerClient.auth.signUp(
+    {
+      email,
+      password,
+    },
+    {
+      data: {
+        adminRole,
+      },
+    }
+  );
 
   if (error) {
     return res.status(500).end(JSON.stringify(error));
   }
 
-  if (!data) {
+  if (!user) {
     return res.status(500).end();
   }
 
-  const { id } = data;
+  const { id } = user;
 
   /**
-   * masukkan data admin ke tabel public.admin
+   * masukkan user admin ke tabel public.admin
    */
   await supabaseServerClient
     .from<definitions['admin']>('admin')
     .insert({
       name,
       phone_number,
-      email,
       supabase_user_id: id,
       cabang_id,
     })
@@ -55,7 +55,7 @@ const createAdmin: NextApiHandler<Response> = async (req, res) => {
         return res.status(500).end(JSON.stringify(error));
       }
 
-      if (!data) {
+      if (!user) {
         return res.status(500).end();
       }
 

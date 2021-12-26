@@ -80,6 +80,7 @@ export const authProvider: AuthProvider = {
         name: user.email,
         cabangId: data[0].cabang_id,
         adminId: data[0].id,
+        adminRole: user.user_metadata.adminRole,
       });
     }
 

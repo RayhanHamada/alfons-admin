@@ -11,4 +11,5 @@ export type IUserIdentity = ReturnType<
   name?: string;
   cabangId: number;
   adminId: number;
+  adminRole: 'admin' | 'superadmin';
 };

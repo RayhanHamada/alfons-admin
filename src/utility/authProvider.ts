@@ -33,7 +33,7 @@ export const authProvider: AuthProvider = {
       return Promise.reject(error);
     }
 
-    return Promise.resolve('/');
+    return Promise.resolve();
   },
   checkError: () => Promise.resolve(),
   checkAuth: async (ctx) => {

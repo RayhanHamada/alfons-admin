@@ -47,8 +47,8 @@ export const AdminShow: React.FC = () => {
       <Text>{adminData.data.id}</Text>
       <Title level={5}>Nama</Title>
       <Text>{adminData.data.name}</Text>
-      <Title level={5}>Email</Title>
-      <Text>{adminData.data.email}</Text>
+      {/* <Title level={5}>Email</Title>
+      <Text>{adminData.data.}</Text> */}
       <Title level={5}>Nomor Telepon</Title>
       <Text>{adminData.data.phone_number}</Text>
       <Title level={5}>Ditambahkan Tanggal</Title>

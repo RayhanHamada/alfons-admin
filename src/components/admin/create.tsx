@@ -1,5 +1,5 @@
 import type { IAdmin } from '@components';
-import type { CreateAdminBody } from '@customTypes/api/createAdmin';
+import type { Body } from '@customTypes/api/createAdmin';
 import type { IUserIdentity } from '@customTypes/authProvider';
 import {
   Create,
@@ -40,7 +40,7 @@ export const AdminCreate: React.FC<IResourceComponentsProps<IAdmin>> = (
     phone_number,
     cabang_id,
     adminRole,
-  }: CreateAdminBody) => {
+  }: Body) => {
     await ky
       .post('api/createAdmin', {
         json: {

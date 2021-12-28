@@ -1,4 +1,6 @@
-export type CreateAdminBody = {
+import type { SupabaseServerClient } from '@utility/supabaseServerClient';
+
+export type Body = {
   email: string;
   name: string;
   password: string;
@@ -6,3 +8,5 @@ export type CreateAdminBody = {
   cabang_id: number;
   adminRole: 'admin' | 'superadmin';
 };
+
+export type Res = ReturnType<SupabaseServerClient['auth']['user']>;

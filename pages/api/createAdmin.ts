@@ -1,18 +1,16 @@
-import { CreateAdminBody } from '@customTypes/api/createAdmin';
+import type { Body, Res } from '@customTypes/api/createAdmin';
 import { definitions } from '@customTypes/supabase';
 import { supabaseServerClient } from '@utility/supabaseServerClient';
-import { NextApiHandler } from 'next';
+import type { NextApiHandler } from 'next';
 import cors from 'nextjs-cors';
 
-type Response = ReturnType<typeof supabaseServerClient.auth.user>;
-
-const createAdmin: NextApiHandler<Response> = async (req, res) => {
+const createAdmin: NextApiHandler<Res> = async (req, res) => {
   await cors(req, res, {
     origin: process.env.NEXT_PUBLIC_BASE_URL,
   });
 
   const { email, password, phone_number, name, cabang_id, adminRole } =
-    req.body as CreateAdminBody;
+    req.body as Body;
 
   /**
    * daftarkan user ke supabase (table auth.users)

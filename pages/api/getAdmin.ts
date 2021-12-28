@@ -1,14 +1,9 @@
+import type { Query, Res } from '@customTypes/api/getAdmin';
 import { supabaseServerClient } from '@utility/supabaseServerClient';
-import { NextApiHandler } from 'next';
+import type { NextApiHandler } from 'next';
 import cors from 'nextjs-cors';
 
-type Query = {
-  token: string;
-};
-
-type Response = ReturnType<typeof supabaseServerClient.auth.user>;
-
-const getAdmin: NextApiHandler<Response> = async (req, res) => {
+const getAdmin: NextApiHandler<Res> = async (req, res) => {
   await cors(req, res, {
     origin: process.env.NEXT_PUBLIC_BASE_URL,
   });

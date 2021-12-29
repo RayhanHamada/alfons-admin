@@ -1,9 +1,9 @@
-import type { Query, Res } from '@customTypes/api/getAdmin';
+import type { Query, Res } from '@customTypes/api/getMe';
 import { supabaseServerClient } from '@utility/supabaseServerClient';
 import type { NextApiHandler } from 'next';
 import cors from 'nextjs-cors';
 
-const getAdmin: NextApiHandler<Res> = async (req, res) => {
+const getMe: NextApiHandler<Res> = async (req, res) => {
   await cors(req, res, {
     origin: process.env.NEXT_PUBLIC_BASE_URL,
   });
@@ -25,4 +25,4 @@ const getAdmin: NextApiHandler<Res> = async (req, res) => {
     });
 };
 
-export default getAdmin;
+export default getMe;

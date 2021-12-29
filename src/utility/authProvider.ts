@@ -42,7 +42,7 @@ export const authProvider: AuthProvider = {
     let user: ReturnType<typeof supabaseBrowserClient.auth.user> = null;
 
     await ky
-      .get(`api/getAdmin?token=${token}`)
+      .get(`api/getMe?token=${token}`)
       .then(async (res) => {
         user = await res.json();
       })

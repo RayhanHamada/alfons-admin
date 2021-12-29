@@ -1,6 +1,7 @@
-import { ILoginParam, IUserIdentity } from '@customTypes/authProvider';
-import { definitions } from '@customTypes/supabase';
-import { AuthProvider } from '@pankod/refine';
+import type { Res } from '@customTypes/api/checkAuth';
+import type { ILoginParam, IUserIdentity } from '@customTypes/authProvider';
+import type { definitions } from '@customTypes/supabase';
+import type { AuthProvider } from '@pankod/refine';
 import nookies from 'nookies';
 import { ky } from './ky';
 import { supabaseBrowserClient } from './supabaseBrowserClient';
@@ -39,12 +40,12 @@ export const authProvider: AuthProvider = {
   checkAuth: async (ctx) => {
     const { token } = nookies.get(ctx);
 
-    let user: ReturnType<typeof supabaseBrowserClient.auth.user> = null;
+    let user: Res = null;
 
     await ky
-      .get(`api/getMe?token=${token}`)
+      .get(`api/checkAuth?token=${token}`)
       .then(async (res) => {
-        user = await res.json();
+        user = (await res.json()) as Res;
       })
       .catch(() => {});
 

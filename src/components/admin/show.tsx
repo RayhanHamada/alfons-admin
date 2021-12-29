@@ -1,4 +1,5 @@
 import { IAdmin } from '@components';
+import { Res } from '@customTypes/api/getAdmin';
 import {
   Button,
   DateField,
@@ -7,8 +8,9 @@ import {
   Typography,
   useShow,
 } from '@pankod/refine';
+import { ky } from '@utility/ky';
 import dayjs from 'dayjs';
-import { MouseEventHandler, useCallback } from 'react';
+import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
 
 const { Title, Text } = Typography;
 
@@ -27,6 +29,29 @@ export const AdminShow: React.FC = () => {
     },
     [showId]
   );
+
+  const [email, setEmail] = useState('');
+
+  /**
+   * fetch email admin dari table auth.users
+   */
+  useEffect(() => {
+    (async () => {
+      if (showId) {
+        await ky
+          .get(`api/getAdmin?id=${showId}`)
+          .then(async (res) => {
+            const admin: Res = await res.json();
+
+            if (!admin) return;
+            const { email } = admin;
+
+            setEmail(email!);
+          })
+          .catch(() => {});
+      }
+    })();
+  }, [showId]);
 
   if (!adminData) return <p>Mengambil data admin</p>;
 
@@ -47,8 +72,8 @@ export const AdminShow: React.FC = () => {
       <Text>{adminData.data.id}</Text>
       <Title level={5}>Nama</Title>
       <Text>{adminData.data.name}</Text>
-      {/* <Title level={5}>Email</Title>
-      <Text>{adminData.data.}</Text> */}
+      <Title level={5}>Email</Title>
+      <Text>{email}</Text>
       <Title level={5}>Nomor Telepon</Title>
       <Text>{adminData.data.phone_number}</Text>
       <Title level={5}>Ditambahkan Tanggal</Title>

@@ -1,4 +1,4 @@
-import type { IService, IServiceCategory } from '@components';
+import { IService, IServiceCategory } from '@components';
 import {
   Create,
   Form,
@@ -7,47 +7,30 @@ import {
   IResourceComponentsProps,
   Row,
   Select,
-  Skeleton,
   TextField,
   useForm,
-  useList,
+  useSelect,
 } from '@pankod/refine';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export const ServiceCreate: React.FC<IResourceComponentsProps<IService>> = (
   _props
 ) => {
-  const {
-    data,
-    isFetched,
-    isLoading: isCategoryLoading,
-  } = useList<IServiceCategory>({
+  const { selectProps } = useSelect<IServiceCategory>({
     resource: 'service_category',
-    config: {
-      pagination: {
-        pageSize: 100,
+    onSearch: (value) => [
+      {
+        field: 'name',
+        operator: 'contains',
+        value,
       },
-      sort: [{ field: 'name', order: 'asc' }],
-    },
+    ],
+    fetchSize: 100,
+    optionLabel: 'name',
+    optionValue: 'id',
+    debounce: 300,
+    defaultValue: '1',
   });
-
-  const [categories, setCategories] = useState<
-    { label: string; value: string; key?: string }[]
-  >([]);
-
-  useEffect(() => {
-    if (isFetched) {
-      if (data) {
-        setCategories(
-          data.data.map((v) => ({
-            label: v.name,
-            value: `${v.id!}`,
-            key: `${v.id!}`,
-          }))
-        );
-      }
-    }
-  }, [data]);
 
   const { saveButtonProps, formProps } = useForm<IService>();
 
@@ -81,28 +64,14 @@ export const ServiceCreate: React.FC<IResourceComponentsProps<IService>> = (
         >
           <Input />
         </Form.Item>
-
-        {isCategoryLoading ? (
-          <Skeleton active={isCategoryLoading} />
-        ) : categories ? (
-          <Form.Item
-            label="Kategori Service"
-            name="service_category_id"
-            initialValue="1"
-            required
-          >
-            <Select defaultValue="1" showSearch>
-              {categories.map((c) => (
-                <Select.Option key={c.value} value={c.value}>
-                  {c.label}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        ) : (
-          <p>Error fetching categories</p>
-        )}
-
+        <Form.Item
+          label="Kategori Service"
+          name="service_category_id"
+          initialValue="Cut"
+          required
+        >
+          <Select {...selectProps} />
+        </Form.Item>
         <Row style={{ columnGap: 10 }} align="middle">
           <Form.Item label="Perkiraan Harga" name="cost_estimate" required>
             <InputNumber

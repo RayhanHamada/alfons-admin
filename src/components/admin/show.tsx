@@ -1,4 +1,4 @@
-import { IAdmin } from '@components';
+import { IAdmin, ICabang } from '@components';
 import { Res } from '@customTypes/api/getAdmin';
 import {
   Button,
@@ -8,6 +8,7 @@ import {
   Show,
   Space,
   Typography,
+  useOne,
   useShow,
 } from '@pankod/refine';
 import { deleteAdmin, getAdmin } from '@utility/api';
@@ -18,14 +19,19 @@ import { useEffect, useState } from 'react';
 const { Title, Text } = Typography;
 
 export const AdminShow: React.FC = () => {
-  const {
-    queryResult: { isLoading, data: adminResult },
-    showId,
-  } = useShow<IAdmin>();
-
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const {
+    queryResult: { isLoading, data: adminResult, error: adminError },
+    showId,
+  } = useShow<IAdmin>();
+
+  const { data: cabangData, error: cabangError } = useOne<ICabang>({
+    resource: 'cabang',
+    id: `${adminResult?.data.cabang_id}`,
+  });
 
   /**
    * fetch email admin dari table auth.users
@@ -43,7 +49,10 @@ export const AdminShow: React.FC = () => {
     }
   }, [showId]);
 
-  if (!adminResult) return <p>Mengambil data admin</p>;
+  if (adminError || cabangError)
+    return <p>Gagal mengambil data cabang atau admin</p>;
+
+  if (!adminResult || !cabangData) return <p>Mengambil data admin</p>;
 
   const { data: adminData } = adminResult;
 
@@ -89,6 +98,8 @@ export const AdminShow: React.FC = () => {
       <Text>{email}</Text>
       <Title level={5}>Nomor Telepon</Title>
       <Text>{adminResult.data.phone_number}</Text>
+      <Title level={5}>Cabang</Title>
+      <Text>{cabangData.data.name}</Text>
       <Title level={5}>Ditambahkan Tanggal</Title>
       <DateField
         format="LLL"

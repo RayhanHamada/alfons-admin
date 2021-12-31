@@ -3,6 +3,8 @@ import { Res } from '@customTypes/api/getAdmin';
 import {
   Button,
   DateField,
+  message,
+  Popconfirm,
   Show,
   Space,
   Typography,
@@ -10,76 +12,89 @@ import {
 } from '@pankod/refine';
 import { ky } from '@utility/ky';
 import dayjs from 'dayjs';
-import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const { Title, Text } = Typography;
 
 export const AdminShow: React.FC = () => {
   const {
-    queryResult: { isLoading, data: adminData },
+    queryResult: { isLoading, data: adminResult },
     showId,
   } = useShow<IAdmin>();
 
-  const onHapusAdmin: MouseEventHandler<HTMLButtonElement> = useCallback(
-    async (e) => {
-      e.preventDefault();
-      if (showId) {
-        //   TODO trigger DELETE /user dan /admin ke API
-      }
-    },
-    [showId]
-  );
-
+  const router = useRouter();
   const [email, setEmail] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
   /**
    * fetch email admin dari table auth.users
    */
   useEffect(() => {
-    (async () => {
-      if (showId) {
-        await ky
-          .get(`api/getAdmin?id=${showId}`)
-          .then(async (res) => {
-            const admin: Res = await res.json();
+    const getAdmin = async (showId: string) =>
+      ky.get(`api/getAdmin?id=${showId}`).json<Res>();
 
-            if (!admin) return;
-            const { email } = admin;
-
-            setEmail(email!);
-          })
-          .catch(() => {});
-      }
-    })();
+    if (showId) {
+      getAdmin(showId).then((user) => {
+        if (user) {
+          setEmail(user.email!);
+        }
+      });
+    }
   }, [showId]);
 
-  if (!adminData) return <p>Mengambil data admin</p>;
+  if (!adminResult) return <p>Mengambil data admin</p>;
+
+  const { data: adminData } = adminResult;
+
+  const onHapusAdmin = async () => {
+    await ky
+      .delete(`api/deleteAdmin?uid=${adminData.supabase_user_id}`)
+      .then(async (res) => {
+        if (res.ok) {
+          await message.success('Hapus Berhasil', 1).then(() => {
+            router.replace('/admin');
+          });
+        }
+      })
+      .catch(async () => {
+        await message.error('Hapus Tidak Berhasil', 1).then(() => {
+          router.replace('/admin');
+        });
+      });
+  };
 
   return (
     <Show
-      title={`Admin ${adminData?.data.name}`}
+      title={`Admin ${adminData.name}`}
       recordItemId={showId}
       isLoading={isLoading}
       actionButtons={
         <Space>
-          <Button type="primary" onClick={onHapusAdmin} danger>
-            Hapus Admin
-          </Button>
+          <Popconfirm
+            title="Anda Yakin"
+            onConfirm={onHapusAdmin}
+            okButtonProps={{ loading: isDeleting }}
+          >
+            <Button type="primary" danger disabled={isDeleting}>
+              Hapus Admin
+            </Button>
+          </Popconfirm>
         </Space>
       }
     >
       <Title level={5}>id</Title>
-      <Text>{adminData.data.id}</Text>
+      <Text>{adminResult.data.id}</Text>
       <Title level={5}>Nama</Title>
-      <Text>{adminData.data.name}</Text>
+      <Text>{adminResult.data.name}</Text>
       <Title level={5}>Email</Title>
       <Text>{email}</Text>
       <Title level={5}>Nomor Telepon</Title>
-      <Text>{adminData.data.phone_number}</Text>
+      <Text>{adminResult.data.phone_number}</Text>
       <Title level={5}>Ditambahkan Tanggal</Title>
       <DateField
         format="LLL"
-        value={dayjs(adminData.data.created_at).add(7, 'h')}
+        value={dayjs(adminResult.data.created_at).add(7, 'h')}
       />
     </Show>
   );

@@ -45,8 +45,7 @@ export const createAdmin = async ({
     },
   });
 
-export const getAdmin = async (showId: string) =>
-  ky.get(`getAdmin?id=${showId}`);
+export const getAdmin = async (uid: string) => ky.get(`getAdmin?uid=${uid}`);
 
 export const checkAuth = async (token: string) =>
   ky.get(`checkAuth?token=${token}`);

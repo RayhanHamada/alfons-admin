@@ -33,9 +33,9 @@ export const AdminShow: React.FC = () => {
    * fetch email admin dari table auth.users
    */
   useEffect(() => {
-    if (showId) {
+    if (adminResult) {
       (async () => {
-        const res = await getAdmin(showId);
+        const res = await getAdmin(adminResult.data.supabase_user_id);
         const user = (await res.json()) as Res;
 
         if (!res.ok || !user) return message.error('Gagal mengambil email');
@@ -43,7 +43,7 @@ export const AdminShow: React.FC = () => {
         setEmail(user.email!);
       })();
     }
-  }, [showId]);
+  }, [adminResult]);
 
   const {
     isLoading: isCabangLoading,

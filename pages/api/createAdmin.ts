@@ -16,32 +16,28 @@ const createAdmin: NextApiHandler<Res> = async (req, res) => {
   /**
    * daftarkan user ke supabase (table auth.users)
    */
-  const { user, error } = await supabaseServerClient.auth.signUp(
-    {
-      email,
-      password,
-    },
-    {
-      data: {
-        adminRole,
+  const { user: userData, error: userError } =
+    await supabaseServerClient.auth.signUp(
+      {
+        email,
+        password,
       },
-    }
-  );
+      {
+        data: {
+          adminRole,
+        },
+      }
+    );
 
-  if (error) {
-    return res.status(500).end(JSON.stringify(error));
-  }
+  if (userError) return res.status(500).end(JSON.stringify(userError));
+  if (!userData) return res.status(500).end();
 
-  if (!user) {
-    return res.status(500).end();
-  }
-
-  const { id } = user;
+  const { id } = userData;
 
   /**
    * masukkan user admin ke tabel public.admin
    */
-  await supabaseServerClient
+  const { error: adminError, data: adminData } = await supabaseServerClient
     .from<definitions['admin']>('admin')
     .insert({
       name,
@@ -49,17 +45,12 @@ const createAdmin: NextApiHandler<Res> = async (req, res) => {
       supabase_user_id: id,
       cabang_id,
     })
-    .then(({ error }) => {
-      if (error) {
-        return res.status(500).end(JSON.stringify(error));
-      }
+    .single();
 
-      if (!user) {
-        return res.status(500).end();
-      }
+  if (adminError) return res.status(500).end(JSON.stringify(adminError));
+  if (!adminData) return res.status(500).end();
 
-      res.status(200).end();
-    });
+  res.status(200).end();
 };
 
 export default createAdmin;

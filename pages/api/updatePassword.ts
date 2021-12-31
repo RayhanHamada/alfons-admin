@@ -11,19 +11,15 @@ const updatePassword: NextApiHandler = async (req, res) => {
 
   const { accessToken, password } = req.body as Body;
 
-  await supabaseServerClient.auth.api
-    .updateUser(accessToken, { password })
-    .then(({ error, user }) => {
-      if (error) {
-        return res.status(404).end();
-      }
-      if (!user) return res.status(200).end();
+  const { user, error } = await supabaseServerClient.auth.api.updateUser(
+    accessToken,
+    { password }
+  );
 
-      res.status(200).json(user);
-    })
-    .catch(() => {
-      res.status(500).end();
-    });
+  if (error) return res.status(500).end();
+  if (!user) return res.status(404).end();
+
+  res.status(200).json(user);
 };
 
 export default updatePassword;

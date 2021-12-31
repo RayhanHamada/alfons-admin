@@ -10,17 +10,13 @@ const resetPassword: NextApiHandler = async (req, res) => {
   });
 
   const { email } = req.body as Body;
-  await supabaseServerClient.auth.api
-    .resetPasswordForEmail(email)
-    .then(({ error }) => {
-      if (error) {
-        return res.status(404).end('Email not found');
-      }
-      res.status(200).end();
-    })
-    .catch((err) => {
-      res.status(500).json({ msg: 'Internal Error' });
-    });
+  const { data, error } =
+    await supabaseServerClient.auth.api.resetPasswordForEmail(email);
+
+  if (error) return res.status(500).end();
+  if (!data) return res.status(404).end();
+
+  res.status(200).end();
 };
 
 export default resetPassword;

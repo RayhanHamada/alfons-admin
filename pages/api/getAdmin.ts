@@ -10,42 +10,36 @@ const getAdmin: NextApiHandler<Res> = async (req, res) => {
     origin: baseURL,
   });
 
+  /**
+   * ambild data dari table admin
+   */
   const { id } = req.query as Query;
 
-  const { data, error } = await supabaseServerClient
+  const { data: adminData, error: adminError } = await supabaseServerClient
     .from<definitions['admin']>('admin')
     .select('supabase_user_id')
     .eq('id', id)
     .single();
 
-  if (error) {
-    return res.status(500).end('Error when fetching from admin');
-  }
+  if (adminError) return res.status(500).end('Error when fetching from admin');
+  if (!adminData) return res.status(404).end();
 
-  if (!data) {
-    return res.status(404).end();
-  }
+  /**
+   * ambil data dari table users
+   */
+  const { supabase_user_id } = adminData;
 
-  const { supabase_user_id } = data;
+  const { data: listData, error: listError } =
+    await supabaseServerClient.auth.api.listUsers();
 
-  await supabaseServerClient.auth.api
-    .listUsers()
-    .then(({ error, data }) => {
-      if (error) {
-        return res.status(500).end('Error when fetching user list');
-      }
+  if (listError) return res.status(500).end('Error when fetching user list');
+  if (!listData) return res.status(500).end();
 
-      if (!data) return res.status(500).end();
+  const admin = listData.find((a) => a.id === supabase_user_id);
 
-      const admin = data.find((a) => a.id === supabase_user_id);
+  if (!admin) return res.status(404).end();
 
-      if (!admin) return res.status(404).end();
-
-      res.json(admin);
-    })
-    .catch(() => {
-      res.status(500).end();
-    });
+  res.json(admin);
 };
 
 export default getAdmin;

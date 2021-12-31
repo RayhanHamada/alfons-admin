@@ -1,8 +1,9 @@
 import { createClient } from '@pankod/refine-supabase';
+import { supabaseAnonRoleKey, supabaseApiURL } from './constant';
 
 export const supabaseBrowserClient = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  supabaseApiURL,
+  supabaseAnonRoleKey
 );
 
 export type SupabaseBrowserClient = typeof supabaseBrowserClient;

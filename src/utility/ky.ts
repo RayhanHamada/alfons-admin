@@ -1,5 +1,6 @@
 import ogKy from 'ky';
+import { baseURL } from './constant';
 
 export const ky = ogKy.extend({
-  prefixUrl: process.env.NEXT_PUBLIC_BASE_URL,
+  prefixUrl: baseURL,
 });

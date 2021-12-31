@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
+import { supabaseApiURL, supabaseServiceRoleKey } from './constant';
 
 export const supabaseServerClient = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
+  supabaseApiURL,
+  supabaseServiceRoleKey
 );
 
 export type SupabaseServerClient = typeof supabaseServerClient;

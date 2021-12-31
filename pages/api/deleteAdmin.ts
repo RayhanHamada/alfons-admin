@@ -1,12 +1,13 @@
 import type { Query, Res } from '@customTypes/api/deleteAdmin';
 import { definitions } from '@customTypes/supabase';
+import { baseURL } from '@utility/constant';
 import { supabaseServerClient } from '@utility/supabaseServerClient';
 import type { NextApiHandler } from 'next';
 import cors from 'nextjs-cors';
 
 const deleteAdmin: NextApiHandler<Res> = async (req, res) => {
   await cors(req, res, {
-    origin: process.env.NEXT_PUBLIC_BASE_URL,
+    origin: baseURL,
   });
 
   const { uid } = req.query as Query;

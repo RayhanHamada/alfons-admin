@@ -1,11 +1,12 @@
 import type { Body } from '@customTypes/api/updatePassword';
+import { baseURL } from '@utility/constant';
 import { supabaseServerClient } from '@utility/supabaseServerClient';
 import { NextApiHandler } from 'next';
 import cors from 'nextjs-cors';
 
 const updatePassword: NextApiHandler = async (req, res) => {
   await cors(req, res, {
-    origin: process.env.NEXT_PUBLIC_BASE_URL,
+    origin: baseURL,
   });
 
   const { accessToken, password } = req.body as Body;

@@ -1,11 +1,11 @@
 import fs from 'fs/promises';
-import openapiTS from 'openapi-typescript';
+import openapiTS from 'openapi-typescript/dist/esm';
 import path from 'path';
 
+const apiURL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/?apikey=${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`;
+
 (async () => {
-  await openapiTS(
-    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/?apikey=${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
-  )
+  await openapiTS(apiURL)
     .then(async (output) => {
       console.log('done fetching openapi');
       await fs

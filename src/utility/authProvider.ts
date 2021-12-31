@@ -2,8 +2,8 @@ import type { Res } from '@customTypes/api/checkAuth';
 import type { ILoginParam, IUserIdentity } from '@customTypes/authProvider';
 import type { definitions } from '@customTypes/supabase';
 import type { AuthProvider } from '@pankod/refine';
+import { checkAuth } from '@utility/api';
 import nookies from 'nookies';
-import { ky } from './ky';
 import { supabaseBrowserClient } from './supabaseBrowserClient';
 
 export const authProvider: AuthProvider = {
@@ -42,12 +42,8 @@ export const authProvider: AuthProvider = {
 
     let user: Res = null;
 
-    await ky
-      .get(`api/checkAuth?token=${token}`)
-      .then(async (res) => {
-        user = (await res.json()) as Res;
-      })
-      .catch(() => {});
+    const res = await checkAuth(token);
+    user = (await res.json()) as Res;
 
     if (user) {
       return Promise.resolve();

@@ -1,5 +1,5 @@
 import { Button, Form, Icons, Input, message, Spin } from '@pankod/refine';
-import { ky } from '@utility/ky';
+import { resetPassword } from '@utility/api';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -23,34 +23,24 @@ export const ForgotPasswordForm: React.FC = (_props) => {
 
     setIsSubmitting(true);
 
-    await ky
-      .post('api/resetPassword', {
-        json: {
-          email: v.email,
-        },
-        mode: 'cors',
-      })
-      .then((res) => {
-        if (!res.ok) {
-          if (res.status === 404) {
-            message.error('Email tidak terdaftar');
-          } else if (res.status === 500) {
-            message.error('Terjadi kesalahan pada server');
-          }
-          return;
-        }
+    const { ok, status } = await resetPassword(v.email);
 
-        message.success(
-          <p>
-            <b>Terkirim !</b> Silahkan cek <b>{v.email}</b> pada bagian Inbox
-            atau Spam.
-          </p>,
-          5
-        );
-      })
-      .catch(() => {
-        message.error('Terjadi kesalahan');
-      });
+    if (!ok) {
+      if (status === 404) {
+        message.error('Email tidak terdaftar');
+      } else if (status === 500) {
+        message.error('Terjadi kesalahan pada server');
+      }
+      return;
+    }
+
+    message.success(
+      <p>
+        <b>Terkirim !</b> Silahkan cek <b>{v.email}</b> pada bagian Inbox atau
+        Spam.
+      </p>,
+      5
+    );
 
     form.resetFields();
     setIsSubmitting(false);

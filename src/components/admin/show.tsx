@@ -10,8 +10,7 @@ import {
   Typography,
   useShow,
 } from '@pankod/refine';
-import { deleteAdmin } from '@utility/api';
-import { ky } from '@utility/ky';
+import { deleteAdmin, getAdmin } from '@utility/api';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -32,15 +31,15 @@ export const AdminShow: React.FC = () => {
    * fetch email admin dari table auth.users
    */
   useEffect(() => {
-    const getAdmin = async (showId: string) =>
-      ky.get(`api/getAdmin?id=${showId}`).json<Res>();
-
     if (showId) {
-      getAdmin(showId).then((user) => {
-        if (user) {
-          setEmail(user.email!);
-        }
-      });
+      (async () => {
+        const res = await getAdmin(showId);
+        const user = (await res.json()) as Res;
+
+        if (!res.ok || !user) return message.error('Gagal mengambil email');
+
+        setEmail(user.email!);
+      })();
     }
   }, [showId]);
 

@@ -1,5 +1,5 @@
 import { Button, Form, Icons, Input, message, Spin } from '@pankod/refine';
-import { ky } from '@utility/ky';
+import { updatePassword } from '@utility/api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -30,32 +30,17 @@ export const ResetPasswordForm: React.FC<Props> = ({ accessToken }) => {
     }
 
     setIsSubmitting(true);
-    await ky
-      .post('api/updatePassword', {
-        json: {
-          accessToken,
-          password,
-        },
-      })
-      .then(async (res) => {
-        if (!res.ok) {
-          message.error(
-            'Terjadi kesalahan. Silahkan request lagi untuk ubah password.',
-            4
-          );
-        }
+    const res = await updatePassword(accessToken, password);
 
-        const user = (await res.json()) as { email: string };
+    if (!res.ok)
+      return message.error(
+        'Terjadi kesalahan. Silahkan request lagi untuk ubah password.',
+        4
+      );
 
-        message.success(`Password untuk ${user.email} berhasil direset !`);
-      })
-      .catch(() => {
-        message.error(
-          'Terjadi kesalahan. Silahkan request lagi untuk ubah password.',
-          4
-        );
-      });
+    const { email } = (await res.json()) as { email: string };
 
+    message.success(`Berhasil mengubah password untuk email ${email}.`, 1);
     setIsSubmitting(false);
 
     setTimeout(() => {

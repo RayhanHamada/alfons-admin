@@ -11,7 +11,7 @@ import {
   useGetIdentity,
   useSelect,
 } from '@pankod/refine';
-import { ky } from '@utility/ky';
+import { createAdmin } from '@utility/api';
 import { useRouter } from 'next/router';
 
 export const AdminCreate: React.FC<IResourceComponentsProps<IAdmin>> = (
@@ -33,37 +33,15 @@ export const AdminCreate: React.FC<IResourceComponentsProps<IAdmin>> = (
     defaultValue: adminData?.cabangId ? `${adminData.cabangId}` : undefined,
   });
 
-  const onFinish = async ({
-    email,
-    name,
-    password,
-    phone_number,
-    cabang_id,
-    adminRole,
-  }: Body) => {
-    await ky
-      .post('api/createAdmin', {
-        json: {
-          email,
-          name,
-          password,
-          phone_number,
-          cabang_id,
-          adminRole,
-        },
-      })
-      .then((res) => {
-        if (!res.ok) {
-          message.error('Gagal membuat admin !', 3);
-        }
+  const onFinish = async (body: Body) => {
+    const res = await createAdmin(body);
+    if (!res.ok) {
+      message.error('Gagal membuat admin !', 3);
+      return;
+    }
 
-        message.success(`Sukses membuat user ${email}`, 1).then(() => {
-          router.push('/admin');
-        });
-      })
-      .catch(() => {
-        message.error('Gagal membuat admin !', 3);
-      });
+    await message.success(`Sukses membuat user ${body.email}`, 1);
+    await router.push('/admin');
   };
 
   if (isAdminLoading) {

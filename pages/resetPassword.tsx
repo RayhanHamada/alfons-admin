@@ -1,6 +1,6 @@
 import { ResetPasswordForm } from '@components/ResetPasswordForm';
 import { AntdLayout, Col, Typography } from '@pankod/refine';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 
 const { Title, Text } = Typography;

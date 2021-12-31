@@ -1,6 +1,6 @@
 import { ForgotPasswordForm } from '@components/ForgotPassword';
 import { AntdLayout, Col, Typography } from '@pankod/refine';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 
 const { Title, Text } = Typography;
 

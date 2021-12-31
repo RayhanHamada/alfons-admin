@@ -1,5 +1,5 @@
-import { IAdmin, ICabang } from '@components';
-import { Res } from '@customTypes/api/getAdmin';
+import type { IAdmin, ICabang } from '@components';
+import type { Res } from '@customTypes/api/getAdmin';
 import {
   Button,
   DateField,
@@ -7,8 +7,9 @@ import {
   Popconfirm,
   Show,
   Space,
+  Spin,
   Typography,
-  useOne,
+  useMany,
   useShow,
 } from '@pankod/refine';
 import { deleteAdmin, getAdmin } from '@utility/api';
@@ -28,11 +29,6 @@ export const AdminShow: React.FC = () => {
     showId,
   } = useShow<IAdmin>();
 
-  const { data: cabangData, error: cabangError } = useOne<ICabang>({
-    resource: 'cabang',
-    id: `${adminResult?.data.cabang_id}`,
-  });
-
   /**
    * fetch email admin dari table auth.users
    */
@@ -49,10 +45,18 @@ export const AdminShow: React.FC = () => {
     }
   }, [showId]);
 
-  if (adminError || cabangError)
-    return <p>Gagal mengambil data cabang atau admin</p>;
+  const {
+    isLoading: isCabangLoading,
+    isError: isCabangError,
+    data: cabangDatas,
+  } = useMany<ICabang>({
+    resource: 'cabang',
+    ids: [`${adminResult?.data.cabang_id}`],
+  });
 
-  if (!adminResult || !cabangData) return <p>Mengambil data admin</p>;
+  if (adminError) return <p>Gagal mengambil data admin</p>;
+
+  if (!adminResult) return <p>Mengambil data admin</p>;
 
   const { data: adminData } = adminResult;
 
@@ -99,7 +103,13 @@ export const AdminShow: React.FC = () => {
       <Title level={5}>Nomor Telepon</Title>
       <Text>{adminResult.data.phone_number}</Text>
       <Title level={5}>Cabang</Title>
-      <Text>{cabangData.data.name}</Text>
+      {isCabangLoading ? (
+        <Spin spinning size="small" />
+      ) : isCabangError || cabangDatas?.data.length === 0 ? (
+        'Error mengambil data cabang'
+      ) : (
+        cabangDatas?.data[0].name
+      )}
       <Title level={5}>Ditambahkan Tanggal</Title>
       <DateField
         format="LLL"

@@ -10,6 +10,7 @@ import {
   Typography,
   useShow,
 } from '@pankod/refine';
+import { deleteAdmin } from '@utility/api';
 import { ky } from '@utility/ky';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
@@ -48,20 +49,18 @@ export const AdminShow: React.FC = () => {
   const { data: adminData } = adminResult;
 
   const onHapusAdmin = async () => {
-    await ky
-      .delete(`api/deleteAdmin?uid=${adminData.supabase_user_id}`)
-      .then(async (res) => {
-        if (res.ok) {
-          await message.success('Hapus Berhasil', 1).then(() => {
-            router.replace('/admin');
-          });
-        }
-      })
-      .catch(async () => {
-        await message.error('Hapus Tidak Berhasil', 1).then(() => {
-          router.replace('/admin');
-        });
-      });
+    setIsDeleting(true);
+    const res = await deleteAdmin(adminData.supabase_user_id);
+
+    if (res.ok) {
+      await message.success('Hapus Berhasil', 1);
+    } else {
+      await message.error('Hapus Tidak Berhasil', 1);
+    }
+
+    setIsDeleting(false);
+
+    await router.replace('/admin');
   };
 
   return (

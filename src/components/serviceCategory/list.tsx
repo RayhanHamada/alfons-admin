@@ -42,7 +42,7 @@ export const ServiceCategoryList: React.FC<
       return [
         {
           field: 'name',
-          operator: 'containss',
+          operator: 'contains',
           value: name,
         },
       ];

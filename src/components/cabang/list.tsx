@@ -42,7 +42,7 @@ export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
       return [
         {
           field: 'name',
-          operator: 'containss',
+          operator: 'contains',
           value: name,
         },
       ];

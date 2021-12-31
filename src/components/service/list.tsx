@@ -48,7 +48,7 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
       return [
         {
           field: 'name',
-          operator: 'containss',
+          operator: 'contains',
           value: name,
         },
         {

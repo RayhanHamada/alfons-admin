@@ -41,7 +41,7 @@ export const KlienList: React.FC<IResourceComponentsProps<IKlien>> = (
       return [
         {
           field: 'name',
-          operator: 'containss',
+          operator: 'contains',
           value: name,
         },
       ];

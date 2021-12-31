@@ -33,7 +33,7 @@ export const StylishList: React.FC<IResourceComponentsProps<IStylish>> = (
       return [
         {
           field: 'name',
-          operator: 'containss',
+          operator: 'contains',
           value: name,
         },
       ];

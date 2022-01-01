@@ -5,9 +5,7 @@ import {
   Input,
   InputNumber,
   IResourceComponentsProps,
-  Row,
   Select,
-  TextField,
   useForm,
   useSelect,
 } from '@pankod/refine';
@@ -72,28 +70,22 @@ export const ServiceCreate: React.FC<IResourceComponentsProps<IService>> = (
         >
           <Select {...selectProps} />
         </Form.Item>
-        <Row style={{ columnGap: 10 }} align="middle">
-          <Form.Item label="Perkiraan Harga" name="cost_estimate" required>
-            <InputNumber
-              defaultValue={0}
-              formatter={(value) =>
-                `IDR ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-              }
-              parser={(value) =>
-                value === null
-                  ? '0'
-                  : (value!.replace(/IDR\s?|(\.*)/g, '') as any)
-              }
-              style={{ width: 300 }}
-              onChange={onHargaChange}
-            />
-          </Form.Item>
-          <TextField
-            value={harga}
-            // options={{ currency: 'idr', style: 'currency' }}
-            style={{ width: 400 }}
+
+        <Form.Item label="Perkiraan Harga" name="cost_estimate" required>
+          <InputNumber
+            defaultValue={0}
+            formatter={(value) =>
+              `IDR ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+            }
+            parser={(value) =>
+              value === null
+                ? '0'
+                : (value!.replace(/IDR\s?|(\.*)/g, '') as any)
+            }
+            style={{ width: 300 }}
+            onChange={onHargaChange}
           />
-        </Row>
+        </Form.Item>
       </Form>
     </Create>
   );

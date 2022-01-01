@@ -15,13 +15,21 @@ import {
   StylishList,
   Title,
 } from '@components';
+import { MyAccount } from '@components/my-account';
 import { Icons } from '@pankod/refine';
 import type { RefineProps } from '@pankod/refine/dist/components/containers/refine';
 import { authProvider } from '@utility/authProvider';
 import { dataProvider } from '@utility/dataProvider';
 import { routerProvider } from '@utility/routerProvider';
 
-const { ApartmentOutlined } = Icons;
+const {
+  ApartmentOutlined,
+  UserOutlined,
+  CustomerServiceOutlined,
+  AccountBookOutlined,
+  ToolOutlined,
+  FormatPainterOutlined,
+} = Icons;
 
 const resources: RefineProps['resources'] = [
   {
@@ -44,12 +52,14 @@ const resources: RefineProps['resources'] = [
     options: { label: 'Service' },
     list: ServiceList,
     create: ServiceCreate,
+    icon: <ToolOutlined />,
   },
   {
     name: 'klien',
     options: { label: 'Klien' },
     list: KlienList,
     create: KlienCreate,
+    icon: <AccountBookOutlined />,
   },
   {
     name: 'stylish',
@@ -57,6 +67,7 @@ const resources: RefineProps['resources'] = [
     list: StylishList,
     create: StylishCreate,
     edit: StylishEdit,
+    icon: <FormatPainterOutlined />,
   },
   {
     name: 'admin',
@@ -64,6 +75,18 @@ const resources: RefineProps['resources'] = [
     list: AdminList,
     create: AdminCreate,
     show: AdminShow,
+    icon: <CustomerServiceOutlined />,
+  },
+  /**
+   * for admin
+   */
+  {
+    name: 'myaccount',
+    options: {
+      label: 'Akun Saya',
+    },
+    list: MyAccount,
+    icon: <UserOutlined />,
   },
 ];
 

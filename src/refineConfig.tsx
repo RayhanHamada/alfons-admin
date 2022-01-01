@@ -16,10 +16,10 @@ import {
   Title,
 } from '@components';
 import { Icons } from '@pankod/refine';
-import routerProvider from '@pankod/refine-nextjs-router';
 import type { RefineProps } from '@pankod/refine/dist/components/containers/refine';
 import { authProvider } from '@utility/authProvider';
 import { dataProvider } from '@utility/dataProvider';
+import { routerProvider } from '@utility/routerProvider';
 
 const { ApartmentOutlined } = Icons;
 

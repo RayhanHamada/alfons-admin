@@ -64,8 +64,9 @@ export const authProvider: AuthProvider = {
     if (user) {
       const { data, error } = await supabaseBrowserClient
         .from<definitions['admin']>('admin')
-        .select('id,cabang_id', { count: 'exact' })
-        .eq('supabase_user_id', user.id);
+        .select('id, name, cabang_id', { count: 'exact' })
+        .eq('supabase_user_id', user.id)
+        .single();
 
       if (error || !data) {
         console.log('Error mengambil data user.');
@@ -75,9 +76,10 @@ export const authProvider: AuthProvider = {
       return Promise.resolve({
         ...user,
         name: user.email,
-        cabangId: data[0].cabang_id,
-        adminId: data[0].id,
+        cabangId: data.cabang_id,
+        adminId: data.id,
         adminRole: user.user_metadata.adminRole,
+        username: data.name,
       });
     }
 

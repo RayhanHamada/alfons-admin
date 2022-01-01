@@ -9,6 +9,7 @@ export type IUserIdentity = ReturnType<
   SupabaseBrowserClient['auth']['user']
 > & {
   name?: string;
+  username: string;
   cabangId: number;
   adminId: number;
   adminRole: 'admin' | 'superadmin';

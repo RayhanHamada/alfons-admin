@@ -13,6 +13,7 @@ import {
   useOne,
 } from '@pankod/refine';
 import { supabaseBrowserClient } from '@utility/supabaseBrowserClient';
+import { useState } from 'react';
 
 const { Title, Text } = Typography;
 
@@ -27,6 +28,7 @@ type UpdatePasswordForm = {
 export const MyAccount: React.FC = (_props) => {
   const [updateDataForm] = Form.useForm<UpdateDataForm>();
   const [updatePasswordForm] = Form.useForm<UpdatePasswordForm>();
+  const [freeze, setFreeze] = useState(false);
 
   /**
    * ambil data diri
@@ -42,6 +44,7 @@ export const MyAccount: React.FC = (_props) => {
     /**
      * update table admin
      */
+    setFreeze(true);
     if (!dataDiri) return message.error('Gagal mengupdate data admin');
     const { id } = dataDiri;
 
@@ -53,8 +56,23 @@ export const MyAccount: React.FC = (_props) => {
       .eq('supabase_user_id', id);
 
     if (error || !data) return message.error('Gagal mengupdate data admin');
+    setFreeze(false);
 
     await message.success(`Berhasil mengupdate user ${name}`, 1);
+  };
+
+  const onUpdatePasswordFormFinish = async ({
+    password,
+  }: UpdatePasswordForm) => {
+    setFreeze(true);
+    const { user, error } = await supabaseBrowserClient.auth.update({
+      password,
+    });
+
+    if (error || !user) return message.error('Gagal mengupdate password');
+    setFreeze(false);
+
+    await message.success(`Berhasil mengupdate password user.`, 2);
   };
 
   if (!dataDiri) return <p>Mengambil data</p>;
@@ -76,7 +94,7 @@ export const MyAccount: React.FC = (_props) => {
             initialValue={dataDiri.username}
             style={{ width: 400 }}
           >
-            <Input placeholder="Nama" />
+            <Input placeholder="Nama" disabled={freeze} />
           </Form.Item>
           <Form.Item label="Email" name="email" style={{ width: 400 }}>
             <Text>{dataDiri.email}</Text>
@@ -89,27 +107,41 @@ export const MyAccount: React.FC = (_props) => {
           ) : null}
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" disabled={freeze}>
               Simpan
             </Button>
           </Form.Item>
         </Form>
 
         {/* reset password */}
-        <Form layout="vertical" form={updatePasswordForm}>
-          <Title level={5}>Reset Password</Title>
+        <Form
+          layout="vertical"
+          form={updatePasswordForm}
+          onFinish={onUpdatePasswordFormFinish}
+        >
+          <Title level={5}>Update Password</Title>
           <hr />
           <Form.Item
             label="Password Baru"
             name="password"
             style={{ width: 400 }}
+            rules={[
+              {
+                type: 'string',
+                min: 6,
+              },
+            ]}
           >
-            <Input.Password type="password" placeholder="Password baru anda" />
+            <Input.Password
+              type="password"
+              placeholder="Password baru anda"
+              disabled={freeze}
+            />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="button">
-              Reset
+            <Button type="primary" htmlType="submit" disabled={freeze}>
+              Update Password
             </Button>
           </Form.Item>
         </Form>

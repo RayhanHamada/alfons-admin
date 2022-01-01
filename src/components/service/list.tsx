@@ -26,6 +26,8 @@ import {
 } from '@pankod/refine';
 import { useEffect, useState } from 'react';
 
+// TODO improve filtering and use useSelect
+
 export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
   _props
 ) => {

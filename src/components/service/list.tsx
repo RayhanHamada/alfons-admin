@@ -60,7 +60,7 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
     },
     initialSorter: [
       {
-        field: 'name',
+        field: 'service_category_id',
         order: 'asc',
       },
     ],

@@ -1,4 +1,5 @@
 export * from './admin';
+export * from './appointment';
 export * from './cabang';
 export * from './ForgotPassword';
 export * from './klien';

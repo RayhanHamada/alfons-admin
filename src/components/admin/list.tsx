@@ -17,6 +17,7 @@ import {
   useEditableTable,
   useGetIdentity,
 } from '@pankod/refine';
+import Link from 'next/link';
 
 export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
   _props
@@ -120,7 +121,9 @@ export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
                 if (`${adminId}` === `${record.id}`) {
                   return (
                     <Space>
-                      <Button size="small">Akun Saya</Button>
+                      <Link href="/myaccount">
+                        <Button size="small">Akun Saya</Button>
+                      </Link>
                     </Space>
                   );
                 }

@@ -4,6 +4,7 @@ export * from './cabang';
 export * from './ForgotPassword';
 export * from './klien';
 export * from './Login';
+export * from './my-account';
 export * from './resourceInterface';
 export * from './service';
 export * from './serviceCategory';

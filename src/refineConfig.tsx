@@ -7,6 +7,7 @@ import {
   KlienCreate,
   KlienList,
   Login,
+  MyAccount,
   ServiceCategoryCreate,
   ServiceCategoryList,
   ServiceCreate,
@@ -16,7 +17,6 @@ import {
   StylishList,
   Title,
 } from '@components';
-import { MyAccount } from '@components/my-account';
 import { Icons } from '@pankod/refine';
 import type { RefineProps } from '@pankod/refine/dist/components/containers/refine';
 import { authProvider } from '@utility/authProvider';

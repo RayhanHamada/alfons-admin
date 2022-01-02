@@ -2,6 +2,7 @@ import {
   AdminCreate,
   AdminList,
   AdminShow,
+  AppointmentList,
   CabangList,
   KlienCreate,
   KlienList,
@@ -29,6 +30,7 @@ const {
   AccountBookOutlined,
   ToolOutlined,
   FormatPainterOutlined,
+  CalendarOutlined,
 } = Icons;
 
 const resources: RefineProps['resources'] = [
@@ -76,6 +78,11 @@ const resources: RefineProps['resources'] = [
     create: AdminCreate,
     show: AdminShow,
     icon: <CustomerServiceOutlined />,
+  },
+  {
+    name: 'appointment',
+    list: AppointmentList,
+    icon: <CalendarOutlined />,
   },
   /**
    * for admin

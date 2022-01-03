@@ -2,6 +2,7 @@ import {
   AdminCreate,
   AdminList,
   AdminShow,
+  AppointmentCreate,
   AppointmentList,
   CabangList,
   KlienCreate,
@@ -82,6 +83,7 @@ const resources: RefineProps['resources'] = [
   {
     name: 'appointment',
     list: AppointmentList,
+    create: AppointmentCreate,
     icon: <CalendarOutlined />,
   },
   /**

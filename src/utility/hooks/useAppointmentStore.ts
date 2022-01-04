@@ -24,6 +24,8 @@ const useAppointmentStore = create(
         set(({ isDrawerOpen }) => ({
           isDrawerOpen: !isDrawerOpen,
         })),
+
+      closeDrawer: () => set(() => ({ isDrawerOpen: false })),
     })
   )
 );

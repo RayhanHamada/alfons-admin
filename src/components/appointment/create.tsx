@@ -6,22 +6,19 @@ import {
   Col,
   Create,
   Form,
-  HttpError,
   Icons,
   Input,
-  List,
   NumberField,
   Radio,
   Select,
-  Space,
-  Table,
   TextField,
   Typography,
   useMany,
   useSelect,
-  useTable,
 } from '@pankod/refine';
+import useAppointmentStore from '@utility/hooks/useAppointmentStore';
 import { useState } from 'react';
+import { ServiceDrawer } from './serviceDrawer';
 
 const { Title, Text } = Typography;
 const { PlusOutlined, DeleteOutlined } = Icons;
@@ -48,7 +45,7 @@ type FormValue = {
 export const AppointmentCreate: React.FC = (_props) => {
   const [form] = Form.useForm<FormValue>();
   const [klienBaru, setKlienBaru] = useState(false);
-  const [serviceIds, setServiceIds] = useState<number[]>([]);
+  const { toggleDrawer, serviceIds, removeServiceId } = useAppointmentStore();
 
   const { selectProps: selectKlienProps } = useSelect<IKlien>({
     resource: 'klien',
@@ -64,41 +61,6 @@ export const AppointmentCreate: React.FC = (_props) => {
     fetchSize: 20,
   });
 
-  const { tableProps } = useTable<
-    IService,
-    HttpError,
-    {
-      name: string;
-    }
-  >({
-    resource: 'service',
-    onSearch: ({ name }) => {
-      return [
-        {
-          field: 'name',
-          operator: 'contains',
-          value: name,
-        },
-      ];
-    },
-    initialSorter: [
-      {
-        field: 'service_category_id',
-        order: 'asc',
-      },
-    ],
-    initialPageSize: 8,
-  });
-
-  /**
-   * filter datasource
-   */
-  if (tableProps.dataSource) {
-    tableProps.dataSource = tableProps.dataSource.filter(
-      (s) => !serviceIds.includes(parseInt(s.id!))
-    );
-  }
-
   const { data: serviceOrderedData, isError: isServiceOrderedError } =
     useMany<IService>({
       resource: 'service',
@@ -112,15 +74,6 @@ export const AppointmentCreate: React.FC = (_props) => {
   const onFinish = async (v: FormValue) => {
     console.log(v);
     console.log(klienBaru);
-  };
-
-  const addServiceId = (id: number) => {
-    if (id in serviceIds) return;
-    setServiceIds((ids) => [...ids, id]);
-  };
-
-  const removeServiceId = (id: number) => {
-    setServiceIds((sids) => sids.filter((v) => v != id));
   };
 
   if (isServiceOrderedError || !serviceOrderedData)
@@ -195,70 +148,9 @@ export const AppointmentCreate: React.FC = (_props) => {
           )}
           <br />
 
-          {/* list pilih service */}
-          <Title level={4}>Pilih Service</Title>
-          <hr />
-          <List resource="service" title={() => ''} canCreate={false}>
-            <Table {...tableProps} title={() => ''} rowKey="id" size="small">
-              <Table.Column<IService>
-                title="No"
-                render={(_, __, i) => {
-                  if (
-                    tableProps.pagination &&
-                    tableProps.pagination.current &&
-                    tableProps.pagination.pageSize
-                  ) {
-                    return (
-                      <p>
-                        {(tableProps.pagination.current - 1) *
-                          tableProps.pagination.pageSize +
-                          (i + 1)}
-                      </p>
-                    );
-                  }
-
-                  return <p>-</p>;
-                }}
-              />
-              <Table.Column<IService>
-                key="name"
-                dataIndex="name"
-                title="Nama Service"
-              />
-              <Table.Column<IService>
-                key="cost_estimate"
-                dataIndex="cost_estimate"
-                title="Perkiraan Harga"
-                render={(value) => (
-                  <NumberField
-                    value={value}
-                    options={{ currency: 'idr', style: 'currency' }}
-                  />
-                )}
-              />
-
-              <Table.Column<IService>
-                title="Aksi"
-                dataIndex="actions"
-                key="actions"
-                render={(_, record) => (
-                  <Space>
-                    <Button
-                      size="small"
-                      type="primary"
-                      onClick={() => addServiceId(parseInt(record.id!))}
-                    >
-                      <PlusOutlined />
-                    </Button>
-                  </Space>
-                )}
-              />
-            </Table>
-          </List>
-          <br />
-
           {/* header list service yang dipilih */}
-          <Title level={4}>Service yang dipilih</Title>
+          <Title level={4}>Order Service</Title>
+
           <AntdList.Item
             actions={[
               <Button type="primary" danger style={{ visibility: 'hidden' }}>
@@ -300,6 +192,8 @@ export const AppointmentCreate: React.FC = (_props) => {
             )}
           />
 
+          <Button onClick={toggleDrawer}>Tambahkan Service</Button>
+
           {/* perkiraan total harga */}
           {serviceIds.length !== 0 ? (
             <>
@@ -331,6 +225,7 @@ export const AppointmentCreate: React.FC = (_props) => {
             </>
           ) : undefined}
         </Form>
+        <ServiceDrawer />
       </Col>
     </Create>
   );

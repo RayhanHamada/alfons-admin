@@ -67,7 +67,11 @@ export const ServiceDrawer: React.FC = (_props) => {
       <Col>
         <Form layout="vertical" {...searchFormProps}>
           <Form.Item label="Cari Service" name="name">
-            <Input placeholder="Nama Service" prefix={<SearchOutlined />} />
+            <Input
+              placeholder="Nama Service"
+              prefix={<SearchOutlined />}
+              autoComplete="off"
+            />
           </Form.Item>
         </Form>
         <List

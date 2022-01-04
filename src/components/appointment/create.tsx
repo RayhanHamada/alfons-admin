@@ -257,7 +257,7 @@ export const AppointmentCreate: React.FC = (_props) => {
           </List>
           <br />
 
-          {/* list service yang dipilih */}
+          {/* header list service yang dipilih */}
           <Title level={4}>Service yang dipilih</Title>
           <AntdList.Item
             actions={[
@@ -275,6 +275,8 @@ export const AppointmentCreate: React.FC = (_props) => {
               value={<Title level={5}>Perkiraan Harga</Title>}
             />
           </AntdList.Item>
+
+          {/* list service yang dipilih */}
           <AntdList
             dataSource={serviceOrderedData.data}
             renderItem={(item, i) => (

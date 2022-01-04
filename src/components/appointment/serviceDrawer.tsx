@@ -1,9 +1,12 @@
 import type { IService } from '@components';
 import {
   Button,
+  Col,
   Drawer,
+  Form,
   HttpError,
   Icons,
+  Input,
   List,
   NumberField,
   Space,
@@ -12,13 +15,13 @@ import {
 } from '@pankod/refine';
 import useAppointmentStore from '@utility/hooks/useAppointmentStore';
 
-const { PlusOutlined } = Icons;
+const { PlusOutlined, SearchOutlined } = Icons;
 
 export const ServiceDrawer: React.FC = (_props) => {
   const { isDrawerOpen, closeDrawer, addServiceId, serviceIds } =
     useAppointmentStore();
 
-  const { tableProps } = useTable<
+  const { tableProps, searchFormProps } = useTable<
     IService,
     HttpError,
     {
@@ -55,69 +58,80 @@ export const ServiceDrawer: React.FC = (_props) => {
 
   return (
     <Drawer
-      title={`Pilih Service`}
+      title="Pilih Service"
       placement="right"
       size="large"
       onClose={closeDrawer}
       visible={isDrawerOpen}
     >
-      <List resource="service" title={() => ''} canCreate={false}>
-        <Table {...tableProps} title={() => ''} rowKey="id" size="small">
-          <Table.Column<IService>
-            title="No"
-            render={(_, __, i) => {
-              if (
-                tableProps.pagination &&
-                tableProps.pagination.current &&
-                tableProps.pagination.pageSize
-              ) {
-                return (
-                  <p>
-                    {(tableProps.pagination.current - 1) *
-                      tableProps.pagination.pageSize +
-                      (i + 1)}
-                  </p>
-                );
-              }
+      <Col>
+        <Form layout="vertical" {...searchFormProps}>
+          <Form.Item label="Cari Service" name="name">
+            <Input placeholder="Nama Service" prefix={<SearchOutlined />} />
+          </Form.Item>
+        </Form>
+        <List
+          resource="service"
+          pageHeaderProps={{ title: undefined }}
+          canCreate={false}
+        >
+          <Table {...tableProps} rowKey="id" size="small">
+            <Table.Column<IService>
+              title="No"
+              render={(_, __, i) => {
+                if (
+                  tableProps.pagination &&
+                  tableProps.pagination.current &&
+                  tableProps.pagination.pageSize
+                ) {
+                  return (
+                    <p>
+                      {(tableProps.pagination.current - 1) *
+                        tableProps.pagination.pageSize +
+                        (i + 1)}
+                    </p>
+                  );
+                }
 
-              return <p>-</p>;
-            }}
-          />
-          <Table.Column<IService>
-            key="name"
-            dataIndex="name"
-            title="Nama Service"
-          />
-          <Table.Column<IService>
-            key="cost_estimate"
-            dataIndex="cost_estimate"
-            title="Perkiraan Harga"
-            render={(value) => (
-              <NumberField
-                value={value}
-                options={{ currency: 'idr', style: 'currency' }}
-              />
-            )}
-          />
+                return <p>-</p>;
+              }}
+            />
+            <Table.Column<IService>
+              key="name"
+              dataIndex="name"
+              title="Nama Service"
+            />
+            <Table.Column<IService>
+              key="cost_estimate"
+              dataIndex="cost_estimate"
+              title="Perkiraan Harga"
+              render={(value) => (
+                <NumberField
+                  value={value}
+                  options={{ currency: 'idr', style: 'currency' }}
+                />
+              )}
+            />
 
-          <Table.Column<IService>
-            title="Aksi"
-            dataIndex="actions"
-            key="actions"
-            render={(_, record) => (
-              <Space>
-                <Button
-                  size="small"
-                  type="primary"
-                  onClick={() => addServiceId(parseInt(record.id!))}
-                >
-                  <PlusOutlined />
-                </Button>
-              </Space>
-            )}
-          />
-        </Table>
-      </List>
+            <Table.Column<IService>
+              title="Aksi"
+              dataIndex="actions"
+              key="actions"
+              render={(_, record) => (
+                <Space>
+                  <Button
+                    size="small"
+                    type="primary"
+                    onClick={() => addServiceId(parseInt(record.id!))}
+                  >
+                    <PlusOutlined />
+                  </Button>
+                </Space>
+              )}
+            />
+          </Table>
+        </List>
+      </Col>
     </Drawer>
   );
 };

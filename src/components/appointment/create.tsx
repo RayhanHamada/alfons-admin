@@ -20,7 +20,7 @@ import useAppointmentStore from '@utility/hooks/useAppointmentStore';
 import { useState } from 'react';
 import { ServiceDrawer } from './serviceDrawer';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { PlusOutlined, DeleteOutlined } = Icons;
 
 type FormValue = {

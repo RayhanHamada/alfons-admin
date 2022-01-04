@@ -1,4 +1,4 @@
-import { IService } from '@components';
+import type { IService } from '@components';
 import {
   Button,
   Drawer,

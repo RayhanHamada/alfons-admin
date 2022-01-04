@@ -150,7 +150,7 @@ export const AppointmentCreate: React.FC = (_props) => {
 
           {/* header list service yang dipilih */}
           <Title level={4}>Order Service</Title>
-
+          <hr />
           <AntdList.Item
             actions={[
               <Button type="primary" danger style={{ visibility: 'hidden' }}>

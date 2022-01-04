@@ -7,6 +7,7 @@ import {
   Create,
   Form,
   HttpError,
+  Icons,
   Input,
   List,
   NumberField,
@@ -14,6 +15,7 @@ import {
   Select,
   Space,
   Table,
+  TextField,
   Typography,
   useMany,
   useSelect,
@@ -21,7 +23,8 @@ import {
 } from '@pankod/refine';
 import { useState } from 'react';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
+const { PlusOutlined, DeleteOutlined } = Icons;
 
 type FormValue = {
   klienId?: number;
@@ -87,6 +90,15 @@ export const AppointmentCreate: React.FC = (_props) => {
     initialPageSize: 8,
   });
 
+  /**
+   * filter datasource
+   */
+  if (tableProps.dataSource) {
+    tableProps.dataSource = tableProps.dataSource.filter(
+      (s) => !serviceIds.includes(parseInt(s.id!))
+    );
+  }
+
   const { data: serviceOrderedData, isError: isServiceOrderedError } =
     useMany<IService>({
       resource: 'service',
@@ -117,6 +129,7 @@ export const AppointmentCreate: React.FC = (_props) => {
   return (
     <Create title="Buat Appointment">
       <Col>
+        {/* Form Data Pemesan */}
         <Form
           title="Data Pemesan"
           form={form}
@@ -180,8 +193,9 @@ export const AppointmentCreate: React.FC = (_props) => {
               </Form.Item>
             </>
           )}
-
           <br />
+
+          {/* list pilih service */}
           <Title level={4}>Pilih Service</Title>
           <hr />
           <List resource="service" title={() => ''} canCreate={false}>
@@ -231,9 +245,10 @@ export const AppointmentCreate: React.FC = (_props) => {
                   <Space>
                     <Button
                       size="small"
+                      type="primary"
                       onClick={() => addServiceId(parseInt(record.id!))}
                     >
-                      Tambahkan
+                      <PlusOutlined />
                     </Button>
                   </Space>
                 )}
@@ -241,7 +256,25 @@ export const AppointmentCreate: React.FC = (_props) => {
             </Table>
           </List>
           <br />
+
+          {/* list service yang dipilih */}
           <Title level={4}>Service yang dipilih</Title>
+          <AntdList.Item
+            actions={[
+              <Button type="primary" danger style={{ visibility: 'hidden' }}>
+                <PlusOutlined />
+              </Button>,
+            ]}
+          >
+            <AntdList.Item.Meta
+              style={{ fontWeight: 'bolder' }}
+              title={<Title level={5}>Jenis Service</Title>}
+            />
+            <TextField
+              strong
+              value={<Title level={5}>Perkiraan Harga</Title>}
+            />
+          </AntdList.Item>
           <AntdList
             dataSource={serviceOrderedData.data}
             renderItem={(item, i) => (
@@ -252,7 +285,7 @@ export const AppointmentCreate: React.FC = (_props) => {
                     onClick={() => removeServiceId(parseInt(item.id!))}
                     danger
                   >
-                    Hapus
+                    <DeleteOutlined />
                   </Button>,
                 ]}
               >
@@ -264,6 +297,8 @@ export const AppointmentCreate: React.FC = (_props) => {
               </AntdList.Item>
             )}
           />
+
+          {/* perkiraan total harga */}
           {serviceIds.length !== 0 ? (
             <>
               <hr />
@@ -274,17 +309,21 @@ export const AppointmentCreate: React.FC = (_props) => {
                     danger
                     style={{ visibility: 'hidden' }}
                   >
-                    Hapus
+                    <DeleteOutlined />
                   </Button>,
                 ]}
               >
-                <AntdList.Item.Meta title="Perkiraan Total Harga" />
+                <AntdList.Item.Meta
+                  style={{ fontWeight: 'bold' }}
+                  title="Total Perkiraan Harga"
+                />
                 <NumberField
                   value={serviceOrderedData.data.reduce(
                     (p, c) => p + c.cost_estimate,
                     0
                   )}
                   options={{ currency: 'idr', style: 'currency' }}
+                  strong
                 />
               </AntdList.Item>
             </>

@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import openapiTS from 'openapi-typescript/dist/esm';
+import openapiTS from 'openapi-typescript';
 import path from 'path';
 
 const apiURL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/?apikey=${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`;

@@ -1,3 +1,3 @@
-export * from './create';
-export * from './list';
-export * from './show';
+export * from './CreateAdmin';
+export * from './ListAdmin';
+export * from './ShowAdmin';

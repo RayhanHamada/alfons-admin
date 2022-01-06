@@ -33,21 +33,38 @@ export const CreateUserDrawer: React.FC = (_props) => {
     jenis_kelamin,
   }: CreateUserDrawerFormValue) => {
     setFreeze(true);
-    const { data, error } = await supabaseBrowserClient
+
+    const { data: klienData, error: klienError } = await supabaseBrowserClient
       .from<IKlien>('klien')
-      .insert({
-        name,
-        jenis_kelamin,
-        phone_number,
-      })
+      .select('name, phone_number')
+      .eq('phone_number', phone_number)
       .single();
 
-    if (error || !data) {
-      return message.error(`Gagal membuat klien`, 1);
-    } else {
-      await message.success(`Sukses membuat klien.`, 1);
+    if (klienError) {
+      message.error(`Gagal mengambil data klien`, 1);
     }
 
+    if (klienData) {
+      message.error(`Nomor telepon sudah dipakai user ${klienData.name}`);
+    } else {
+      const { data: insertData, error: insertError } =
+        await supabaseBrowserClient
+          .from<IKlien>('klien')
+          .insert({
+            name,
+            jenis_kelamin,
+            phone_number,
+          })
+          .single();
+
+      if (insertError || !insertData) {
+        return message.error(`Gagal membuat klien`, 1);
+      } else {
+        await message.success(`Sukses membuat klien.`, 1);
+      }
+    }
+
+    form.resetFields();
     setFreeze(false);
   };
 

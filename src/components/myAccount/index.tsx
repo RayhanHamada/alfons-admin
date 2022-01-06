@@ -35,7 +35,11 @@ export const MyAccount: React.FC = (_props) => {
    */
   const { data: dataDiri } = useGetIdentity<IUserIdentity>();
 
-  const { data: cabangData } = useOne<ICabang>({
+  const {
+    data: cabangData,
+    isError: isCabangError,
+    isLoading: isCabangLoading,
+  } = useOne<ICabang>({
     resource: 'cabang',
     id: `${dataDiri?.cabangId}`,
   });
@@ -75,7 +79,8 @@ export const MyAccount: React.FC = (_props) => {
     await message.success(`Berhasil mengupdate password user.`, 2);
   };
 
-  if (!dataDiri) return <p>Mengambil data</p>;
+  if (!dataDiri || !cabangData || isCabangLoading || isCabangError)
+    return <p>Mengambil data</p>;
 
   return (
     <List title="Akun Saya">

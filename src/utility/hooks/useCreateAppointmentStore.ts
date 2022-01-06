@@ -36,9 +36,9 @@ const useCreateAppointmentStore = create(
             }),
 
       removeServiceId: (id: number) =>
-        set({
-          serviceIds: get().serviceIds.filter((v) => v !== id),
-        }),
+        set(({ serviceIds }) => ({
+          serviceIds: serviceIds.filter((v) => v !== id),
+        })),
 
       setKlienId: (id: string) => set({ klienId: id }),
     })

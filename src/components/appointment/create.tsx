@@ -1,7 +1,7 @@
 import { Col, Create, Typography } from '@pankod/refine';
-import { FormDataKlien } from './FormDataKlien';
-import { OrderedServiceList } from './OrderedServiceList';
-import { ServiceDrawer } from './ServiceDrawer';
+import FormDataKlien from './FormDataKlien';
+import OrderedServiceList from './OrderedServiceList';
+import ServiceDrawer from './ServiceDrawer';
 
 const { Title } = Typography;
 

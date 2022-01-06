@@ -13,7 +13,7 @@ import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore'
 const { PlusOutlined, DeleteOutlined } = Icons;
 const { Title } = Typography;
 
-export const OrderedServiceList: React.FC = (_props) => {
+const OrderedServiceList: React.FC = (_props) => {
   const { serviceIds, removeServiceId, toggleServiceDrawer } =
     useCreateAppointmentStore();
 
@@ -95,3 +95,5 @@ export const OrderedServiceList: React.FC = (_props) => {
     </>
   );
 };
+
+export default OrderedServiceList;

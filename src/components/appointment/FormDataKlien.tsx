@@ -5,7 +5,7 @@ import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore'
 
 const { Title } = Typography;
 
-export const FormDataKlien: React.FC = (_props) => {
+const FormDataKlien: React.FC = (_props) => {
   const {} = useCreateAppointmentStore();
 
   const { selectProps: selectKlienProps } = useSelect<IKlien>({
@@ -41,3 +41,5 @@ export const FormDataKlien: React.FC = (_props) => {
     </Form>
   );
 };
+
+export default FormDataKlien;

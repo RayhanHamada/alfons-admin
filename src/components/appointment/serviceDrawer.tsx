@@ -17,7 +17,7 @@ import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore'
 
 const { PlusOutlined, SearchOutlined } = Icons;
 
-export const ServiceDrawer: React.FC = (_props) => {
+const ServiceDrawer: React.FC = (_props) => {
   const { isServiceDrawerOpen, closeServiceDrawer, addServiceId, serviceIds } =
     useCreateAppointmentStore();
 
@@ -139,3 +139,5 @@ export const ServiceDrawer: React.FC = (_props) => {
     </Drawer>
   );
 };
+
+export default ServiceDrawer;

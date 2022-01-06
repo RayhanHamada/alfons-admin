@@ -27,6 +27,7 @@ const OrderedServiceList: React.FC = (_props) => {
 
   return (
     <>
+      <Title level={4}>Order Service</Title>
       <AntdList.Item
         actions={[
           <Button type="primary" danger style={{ visibility: 'hidden' }}>

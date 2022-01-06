@@ -12,11 +12,12 @@ export const AppointmentCreate: React.FC = (_props) => {
       <Col>
         <FormDataKlien />
         <br />
-        <Title level={4}>Order Service</Title>
         <OrderedServiceList />
         <br />
         <br />
         <Title level={4}>Pilih Stylish dan Jadwal</Title>
+
+        {/* drawers */}
         <ServiceDrawer />
         <CreateUserDrawer />
       </Col>

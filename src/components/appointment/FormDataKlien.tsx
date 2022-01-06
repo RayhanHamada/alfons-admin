@@ -14,7 +14,8 @@ import { MouseEventHandler } from 'react';
 const { Title, Text } = Typography;
 
 const FormDataKlien: React.FC = (_props) => {
-  const { toggleCreateKlienDrawer } = useCreateAppointmentStore();
+  const { toggleCreateKlienDrawer, setKlienId, klienId } =
+    useCreateAppointmentStore();
 
   const { selectProps: selectKlienProps } = useSelect<IKlien>({
     resource: 'klien',
@@ -48,7 +49,14 @@ const FormDataKlien: React.FC = (_props) => {
         requiredMark
         required
       >
-        <Select {...selectKlienProps} placeholder="Cari Klien" showSearch />
+        <Select
+          {...selectKlienProps}
+          placeholder="Cari Klien"
+          showSearch
+          onChange={(value) => {
+            setKlienId(value as any);
+          }}
+        />
       </Form.Item>
       <Col style={{ textAlign: 'center' }}>
         <Text>Atau</Text>

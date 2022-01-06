@@ -1,7 +1,7 @@
 import create from 'zustand';
 import { combine } from 'zustand/middleware';
 
-const useAppointmentStore = create(
+const useCreateAppointmentStore = create(
   combine(
     {
       serviceIds: [] as number[],
@@ -30,4 +30,4 @@ const useAppointmentStore = create(
   )
 );
 
-export default useAppointmentStore;
+export default useCreateAppointmentStore;

@@ -13,13 +13,13 @@ import {
   Table,
   useTable,
 } from '@pankod/refine';
-import useAppointmentStore from '@utility/hooks/useAppointmentStore';
+import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore';
 
 const { PlusOutlined, SearchOutlined } = Icons;
 
 export const ServiceDrawer: React.FC = (_props) => {
   const { isDrawerOpen, closeDrawer, addServiceId, serviceIds } =
-    useAppointmentStore();
+    useCreateAppointmentStore();
 
   const { tableProps, searchFormProps } = useTable<
     IService,

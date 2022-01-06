@@ -8,13 +8,14 @@ import {
   Typography,
   useMany,
 } from '@pankod/refine';
-import useAppointmentStore from '@utility/hooks/useAppointmentStore';
+import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore';
 
 const { PlusOutlined, DeleteOutlined } = Icons;
 const { Title } = Typography;
 
 export const OrderedServiceList: React.FC = (_props) => {
-  const { serviceIds, removeServiceId, toggleDrawer } = useAppointmentStore();
+  const { serviceIds, removeServiceId, toggleDrawer } =
+    useCreateAppointmentStore();
 
   const { data: serviceOrderedData, isError: isServiceOrderedError } =
     useMany<IService>({

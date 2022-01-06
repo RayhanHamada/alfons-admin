@@ -1,13 +1,26 @@
 import create from 'zustand';
 import { combine } from 'zustand/middleware';
 
+export type CreateAppointmentUserDataFormValue = {
+  klienId: string;
+};
+
 const useCreateAppointmentStore = create(
   combine(
     {
-      serviceIds: [] as number[],
       isDrawerOpen: false,
+
+      serviceIds: [] as number[],
+
+      klienId: '',
     },
     (set, get) => ({
+      toggleDrawer: () =>
+        set(({ isDrawerOpen }) => ({
+          isDrawerOpen: !isDrawerOpen,
+        })),
+      closeDrawer: () => set(() => ({ isDrawerOpen: false })),
+
       addServiceId: (id: number) =>
         get().serviceIds.includes(id)
           ? undefined
@@ -19,13 +32,6 @@ const useCreateAppointmentStore = create(
         set({
           serviceIds: get().serviceIds.filter((v) => v !== id),
         }),
-
-      toggleDrawer: () =>
-        set(({ isDrawerOpen }) => ({
-          isDrawerOpen: !isDrawerOpen,
-        })),
-
-      closeDrawer: () => set(() => ({ isDrawerOpen: false })),
     })
   )
 );

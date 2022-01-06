@@ -1,4 +1,5 @@
 import { Col, Create, Typography } from '@pankod/refine';
+import { CreateUserDrawer } from './CreateUserDrawer';
 import FormDataKlien from './FormDataKlien';
 import OrderedServiceList from './OrderedServiceList';
 import ServiceDrawer from './ServiceDrawer';
@@ -17,6 +18,7 @@ export const AppointmentCreate: React.FC = (_props) => {
         <br />
         <Title level={4}>Pilih Stylish dan Jadwal</Title>
         <ServiceDrawer />
+        <CreateUserDrawer />
       </Col>
     </Create>
   );

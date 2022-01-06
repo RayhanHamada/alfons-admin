@@ -9,6 +9,7 @@ const useCreateAppointmentStore = create(
   combine(
     {
       isServiceDrawerOpen: false,
+      isCreateKlienDrawerOpen: false,
 
       serviceIds: [] as number[],
 
@@ -19,7 +20,13 @@ const useCreateAppointmentStore = create(
         set(({ isServiceDrawerOpen }) => ({
           isServiceDrawerOpen: !isServiceDrawerOpen,
         })),
-      closeServiceDrawer: () => set(() => ({ isServiceDrawerOpen: false })),
+      closeServiceDrawer: () => set({ isServiceDrawerOpen: false }),
+
+      toggleCreateKlienDrawer: () =>
+        set(({ isCreateKlienDrawerOpen }) => ({
+          isCreateKlienDrawerOpen: !isCreateKlienDrawerOpen,
+        })),
+      closeCreateKlienDrawer: () => set({ isCreateKlienDrawerOpen: false }),
 
       addServiceId: (id: number) =>
         get().serviceIds.includes(id)

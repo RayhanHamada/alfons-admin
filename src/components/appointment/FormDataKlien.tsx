@@ -1,12 +1,20 @@
 import type { IKlien } from '@components';
-import { Form, Select, Typography, useSelect } from '@pankod/refine';
+import {
+  Button,
+  Col,
+  Form,
+  Select,
+  Typography,
+  useSelect,
+} from '@pankod/refine';
 import type { CreateAppointmentUserDataFormValue } from '@utility/hooks/useCreateAppointmentStore';
 import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore';
+import { MouseEventHandler } from 'react';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const FormDataKlien: React.FC = (_props) => {
-  const {} = useCreateAppointmentStore();
+  const { toggleCreateKlienDrawer } = useCreateAppointmentStore();
 
   const { selectProps: selectKlienProps } = useSelect<IKlien>({
     resource: 'klien',
@@ -21,6 +29,10 @@ const FormDataKlien: React.FC = (_props) => {
     ],
     fetchSize: 20,
   });
+
+  const onClick: MouseEventHandler<HTMLButtonElement> = (_e) => {
+    toggleCreateKlienDrawer();
+  };
 
   const onFinish = (v: CreateAppointmentUserDataFormValue) => {};
 
@@ -38,6 +50,11 @@ const FormDataKlien: React.FC = (_props) => {
       >
         <Select {...selectKlienProps} placeholder="Cari Klien" showSearch />
       </Form.Item>
+      <Col style={{ textAlign: 'center' }}>
+        <Text>Atau</Text>
+        <br />
+        <Button onClick={onClick}>Buat Klien Baru</Button>
+      </Col>
     </Form>
   );
 };

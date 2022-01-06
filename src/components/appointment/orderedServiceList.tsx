@@ -68,31 +68,30 @@ export const OrderedServiceList: React.FC = (_props) => {
       <Button onClick={toggleServiceDrawer}>Tambahkan Service</Button>
 
       {/* perkiraan total harga */}
-      {serviceIds.length !== 0 ? (
-        <>
-          <hr />
-          <AntdList.Item
-            actions={[
-              <Button type="primary" danger style={{ visibility: 'hidden' }}>
-                <DeleteOutlined />
-              </Button>,
-            ]}
-          >
-            <AntdList.Item.Meta
-              style={{ fontWeight: 'bold' }}
-              title="Total Perkiraan Harga"
-            />
-            <NumberField
-              value={serviceOrderedData.data.reduce(
-                (p, c) => p + c.cost_estimate,
-                0
-              )}
-              options={{ currency: 'idr', style: 'currency' }}
-              strong
-            />
-          </AntdList.Item>
-        </>
-      ) : undefined}
+
+      <>
+        <hr />
+        <AntdList.Item
+          actions={[
+            <Button type="primary" danger style={{ visibility: 'hidden' }}>
+              <DeleteOutlined />
+            </Button>,
+          ]}
+        >
+          <AntdList.Item.Meta
+            style={{ fontWeight: 'bold' }}
+            title="Total Perkiraan Harga"
+          />
+          <NumberField
+            value={serviceOrderedData.data.reduce(
+              (p, c) => p + c.cost_estimate,
+              0
+            )}
+            options={{ currency: 'idr', style: 'currency' }}
+            strong
+          />
+        </AntdList.Item>
+      </>
     </>
   );
 };

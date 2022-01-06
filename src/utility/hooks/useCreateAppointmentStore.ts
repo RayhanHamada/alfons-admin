@@ -8,18 +8,18 @@ export type CreateAppointmentUserDataFormValue = {
 const useCreateAppointmentStore = create(
   combine(
     {
-      isDrawerOpen: false,
+      isServiceDrawerOpen: false,
 
       serviceIds: [] as number[],
 
       klienId: '',
     },
     (set, get) => ({
-      toggleDrawer: () =>
-        set(({ isDrawerOpen }) => ({
-          isDrawerOpen: !isDrawerOpen,
+      toggleServiceDrawer: () =>
+        set(({ isServiceDrawerOpen }) => ({
+          isServiceDrawerOpen: !isServiceDrawerOpen,
         })),
-      closeDrawer: () => set(() => ({ isDrawerOpen: false })),
+      closeServiceDrawer: () => set(() => ({ isServiceDrawerOpen: false })),
 
       addServiceId: (id: number) =>
         get().serviceIds.includes(id)

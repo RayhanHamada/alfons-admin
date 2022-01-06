@@ -18,7 +18,7 @@ import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore'
 const { PlusOutlined, SearchOutlined } = Icons;
 
 export const ServiceDrawer: React.FC = (_props) => {
-  const { isDrawerOpen, closeDrawer, addServiceId, serviceIds } =
+  const { isServiceDrawerOpen, closeServiceDrawer, addServiceId, serviceIds } =
     useCreateAppointmentStore();
 
   const { tableProps, searchFormProps } = useTable<
@@ -61,8 +61,8 @@ export const ServiceDrawer: React.FC = (_props) => {
       title="Pilih Service"
       placement="right"
       size="large"
-      onClose={closeDrawer}
-      visible={isDrawerOpen}
+      onClose={closeServiceDrawer}
+      visible={isServiceDrawerOpen}
     >
       <Col>
         <Form layout="vertical" {...searchFormProps}>

@@ -14,7 +14,7 @@ const { PlusOutlined, DeleteOutlined } = Icons;
 const { Title } = Typography;
 
 export const OrderedServiceList: React.FC = (_props) => {
-  const { serviceIds, removeServiceId, toggleDrawer } =
+  const { serviceIds, removeServiceId, toggleServiceDrawer } =
     useCreateAppointmentStore();
 
   const { data: serviceOrderedData, isError: isServiceOrderedError } =
@@ -65,7 +65,7 @@ export const OrderedServiceList: React.FC = (_props) => {
         )}
       />
 
-      <Button onClick={toggleDrawer}>Tambahkan Service</Button>
+      <Button onClick={toggleServiceDrawer}>Tambahkan Service</Button>
 
       {/* perkiraan total harga */}
       {serviceIds.length !== 0 ? (

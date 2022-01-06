@@ -1,4 +1,4 @@
-import type { ICabang } from '@components';
+import type { IKlien } from '@components';
 import {
   Create,
   Form,
@@ -8,10 +8,10 @@ import {
   useForm,
 } from '@pankod/refine';
 
-export const KlienCreate: React.FC<IResourceComponentsProps<ICabang>> = (
+export const KlienCreate: React.FC<IResourceComponentsProps<IKlien>> = (
   _props
 ) => {
-  const { saveButtonProps, formProps } = useForm<ICabang>();
+  const { saveButtonProps, formProps } = useForm<IKlien>();
 
   return (
     <Create

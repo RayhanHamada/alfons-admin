@@ -92,7 +92,7 @@ export const KlienList: React.FC<IResourceComponentsProps<IKlien>> = (
               dataIndex="name"
               title="Nama"
               render={(value, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Form.Item
                       name="name"
@@ -112,7 +112,7 @@ export const KlienList: React.FC<IResourceComponentsProps<IKlien>> = (
               dataIndex="jenis_kelamin"
               title="Jenis Kelamin"
               render={(value, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Form.Item
                       name="jenis_kelamin"
@@ -136,7 +136,7 @@ export const KlienList: React.FC<IResourceComponentsProps<IKlien>> = (
               dataIndex="phone_number"
               title="Nomor Telepon"
               render={(value, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Form.Item
                       name="phone_number"
@@ -157,7 +157,7 @@ export const KlienList: React.FC<IResourceComponentsProps<IKlien>> = (
               dataIndex="actions"
               key="actions"
               render={(_text, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Space>
                       <SaveButton {...saveButtonProps} size="small" />
@@ -169,7 +169,7 @@ export const KlienList: React.FC<IResourceComponentsProps<IKlien>> = (
                 }
                 return (
                   <Space>
-                    <EditButton {...editButtonProps(record.id!)} size="small">
+                    <EditButton {...editButtonProps(record.id)} size="small">
                       Ubah
                     </EditButton>
                     <DeleteButton recordItemId={record.id}>Hapus</DeleteButton>

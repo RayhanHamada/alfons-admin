@@ -107,7 +107,7 @@ export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
               dataIndex="actions"
               key="actions"
               render={(_text, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Space>
                       <SaveButton {...saveButtonProps} size="small" />
@@ -130,7 +130,7 @@ export const AdminList: React.FC<IResourceComponentsProps<IAdmin>> = (
 
                 return (
                   <Space>
-                    <EditButton {...editButtonProps(record.id!)} size="small">
+                    <EditButton {...editButtonProps(record.id)} size="small">
                       Ubah
                     </EditButton>
                     <ShowButton recordItemId={record.id} size="small">

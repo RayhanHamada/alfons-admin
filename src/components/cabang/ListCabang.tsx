@@ -93,7 +93,7 @@ export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
               dataIndex="name"
               title="Nama Cabang"
               render={(value, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Form.Item
                       name="name"
@@ -124,7 +124,7 @@ export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
               dataIndex="actions"
               key="actions"
               render={(_text, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Space>
                       <SaveButton {...saveButtonProps} size="small" />
@@ -136,7 +136,7 @@ export const CabangList: React.FC<IResourceComponentsProps<ICabang>> = (
                 }
                 return (
                   <Space>
-                    <EditButton {...editButtonProps(record.id!)} size="small">
+                    <EditButton {...editButtonProps(record.id)} size="small">
                       Ubah
                     </EditButton>
                     <DeleteButton recordItemId={record.id}>Hapus</DeleteButton>

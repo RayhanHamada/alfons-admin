@@ -1,7 +1,10 @@
 import { definitions } from 'src/customTypes/supabase';
 
-type GeneratedToProvider<E extends Record<string, unknown>> = Omit<E, 'id'> & {
-  id?: string;
+type GeneratedToProvider<
+  E extends Record<string, unknown>,
+  ID extends number | string = string
+> = Omit<E, 'id'> & {
+  id: ID;
 };
 
 export type ICabang = GeneratedToProvider<definitions['cabang']>;

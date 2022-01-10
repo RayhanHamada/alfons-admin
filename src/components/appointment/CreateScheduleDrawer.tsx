@@ -113,7 +113,7 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
         }
 
         const filteredJam = data.filter(
-          (j) => !jamAppointment.includes(parseInt(j.id!))
+          (j) => !jamAppointment.includes(parseInt(j.id))
         );
 
         setAvailableJam(filteredJam);

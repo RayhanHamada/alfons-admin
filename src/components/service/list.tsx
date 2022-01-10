@@ -104,8 +104,8 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
         setCategories(
           serviceCategories.data.map((v) => ({
             label: v.name,
-            value: `${v.id!}`,
-            key: `${v.id!}`,
+            value: `${v.id}`,
+            key: `${v.id}`,
           }))
         );
       }
@@ -158,7 +158,7 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
               dataIndex="name"
               title="Nama Service"
               render={(value, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Form.Item
                       name="name"
@@ -177,7 +177,7 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
               dataIndex="cost_estimate"
               title="Perkiraan Harga"
               render={(value, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Form.Item
                       name="cost_estimate"
@@ -238,7 +238,7 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
                   return <TextField value="Loading..." />;
                 }
 
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   if (isCategoryLoading) {
                     return <Skeleton active />;
                   }
@@ -285,7 +285,7 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
               dataIndex="actions"
               key="actions"
               render={(_text, record) => {
-                if (isEditing(record.id!)) {
+                if (isEditing(record.id)) {
                   return (
                     <Space>
                       <SaveButton {...saveButtonProps} size="small" />
@@ -297,7 +297,7 @@ export const ServiceList: React.FC<IResourceComponentsProps<IService>> = (
                 }
                 return (
                   <Space>
-                    <EditButton {...editButtonProps(record.id!)} size="small">
+                    <EditButton {...editButtonProps(record.id)} size="small">
                       Ubah
                     </EditButton>
                     <DeleteButton recordItemId={record.id}>Hapus</DeleteButton>

@@ -52,7 +52,7 @@ const ServiceDrawer: React.FC = (_props) => {
    */
   if (tableProps.dataSource) {
     tableProps.dataSource = tableProps.dataSource.filter(
-      (s) => !serviceIds.includes(parseInt(s.id!))
+      (s) => !serviceIds.includes(parseInt(s.id))
     );
   }
 
@@ -126,7 +126,7 @@ const ServiceDrawer: React.FC = (_props) => {
                   <Button
                     size="small"
                     type="primary"
-                    onClick={() => addServiceId(parseInt(record.id!))}
+                    onClick={() => addServiceId(parseInt(record.id))}
                   >
                     <PlusOutlined />
                   </Button>

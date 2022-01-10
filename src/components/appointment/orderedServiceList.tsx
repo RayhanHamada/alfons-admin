@@ -50,7 +50,7 @@ const OrderedServiceList: React.FC = (_props) => {
             actions={[
               <Button
                 type="primary"
-                onClick={() => removeServiceId(parseInt(item.id!))}
+                onClick={() => removeServiceId(parseInt(item.id))}
                 danger
               >
                 <DeleteOutlined />

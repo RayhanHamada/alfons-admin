@@ -1,3 +1,4 @@
+import { Dayjs } from '@utility/dayjs';
 import create from 'zustand';
 import { combine } from 'zustand/middleware';
 
@@ -10,10 +11,15 @@ const useCreateAppointmentStore = create(
     {
       isServiceDrawerOpen: false,
       isCreateKlienDrawerOpen: false,
+      isCreateScheduleDrawerOpen: false,
 
       serviceIds: [] as number[],
 
       klienId: '',
+
+      stylishId: undefined as number | undefined,
+      jamId: undefined as string | undefined,
+      tanggal: undefined as Dayjs | undefined,
     },
     (set, get) => ({
       toggleServiceDrawer: () =>
@@ -28,6 +34,13 @@ const useCreateAppointmentStore = create(
         })),
       closeCreateKlienDrawer: () => set({ isCreateKlienDrawerOpen: false }),
 
+      toggleCreateScheduleDrawer: () =>
+        set(({ isCreateScheduleDrawerOpen }) => ({
+          isCreateScheduleDrawerOpen: !isCreateScheduleDrawerOpen,
+        })),
+      closeCreateScheduleDrawer: () =>
+        set({ isCreateScheduleDrawerOpen: false }),
+
       addServiceId: (id: number) =>
         get().serviceIds.includes(id)
           ? undefined
@@ -41,6 +54,21 @@ const useCreateAppointmentStore = create(
         })),
 
       setKlienId: (id: string) => set({ klienId: id }),
+
+      setSchedule: ({
+        stylishId,
+        jamId,
+        tanggal,
+      }: {
+        stylishId?: number;
+        jamId?: string;
+        tanggal?: Dayjs;
+      }) =>
+        set({
+          stylishId,
+          jamId,
+          tanggal,
+        }),
     })
   )
 );

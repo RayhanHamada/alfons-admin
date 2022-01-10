@@ -14,3 +14,4 @@ export type IKlien = GeneratedToProvider<definitions['klien']>;
 export type IStylish = GeneratedToProvider<definitions['stylish']>;
 export type IAdmin = GeneratedToProvider<definitions['admin']>;
 export type IAppointment = GeneratedToProvider<definitions['appointment']>;
+export type IJam = GeneratedToProvider<definitions['jam']>;

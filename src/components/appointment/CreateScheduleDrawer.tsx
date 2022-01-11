@@ -38,7 +38,6 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
     isLoading: isIdentityLoading,
   } = useGetIdentity<IUserIdentity>();
 
-  const [freeze, setFreeze] = useState(false);
   const [tanggal, setTanggal] = useState<Dayjs>(dayjs().startOf('day'));
   const [stylishId, setStylishId] = useState<number | undefined>(undefined);
   const [jamId, setJamId] = useState<string | undefined>(undefined);
@@ -156,6 +155,8 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
 
   /**
    * hari apa saja yang tidak bisa di pilih
+   * - hari kemarin
+   * - hari libur nasional (jika diperlukan)
    */
   // TODO tambahkan hari libur nasional jika diperlukan
   const calendarDisabledDate: CalendarDisabledDate = (date) =>
@@ -181,6 +182,10 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
       tanggal,
     });
   };
+
+  if (isIdentityLoading) return <Text>Mengambil data admin</Text>;
+  if (isIdentityError)
+    return <Text>Gagal mengambil data admin, coba refresh</Text>;
 
   return (
     <Drawer

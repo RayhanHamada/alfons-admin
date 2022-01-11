@@ -9,6 +9,7 @@ import {
   Radio,
   RadioChangeEvent,
   Select,
+  Spin,
   Typography,
   useGetIdentity,
   useList,
@@ -74,16 +75,27 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
     resource: 'appointment',
     config: {
       filters: [
+        /**
+         * filter hanya untuk appointment di cabang ini
+         */
         {
           field: 'cabang_id',
           operator: 'eq',
           value: identityData?.cabangId,
         },
+
+        /**
+         * filter hanya untuk di tanggal ini
+         */
         {
           field: 'date',
           operator: 'eq',
           value: tanggal.format('MM/DD/YYYY'),
         },
+
+        /**
+         * filter hanya untuk stylish ini
+         */
         {
           field: 'stylish_id',
           operator: 'eq',
@@ -113,6 +125,10 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
           return;
         }
 
+        /**
+         * filter untuk menampilkan data jam yang tidak ada di
+         * appointment yang di ambil
+         */
         const filteredJam = data.filter(
           (j) => !jamAppointment.includes(parseInt(j.id))
         );
@@ -133,13 +149,15 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
 
   const onCalendarChange: OnCalendarChange = (date) => {
     setTanggal(date);
-    form.resetFields(['stylish']);
     setStylishId(undefined);
+    form.resetFields(['stylish']);
+    setAvailableJam([]);
   };
 
   /**
    * hari apa saja yang tidak bisa di pilih
    */
+  // TODO tambahkan hari libur nasional jika diperlukan
   const calendarDisabledDate: CalendarDisabledDate = (date) =>
     date.isBefore(dayjs().startOf('day'));
 
@@ -152,8 +170,11 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
   };
 
   const onSetSchedule: MouseEventHandler<HTMLButtonElement> = async (e) => {
-    if (!(stylishId && jamId))
-      return await message.error('Harap pilih stylish dan jam', 1);
+    if (!(stylishId && jamId)) {
+      await message.error('Harap pilih stylish dan jam', 1);
+      return;
+    }
+
     setSchedule({
       stylishId,
       jamId,
@@ -207,7 +228,17 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
               />
             </Form.Item>
             <br />
-            {stylishId && appointmentData ? (
+            {isAppointmentLoading ? (
+              <Spin spinning />
+            ) : isAppointmentError ? (
+              <Text>Gagal mengambil data jam yang tersedia</Text>
+            ) : availableJam.length === 0 ? (
+              stylishId ? (
+                <Text>
+                  Tidak ada jam kosong untuk stylish ini pada tanggal tersebut
+                </Text>
+              ) : undefined
+            ) : (
               <Form.Item name="jam" label="Jam yang tersedia">
                 <Select
                   style={{ width: 500 }}
@@ -221,7 +252,7 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
                   ))}
                 </Select>
               </Form.Item>
-            ) : undefined}
+            )}
           </>
         ) : undefined}
         <Button type="primary" onClick={onSetSchedule}>

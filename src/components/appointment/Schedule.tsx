@@ -1,4 +1,4 @@
-import { Button, Col, Row, Typography, useOne } from '@pankod/refine';
+import { Button, Col, Row, Spin, Typography, useOne } from '@pankod/refine';
 import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore';
 import { MouseEventHandler } from 'react';
 import { IJam, IStylish } from '..';
@@ -32,7 +32,7 @@ export const Schedule: React.FC = (_props) => {
     isLoading: isStylishLoading,
   } = useOne<IStylish>({
     resource: 'stylish',
-    id: `${stylishId!}`,
+    id: stylishId?.toString() ?? '',
     queryOptions: {
       enabled: !!stylishId,
     },
@@ -43,29 +43,32 @@ export const Schedule: React.FC = (_props) => {
       <Col>
         <Row>
           <Title level={4}>Pilih Stylish dan Jadwal</Title>
+          <hr />
           <Button onClick={onAturClick} style={{ marginLeft: 20 }}>
             Atur Schedule
           </Button>
         </Row>
+        <hr />
         <Title level={5}>Stylish</Title>
 
-        <Text>
-          {!isStylishError || !isStylishLoading
-            ? stylishData
-              ? stylishData.data.name
-              : ''
-            : ''}
-        </Text>
+        {isStylishError ? (
+          <Text>Gagal mengambil data stylish</Text>
+        ) : isStylishLoading ? (
+          <Spin spinning />
+        ) : (
+          <Text>{stylishData?.data.name}</Text>
+        )}
+
         <Title level={5}>Tanggal</Title>
         <Text>{tanggal?.format('dddd, DD MMMM YYYY')}</Text>
         <Title level={5}>Jam</Title>
-        <Text>
-          {!isJamError || !isJamLoading
-            ? jamData
-              ? jamData.data.pukul
-              : ''
-            : ''}
-        </Text>
+        {isJamError ? (
+          <Text>Gagal mengambil data jam</Text>
+        ) : isJamLoading ? (
+          <Spin spinning />
+        ) : (
+          <Text>{jamData?.data.pukul}</Text>
+        )}
       </Col>
       <CreateScheduleDrawer />
     </>

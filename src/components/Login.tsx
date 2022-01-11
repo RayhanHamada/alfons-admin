@@ -66,7 +66,11 @@ export const Login: React.FC = (_props) => {
             rules={[{ required: true }]}
             style={{ marginBottom: '12px' }}
           >
-            <Input type="password" placeholder="●●●●●●●●" size="large" />
+            <Input.Password
+              type="password"
+              placeholder="●●●●●●●●"
+              size="large"
+            />
           </Form.Item>
           <Button type="primary" size="large" htmlType="submit" block>
             Masuk

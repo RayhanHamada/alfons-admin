@@ -1,4 +1,4 @@
-import { Col, Create } from '@pankod/refine';
+import { Button, Col, Create } from '@pankod/refine';
 import { CreateUserDrawer } from './CreateUserDrawer';
 import FormDataKlien from './FormDataKlien';
 import OrderedServiceList from './OrderedServiceList';
@@ -7,7 +7,7 @@ import ServiceDrawer from './ServiceDrawer';
 
 export const AppointmentCreate: React.FC = (_props) => {
   return (
-    <Create title="Buat Appointment">
+    <Create title="Buat Appointment" saveButtonProps={{ hidden: true }}>
       <Col>
         <FormDataKlien />
         <br />
@@ -19,6 +19,10 @@ export const AppointmentCreate: React.FC = (_props) => {
         {/* drawers */}
         <ServiceDrawer />
         <CreateUserDrawer />
+        <br />
+        <Button type="primary" style={{ width: '100%' }}>
+          Buat Appointment
+        </Button>
       </Col>
     </Create>
   );

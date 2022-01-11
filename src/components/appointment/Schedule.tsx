@@ -44,7 +44,7 @@ export const Schedule: React.FC = (_props) => {
         <Row>
           <Title level={4}>Pilih Stylish dan Jadwal</Title>
           <hr />
-          <Button onClick={onAturClick} style={{ marginLeft: 20 }}>
+          <Button onClick={onAturClick} style={{ width: 200 }}>
             Atur Schedule
           </Button>
         </Row>

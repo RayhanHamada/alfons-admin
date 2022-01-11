@@ -1,8 +1,8 @@
 import type { IKlien } from '@components';
 import {
   Button,
-  Col,
   Form,
+  Row,
   Select,
   Typography,
   useSelect,
@@ -14,8 +14,7 @@ import { MouseEventHandler } from 'react';
 const { Title, Text } = Typography;
 
 const FormDataKlien: React.FC = (_props) => {
-  const { toggleCreateKlienDrawer, setKlienId, klienId } =
-    useCreateAppointmentStore();
+  const { toggleCreateKlienDrawer, setKlienId } = useCreateAppointmentStore();
 
   const { selectProps: selectKlienProps } = useSelect<IKlien>({
     resource: 'klien',
@@ -39,7 +38,13 @@ const FormDataKlien: React.FC = (_props) => {
 
   return (
     <Form title="Data Pemesan" layout="vertical">
-      <Title level={4}>Data pemesan</Title>
+      <Row>
+        <Title level={4}>Data pemesan</Title>
+        <hr />
+        <Button onClick={onClick} style={{ width: 200 }}>
+          Buat Klien Baru
+        </Button>
+      </Row>
       <hr />
 
       <Form.Item
@@ -58,11 +63,6 @@ const FormDataKlien: React.FC = (_props) => {
           }}
         />
       </Form.Item>
-      <Col style={{ textAlign: 'center' }}>
-        <Text>Atau</Text>
-        <br />
-        <Button onClick={onClick}>Buat Klien Baru</Button>
-      </Col>
     </Form>
   );
 };

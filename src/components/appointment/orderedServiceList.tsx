@@ -4,6 +4,7 @@ import {
   Button,
   Icons,
   NumberField,
+  Row,
   TextField,
   Typography,
   useMany,
@@ -27,7 +28,14 @@ const OrderedServiceList: React.FC = (_props) => {
 
   return (
     <>
-      <Title level={4}>Order Service</Title>
+      <Row>
+        <Title level={4}>Order Service</Title>
+        <hr />
+        <Button onClick={toggleServiceDrawer} style={{ width: 200 }}>
+          Tambahkan Service
+        </Button>
+      </Row>
+      <hr />
       <AntdList.Item
         actions={[
           <Button type="primary" danger style={{ visibility: 'hidden' }}>
@@ -66,33 +74,29 @@ const OrderedServiceList: React.FC = (_props) => {
         )}
       />
 
-      <Button onClick={toggleServiceDrawer}>Tambahkan Service</Button>
-
       {/* perkiraan total harga */}
 
-      <>
-        <hr />
-        <AntdList.Item
-          actions={[
-            <Button type="primary" danger style={{ visibility: 'hidden' }}>
-              <DeleteOutlined />
-            </Button>,
-          ]}
-        >
-          <AntdList.Item.Meta
-            style={{ fontWeight: 'bold' }}
-            title="Total Perkiraan Harga"
-          />
-          <NumberField
-            value={serviceOrderedData.data.reduce(
-              (p, c) => p + c.cost_estimate,
-              0
-            )}
-            options={{ currency: 'idr', style: 'currency' }}
-            strong
-          />
-        </AntdList.Item>
-      </>
+      <hr />
+      <AntdList.Item
+        actions={[
+          <Button type="primary" danger style={{ visibility: 'hidden' }}>
+            <DeleteOutlined />
+          </Button>,
+        ]}
+      >
+        <AntdList.Item.Meta
+          style={{ fontWeight: 'bold' }}
+          title="Total Perkiraan Harga"
+        />
+        <NumberField
+          value={serviceOrderedData.data.reduce(
+            (p, c) => p + c.cost_estimate,
+            0
+          )}
+          options={{ currency: 'idr', style: 'currency' }}
+          strong
+        />
+      </AntdList.Item>
     </>
   );
 };

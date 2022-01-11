@@ -20,6 +20,7 @@ const useCreateAppointmentStore = create(
       stylishId: undefined as number | undefined,
       jamId: undefined as string | undefined,
       tanggal: undefined as Dayjs | undefined,
+      note: '',
     },
     (set, get) => ({
       toggleServiceDrawer: () =>
@@ -69,6 +70,8 @@ const useCreateAppointmentStore = create(
           jamId,
           tanggal,
         }),
+
+      setNote: (note: string) => set({ note }),
     })
   )
 );

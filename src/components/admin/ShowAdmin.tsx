@@ -9,11 +9,11 @@ import {
   Space,
   Spin,
   Typography,
-  useMany,
+  useOne,
   useShow,
 } from '@pankod/refine';
 import { deleteAdmin, getAdmin } from '@utility/api';
-import dayjs from 'dayjs';
+import { dayjs } from '@utility/dayjs';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -48,10 +48,13 @@ export const AdminShow: React.FC = () => {
   const {
     isLoading: isCabangLoading,
     isError: isCabangError,
-    data: cabangDatas,
-  } = useMany<ICabang>({
+    data: cabangData,
+  } = useOne<ICabang>({
     resource: 'cabang',
-    ids: [`${adminResult?.data.cabang_id}`],
+    id: adminResult?.data.cabang_id.toString() ?? '',
+    queryOptions: {
+      enabled: !!adminResult,
+    },
   });
 
   if (adminError) return <p>Gagal mengambil data admin</p>;
@@ -103,12 +106,12 @@ export const AdminShow: React.FC = () => {
       <Title level={5}>Nomor Telepon</Title>
       <Text>{adminResult.data.phone_number}</Text>
       <Title level={5}>Cabang</Title>
-      {isCabangLoading ? (
-        <Spin spinning size="small" />
-      ) : isCabangError || cabangDatas?.data.length === 0 ? (
-        'Error mengambil data cabang'
+      {isCabangError ? (
+        <Text>Gagal mengambil data cabang</Text>
+      ) : isCabangLoading ? (
+        <Spin spinning />
       ) : (
-        cabangDatas?.data[0].name
+        <Text>{cabangData?.data.name}</Text>
       )}
       <Title level={5}>Ditambahkan Tanggal</Title>
       <DateField

@@ -33,7 +33,6 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
   const [byDate, setByDate] = useState(true);
   const {
     data: identityData,
-    error: identityError,
     isError: isIdentityError,
     isLoading: isIdentityLoading,
   } = useGetIdentity<IUserIdentity>();
@@ -69,7 +68,6 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
 
   const {
     data: appointmentData,
-    error: appointmentError,
     isError: isAppointmentError,
     isLoading: isAppointmentLoading,
   } = useList<IAppointment>({
@@ -96,16 +94,19 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
         pageSize: 24,
       },
     },
+    queryOptions: {
+      enabled: !!stylishId && !!identityData,
+    },
   });
 
   useEffect(() => {
     (async () => {
-      if (appointmentData && stylishId) {
+      if (identityData && appointmentData && stylishId) {
         const jamAppointment = appointmentData.data.map((a) => a.jam_id);
         const { error, data } = await supabaseBrowserClient
           .from<IJam>('jam')
           .select('*')
-          .eq('cabang_id', identityData?.cabangId);
+          .eq('cabang_id', identityData.cabangId);
 
         if (error || !data) {
           await message.error('Error saat mengambil data jam', 1);
@@ -119,7 +120,7 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
         setAvailableJam(filteredJam);
       }
     })();
-  }, [appointmentData, stylishId]);
+  }, [identityData, appointmentData, stylishId]);
 
   const onRadioChange: OnRadioChange = (e) => {
     if (e.target.value === 'STYLISH') {

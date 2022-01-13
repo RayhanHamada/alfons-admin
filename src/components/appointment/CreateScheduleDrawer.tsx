@@ -136,9 +136,18 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
          * filter untuk menampilkan data jam yang tidak ada di
          * appointment yang di ambil
          */
-        const filteredJam = data.filter(
+        let filteredJam = data.filter(
           (j) => !jamAppointment.includes(parseInt(j.id))
         );
+
+        /**
+         * jika tanggal adalah hari ini, maka hanya jam2 1 jam kedepan atau lebih yang dapat dipilih
+         */
+        if (tanggal.startOf('day').isSame(dayjs().startOf('day'))) {
+          filteredJam = filteredJam.filter(
+            (j) => dayjs().hour() < dayjs(j.pukul, 'HH:mm').hour()
+          );
+        }
 
         setAvailableJam(filteredJam);
       }

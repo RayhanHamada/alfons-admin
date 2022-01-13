@@ -75,6 +75,14 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
     config: {
       filters: [
         /**
+         * hanya fetch appointment yang tidak di cancel
+         */
+        {
+          field: 'cancel',
+          operator: 'eq',
+          value: false,
+        },
+        /**
          * filter hanya untuk appointment di cabang ini
          */
         {

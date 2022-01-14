@@ -54,7 +54,7 @@ const FormDataKlien: React.FC = (_props) => {
   return (
     <Form title="Data Pemesan" layout="vertical">
       <Row>
-        <Title level={4}>Data pemesan</Title>
+        <Title level={4}>Data Pemesan</Title>
         <hr />
         <Button onClick={onClick} style={{ width: 200 }}>
           Buat Klien Baru

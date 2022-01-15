@@ -184,7 +184,7 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
   };
 
   const onSelectJamChange = (v: number) => {
-    setJamId(`${v}`);
+    setJamId(v.toString());
   };
 
   const onSetSchedule: MouseEventHandler<HTMLButtonElement> = async (e) => {

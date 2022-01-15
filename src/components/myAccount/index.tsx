@@ -1,4 +1,4 @@
-import { ICabang } from '@components';
+import type { ICabang } from '@components';
 import type { IUserIdentity } from '@customTypes/authProvider';
 import type { definitions } from '@customTypes/supabase';
 import {
@@ -8,6 +8,7 @@ import {
   Input,
   List,
   message,
+  Spin,
   Typography,
   useGetIdentity,
   useOne,
@@ -33,7 +34,11 @@ export const MyAccount: React.FC = (_props) => {
   /**
    * ambil data diri
    */
-  const { data: dataDiri } = useGetIdentity<IUserIdentity>();
+  const {
+    data: dataDiri,
+    isError: isDataDiriError,
+    isLoading: isDataDiriLoading,
+  } = useGetIdentity<IUserIdentity>();
 
   const {
     data: cabangData,
@@ -41,7 +46,10 @@ export const MyAccount: React.FC = (_props) => {
     isLoading: isCabangLoading,
   } = useOne<ICabang>({
     resource: 'cabang',
-    id: `${dataDiri?.cabangId}`,
+    id: dataDiri?.cabangId.toString() ?? '',
+    queryOptions: {
+      enabled: !!dataDiri || isDataDiriError,
+    },
   });
 
   const onUpdateDataFormFinish = async ({ name }: UpdateDataForm) => {
@@ -49,20 +57,26 @@ export const MyAccount: React.FC = (_props) => {
      * update table admin
      */
     setFreeze(true);
-    if (!dataDiri) return message.error('Gagal mengupdate data admin');
-    const { id } = dataDiri;
+    if (!dataDiri) {
+      await message.error('Gagal mengupdate data admin', 1);
+    } else {
+      const { id } = dataDiri;
 
-    const { data, error } = await supabaseBrowserClient
-      .from<definitions['admin']>('admin')
-      .update({
-        name,
-      })
-      .eq('supabase_user_id', id);
+      const { data, error } = await supabaseBrowserClient
+        .from<definitions['admin']>('admin')
+        .update({
+          name,
+        })
+        .eq('supabase_user_id', id);
 
-    if (error || !data) return message.error('Gagal mengupdate data admin');
+      if (error || !data) {
+        await message.error('Gagal mengupdate data admin', 1);
+      } else {
+        await message.success(`Berhasil mengupdate user ${name}`, 1);
+      }
+    }
+
     setFreeze(false);
-
-    await message.success(`Berhasil mengupdate user ${name}`, 1);
   };
 
   const onUpdatePasswordFormFinish = async ({
@@ -73,14 +87,14 @@ export const MyAccount: React.FC = (_props) => {
       password,
     });
 
-    if (error || !user) return message.error('Gagal mengupdate password');
+    if (error || !user) {
+      await message.error('Gagal mengupdate password', 1);
+    } else {
+      await message.success(`Berhasil mengupdate password user.`, 1);
+    }
+
     setFreeze(false);
-
-    await message.success(`Berhasil mengupdate password user.`, 2);
   };
-
-  if (!dataDiri || !cabangData || isCabangLoading || isCabangError)
-    return <p>Mengambil data</p>;
 
   return (
     <List title="Akun Saya">
@@ -93,23 +107,35 @@ export const MyAccount: React.FC = (_props) => {
         >
           <Title level={5}>Data Admin</Title>
           <hr />
-          <Form.Item
-            label="Nama"
-            name="name"
-            initialValue={dataDiri.username}
-            style={{ width: 400 }}
-          >
-            <Input placeholder="Nama" disabled={freeze} />
-          </Form.Item>
-          <Form.Item label="Email" name="email" style={{ width: 400 }}>
-            <Text>{dataDiri.email}</Text>
-          </Form.Item>
+          {isDataDiriError || !dataDiri ? (
+            <Text>Gagal mengambil data anda</Text>
+          ) : isDataDiriLoading ? (
+            <Spin spinning />
+          ) : (
+            <>
+              <Form.Item
+                label="Nama"
+                name="name"
+                initialValue={dataDiri.username}
+                style={{ width: 400 }}
+              >
+                <Input placeholder="Nama" disabled={freeze} />
+              </Form.Item>
+              <Form.Item label="Email" name="email" style={{ width: 400 }}>
+                <Text>{dataDiri.email}</Text>
+              </Form.Item>
+            </>
+          )}
 
-          {cabangData ? (
-            <Form.Item label="Cabang" name="cabang" style={{ width: 400 }}>
+          <Form.Item label="Cabang" name="cabang" style={{ width: 400 }}>
+            {isCabangError || !cabangData ? (
+              <Text>Gagal mengambil data cabang</Text>
+            ) : isCabangLoading ? (
+              <Spin spinning />
+            ) : (
               <Text>{cabangData.data.name}</Text>
-            </Form.Item>
-          ) : null}
+            )}
+          </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" disabled={freeze}>
@@ -145,7 +171,11 @@ export const MyAccount: React.FC = (_props) => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" disabled={freeze}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={freeze || isDataDiriError}
+            >
               Update Password
             </Button>
           </Form.Item>

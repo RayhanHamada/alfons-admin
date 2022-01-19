@@ -277,6 +277,7 @@ export const CreateScheduleDrawer: React.FC = (_props) => {
             )}
           </>
         ) : undefined}
+        <br />
         <Button type="primary" onClick={onSetSchedule}>
           Tetapkan Jadwal
         </Button>

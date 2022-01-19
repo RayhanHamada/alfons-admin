@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
+    "@bnjmnt4n/supabase-client": "^0.0.1",
     "@types/cors": "^2.8.12",
     "@types/node": "^17.0.10",
     "@types/react": "^17.0.38",

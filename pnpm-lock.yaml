@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@babel/core': ^7.16.7
+  '@bnjmnt4n/supabase-client': ^0.0.1
   '@pankod/refine': ^2.6.2
   '@pankod/refine-nextjs-router': ^2.6.2
   '@pankod/refine-supabase': ^2.6.2
@@ -43,6 +44,7 @@ dependencies:
 
 devDependencies:
   '@babel/core': 7.16.7
+  '@bnjmnt4n/supabase-client': 0.0.1
   '@types/cors': 2.8.12
   '@types/node': 17.0.10
   '@types/react': 17.0.38
@@ -329,6 +331,10 @@ packages:
     dependencies:
       '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
+    dev: true
+
+  /@bnjmnt4n/supabase-client/0.0.1:
+    resolution: {integrity: sha512-nAm82vUYuhWoEr3DAFwooehnK9vJ516b9K0YZ6fnqiYmKGJq5LEb/R9SWYQzfC9T2RkSoKwmUfBQWtqMGAqgSw==}
     dev: true
 
   /@ctrl/tinycolor/3.4.0:

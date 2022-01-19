@@ -9,15 +9,20 @@ import {
   useOne,
   useSelect,
 } from '@pankod/refine';
+import { Dayjs } from '@utility/dayjs';
 import type { CreateAppointmentUserDataFormValue } from '@utility/hooks/useCreateAppointmentStore';
 import useCreateAppointmentStore from '@utility/hooks/useCreateAppointmentStore';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 
 const { Title, Text } = Typography;
 
 const FormDataKlien: React.FC = (_props) => {
   const { toggleCreateKlienDrawer, setKlienId, klienId } =
     useCreateAppointmentStore();
+
+  const [futureAppointment, setFutureAppointment] = useState<Dayjs | undefined>(
+    undefined
+  );
 
   const {
     data: klienData,
@@ -50,10 +55,29 @@ const FormDataKlien: React.FC = (_props) => {
   };
 
   const onSelectChange = async (value: string) => {
-    /**
-     * check if this user already has future appointment
-     */
+    // /**
+    //  * check if this user already has future appointment
+    //  */
+    // const { error, data } = await supabaseBrowserClient
+    //   .from('appointment')
+    //   .select('date, cancel, done')
+    //   .gt('date', dayjs().format('MM/DD/YYYY'))
+    //   .eq('cancel', false);
 
+    // if (error) {
+    //   await message.error(
+    //     'Gagal mengecek dan mengambil data appointment user ini',
+    //     1
+    //   );
+    // }
+
+    // if (!data) {
+    //   setKlienId(value);
+    //   setFutureAppointment(undefined);
+    //   return;
+    // }
+
+    // setFutureAppointment(dayjs(data[0].date, 'MM/DD/YYYY'));
     setKlienId(value);
   };
 
@@ -84,6 +108,12 @@ const FormDataKlien: React.FC = (_props) => {
           onChange={onSelectChange as any}
         />
       </Form.Item>
+      {futureAppointment ? (
+        <Text type="danger">
+          Klien ini mempunyai appointment aktif pada tanggal
+          {futureAppointment.format('dddd, DD MMMM YYYY')}
+        </Text>
+      ) : undefined}
 
       {isKlienError ? (
         <Text>Gagal mengambil data klien</Text>

@@ -49,6 +49,14 @@ const FormDataKlien: React.FC = (_props) => {
     toggleCreateKlienDrawer();
   };
 
+  const onSelectChange = async (value: string) => {
+    /**
+     * check if this user already has future appointment
+     */
+
+    setKlienId(value);
+  };
+
   const onFinish = (v: CreateAppointmentUserDataFormValue) => {};
 
   return (
@@ -73,9 +81,7 @@ const FormDataKlien: React.FC = (_props) => {
           {...selectKlienProps}
           placeholder="Cari Klien"
           showSearch
-          onChange={(value) => {
-            setKlienId(value as any);
-          }}
+          onChange={onSelectChange as any}
         />
       </Form.Item>
 

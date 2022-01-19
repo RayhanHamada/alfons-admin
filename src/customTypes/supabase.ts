@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-  "/": {
+  '/': {
     get: {
       responses: {
         /** OK */
@@ -12,40 +12,40 @@ export interface paths {
       };
     };
   };
-  "/admin": {
+  '/admin': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.admin.id"];
-          supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
-          name?: parameters["rowFilter.admin.name"];
-          phone_number?: parameters["rowFilter.admin.phone_number"];
-          otp?: parameters["rowFilter.admin.otp"];
-          created_at?: parameters["rowFilter.admin.created_at"];
-          updated_at?: parameters["rowFilter.admin.updated_at"];
-          cabang_id?: parameters["rowFilter.admin.cabang_id"];
+          id?: parameters['rowFilter.admin.id'];
+          supabase_user_id?: parameters['rowFilter.admin.supabase_user_id'];
+          name?: parameters['rowFilter.admin.name'];
+          phone_number?: parameters['rowFilter.admin.phone_number'];
+          otp?: parameters['rowFilter.admin.otp'];
+          created_at?: parameters['rowFilter.admin.created_at'];
+          updated_at?: parameters['rowFilter.admin.updated_at'];
+          cabang_id?: parameters['rowFilter.admin.cabang_id'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["admin"][];
+          schema: definitions['admin'][];
         };
         /** Partial Content */
         206: unknown;
@@ -55,15 +55,15 @@ export interface paths {
       parameters: {
         body: {
           /** admin */
-          admin?: definitions["admin"];
+          admin?: definitions['admin'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -74,18 +74,18 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.admin.id"];
-          supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
-          name?: parameters["rowFilter.admin.name"];
-          phone_number?: parameters["rowFilter.admin.phone_number"];
-          otp?: parameters["rowFilter.admin.otp"];
-          created_at?: parameters["rowFilter.admin.created_at"];
-          updated_at?: parameters["rowFilter.admin.updated_at"];
-          cabang_id?: parameters["rowFilter.admin.cabang_id"];
+          id?: parameters['rowFilter.admin.id'];
+          supabase_user_id?: parameters['rowFilter.admin.supabase_user_id'];
+          name?: parameters['rowFilter.admin.name'];
+          phone_number?: parameters['rowFilter.admin.phone_number'];
+          otp?: parameters['rowFilter.admin.otp'];
+          created_at?: parameters['rowFilter.admin.created_at'];
+          updated_at?: parameters['rowFilter.admin.updated_at'];
+          cabang_id?: parameters['rowFilter.admin.cabang_id'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -96,22 +96,22 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.admin.id"];
-          supabase_user_id?: parameters["rowFilter.admin.supabase_user_id"];
-          name?: parameters["rowFilter.admin.name"];
-          phone_number?: parameters["rowFilter.admin.phone_number"];
-          otp?: parameters["rowFilter.admin.otp"];
-          created_at?: parameters["rowFilter.admin.created_at"];
-          updated_at?: parameters["rowFilter.admin.updated_at"];
-          cabang_id?: parameters["rowFilter.admin.cabang_id"];
+          id?: parameters['rowFilter.admin.id'];
+          supabase_user_id?: parameters['rowFilter.admin.supabase_user_id'];
+          name?: parameters['rowFilter.admin.name'];
+          phone_number?: parameters['rowFilter.admin.phone_number'];
+          otp?: parameters['rowFilter.admin.otp'];
+          created_at?: parameters['rowFilter.admin.created_at'];
+          updated_at?: parameters['rowFilter.admin.updated_at'];
+          cabang_id?: parameters['rowFilter.admin.cabang_id'];
         };
         body: {
           /** admin */
-          admin?: definitions["admin"];
+          admin?: definitions['admin'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -120,43 +120,43 @@ export interface paths {
       };
     };
   };
-  "/appointment": {
+  '/appointment': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.appointment.id"];
-          date?: parameters["rowFilter.appointment.date"];
-          cancel?: parameters["rowFilter.appointment.cancel"];
-          done?: parameters["rowFilter.appointment.done"];
-          note?: parameters["rowFilter.appointment.note"];
-          created_at?: parameters["rowFilter.appointment.created_at"];
-          updated_at?: parameters["rowFilter.appointment.updated_at"];
-          cabang_id?: parameters["rowFilter.appointment.cabang_id"];
-          klien_id?: parameters["rowFilter.appointment.klien_id"];
-          stylish_id?: parameters["rowFilter.appointment.stylish_id"];
-          jam_id?: parameters["rowFilter.appointment.jam_id"];
+          id?: parameters['rowFilter.appointment.id'];
+          date?: parameters['rowFilter.appointment.date'];
+          cancel?: parameters['rowFilter.appointment.cancel'];
+          done?: parameters['rowFilter.appointment.done'];
+          note?: parameters['rowFilter.appointment.note'];
+          created_at?: parameters['rowFilter.appointment.created_at'];
+          updated_at?: parameters['rowFilter.appointment.updated_at'];
+          cabang_id?: parameters['rowFilter.appointment.cabang_id'];
+          klien_id?: parameters['rowFilter.appointment.klien_id'];
+          stylish_id?: parameters['rowFilter.appointment.stylish_id'];
+          jam_id?: parameters['rowFilter.appointment.jam_id'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["appointment"][];
+          schema: definitions['appointment'][];
         };
         /** Partial Content */
         206: unknown;
@@ -166,15 +166,15 @@ export interface paths {
       parameters: {
         body: {
           /** appointment */
-          appointment?: definitions["appointment"];
+          appointment?: definitions['appointment'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -185,21 +185,21 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.appointment.id"];
-          date?: parameters["rowFilter.appointment.date"];
-          cancel?: parameters["rowFilter.appointment.cancel"];
-          done?: parameters["rowFilter.appointment.done"];
-          note?: parameters["rowFilter.appointment.note"];
-          created_at?: parameters["rowFilter.appointment.created_at"];
-          updated_at?: parameters["rowFilter.appointment.updated_at"];
-          cabang_id?: parameters["rowFilter.appointment.cabang_id"];
-          klien_id?: parameters["rowFilter.appointment.klien_id"];
-          stylish_id?: parameters["rowFilter.appointment.stylish_id"];
-          jam_id?: parameters["rowFilter.appointment.jam_id"];
+          id?: parameters['rowFilter.appointment.id'];
+          date?: parameters['rowFilter.appointment.date'];
+          cancel?: parameters['rowFilter.appointment.cancel'];
+          done?: parameters['rowFilter.appointment.done'];
+          note?: parameters['rowFilter.appointment.note'];
+          created_at?: parameters['rowFilter.appointment.created_at'];
+          updated_at?: parameters['rowFilter.appointment.updated_at'];
+          cabang_id?: parameters['rowFilter.appointment.cabang_id'];
+          klien_id?: parameters['rowFilter.appointment.klien_id'];
+          stylish_id?: parameters['rowFilter.appointment.stylish_id'];
+          jam_id?: parameters['rowFilter.appointment.jam_id'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -210,25 +210,25 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.appointment.id"];
-          date?: parameters["rowFilter.appointment.date"];
-          cancel?: parameters["rowFilter.appointment.cancel"];
-          done?: parameters["rowFilter.appointment.done"];
-          note?: parameters["rowFilter.appointment.note"];
-          created_at?: parameters["rowFilter.appointment.created_at"];
-          updated_at?: parameters["rowFilter.appointment.updated_at"];
-          cabang_id?: parameters["rowFilter.appointment.cabang_id"];
-          klien_id?: parameters["rowFilter.appointment.klien_id"];
-          stylish_id?: parameters["rowFilter.appointment.stylish_id"];
-          jam_id?: parameters["rowFilter.appointment.jam_id"];
+          id?: parameters['rowFilter.appointment.id'];
+          date?: parameters['rowFilter.appointment.date'];
+          cancel?: parameters['rowFilter.appointment.cancel'];
+          done?: parameters['rowFilter.appointment.done'];
+          note?: parameters['rowFilter.appointment.note'];
+          created_at?: parameters['rowFilter.appointment.created_at'];
+          updated_at?: parameters['rowFilter.appointment.updated_at'];
+          cabang_id?: parameters['rowFilter.appointment.cabang_id'];
+          klien_id?: parameters['rowFilter.appointment.klien_id'];
+          stylish_id?: parameters['rowFilter.appointment.stylish_id'];
+          jam_id?: parameters['rowFilter.appointment.jam_id'];
         };
         body: {
           /** appointment */
-          appointment?: definitions["appointment"];
+          appointment?: definitions['appointment'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -237,36 +237,36 @@ export interface paths {
       };
     };
   };
-  "/cabang": {
+  '/cabang': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.cabang.id"];
-          name?: parameters["rowFilter.cabang.name"];
-          created_at?: parameters["rowFilter.cabang.created_at"];
-          updated_at?: parameters["rowFilter.cabang.updated_at"];
+          id?: parameters['rowFilter.cabang.id'];
+          name?: parameters['rowFilter.cabang.name'];
+          created_at?: parameters['rowFilter.cabang.created_at'];
+          updated_at?: parameters['rowFilter.cabang.updated_at'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["cabang"][];
+          schema: definitions['cabang'][];
         };
         /** Partial Content */
         206: unknown;
@@ -276,15 +276,15 @@ export interface paths {
       parameters: {
         body: {
           /** cabang */
-          cabang?: definitions["cabang"];
+          cabang?: definitions['cabang'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -295,14 +295,14 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.cabang.id"];
-          name?: parameters["rowFilter.cabang.name"];
-          created_at?: parameters["rowFilter.cabang.created_at"];
-          updated_at?: parameters["rowFilter.cabang.updated_at"];
+          id?: parameters['rowFilter.cabang.id'];
+          name?: parameters['rowFilter.cabang.name'];
+          created_at?: parameters['rowFilter.cabang.created_at'];
+          updated_at?: parameters['rowFilter.cabang.updated_at'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -313,18 +313,18 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.cabang.id"];
-          name?: parameters["rowFilter.cabang.name"];
-          created_at?: parameters["rowFilter.cabang.created_at"];
-          updated_at?: parameters["rowFilter.cabang.updated_at"];
+          id?: parameters['rowFilter.cabang.id'];
+          name?: parameters['rowFilter.cabang.name'];
+          created_at?: parameters['rowFilter.cabang.created_at'];
+          updated_at?: parameters['rowFilter.cabang.updated_at'];
         };
         body: {
           /** cabang */
-          cabang?: definitions["cabang"];
+          cabang?: definitions['cabang'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -333,38 +333,38 @@ export interface paths {
       };
     };
   };
-  "/jam": {
+  '/jam': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.jam.id"];
-          jam_ke?: parameters["rowFilter.jam.jam_ke"];
-          pukul?: parameters["rowFilter.jam.pukul"];
-          created_at?: parameters["rowFilter.jam.created_at"];
-          updated_at?: parameters["rowFilter.jam.updated_at"];
-          cabang_id?: parameters["rowFilter.jam.cabang_id"];
+          id?: parameters['rowFilter.jam.id'];
+          jam_ke?: parameters['rowFilter.jam.jam_ke'];
+          pukul?: parameters['rowFilter.jam.pukul'];
+          created_at?: parameters['rowFilter.jam.created_at'];
+          updated_at?: parameters['rowFilter.jam.updated_at'];
+          cabang_id?: parameters['rowFilter.jam.cabang_id'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["jam"][];
+          schema: definitions['jam'][];
         };
         /** Partial Content */
         206: unknown;
@@ -374,15 +374,15 @@ export interface paths {
       parameters: {
         body: {
           /** jam */
-          jam?: definitions["jam"];
+          jam?: definitions['jam'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -393,16 +393,16 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.jam.id"];
-          jam_ke?: parameters["rowFilter.jam.jam_ke"];
-          pukul?: parameters["rowFilter.jam.pukul"];
-          created_at?: parameters["rowFilter.jam.created_at"];
-          updated_at?: parameters["rowFilter.jam.updated_at"];
-          cabang_id?: parameters["rowFilter.jam.cabang_id"];
+          id?: parameters['rowFilter.jam.id'];
+          jam_ke?: parameters['rowFilter.jam.jam_ke'];
+          pukul?: parameters['rowFilter.jam.pukul'];
+          created_at?: parameters['rowFilter.jam.created_at'];
+          updated_at?: parameters['rowFilter.jam.updated_at'];
+          cabang_id?: parameters['rowFilter.jam.cabang_id'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -413,20 +413,20 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.jam.id"];
-          jam_ke?: parameters["rowFilter.jam.jam_ke"];
-          pukul?: parameters["rowFilter.jam.pukul"];
-          created_at?: parameters["rowFilter.jam.created_at"];
-          updated_at?: parameters["rowFilter.jam.updated_at"];
-          cabang_id?: parameters["rowFilter.jam.cabang_id"];
+          id?: parameters['rowFilter.jam.id'];
+          jam_ke?: parameters['rowFilter.jam.jam_ke'];
+          pukul?: parameters['rowFilter.jam.pukul'];
+          created_at?: parameters['rowFilter.jam.created_at'];
+          updated_at?: parameters['rowFilter.jam.updated_at'];
+          cabang_id?: parameters['rowFilter.jam.cabang_id'];
         };
         body: {
           /** jam */
-          jam?: definitions["jam"];
+          jam?: definitions['jam'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -435,40 +435,40 @@ export interface paths {
       };
     };
   };
-  "/klien": {
+  '/klien': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.klien.id"];
-          name?: parameters["rowFilter.klien.name"];
-          jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
-          phone_number?: parameters["rowFilter.klien.phone_number"];
-          phone_verified?: parameters["rowFilter.klien.phone_verified"];
-          otp?: parameters["rowFilter.klien.otp"];
-          created_at?: parameters["rowFilter.klien.created_at"];
-          updated_at?: parameters["rowFilter.klien.updated_at"];
+          id?: parameters['rowFilter.klien.id'];
+          name?: parameters['rowFilter.klien.name'];
+          jenis_kelamin?: parameters['rowFilter.klien.jenis_kelamin'];
+          phone_number?: parameters['rowFilter.klien.phone_number'];
+          phone_verified?: parameters['rowFilter.klien.phone_verified'];
+          otp?: parameters['rowFilter.klien.otp'];
+          created_at?: parameters['rowFilter.klien.created_at'];
+          updated_at?: parameters['rowFilter.klien.updated_at'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["klien"][];
+          schema: definitions['klien'][];
         };
         /** Partial Content */
         206: unknown;
@@ -478,15 +478,15 @@ export interface paths {
       parameters: {
         body: {
           /** klien */
-          klien?: definitions["klien"];
+          klien?: definitions['klien'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -497,18 +497,18 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.klien.id"];
-          name?: parameters["rowFilter.klien.name"];
-          jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
-          phone_number?: parameters["rowFilter.klien.phone_number"];
-          phone_verified?: parameters["rowFilter.klien.phone_verified"];
-          otp?: parameters["rowFilter.klien.otp"];
-          created_at?: parameters["rowFilter.klien.created_at"];
-          updated_at?: parameters["rowFilter.klien.updated_at"];
+          id?: parameters['rowFilter.klien.id'];
+          name?: parameters['rowFilter.klien.name'];
+          jenis_kelamin?: parameters['rowFilter.klien.jenis_kelamin'];
+          phone_number?: parameters['rowFilter.klien.phone_number'];
+          phone_verified?: parameters['rowFilter.klien.phone_verified'];
+          otp?: parameters['rowFilter.klien.otp'];
+          created_at?: parameters['rowFilter.klien.created_at'];
+          updated_at?: parameters['rowFilter.klien.updated_at'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -519,22 +519,22 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.klien.id"];
-          name?: parameters["rowFilter.klien.name"];
-          jenis_kelamin?: parameters["rowFilter.klien.jenis_kelamin"];
-          phone_number?: parameters["rowFilter.klien.phone_number"];
-          phone_verified?: parameters["rowFilter.klien.phone_verified"];
-          otp?: parameters["rowFilter.klien.otp"];
-          created_at?: parameters["rowFilter.klien.created_at"];
-          updated_at?: parameters["rowFilter.klien.updated_at"];
+          id?: parameters['rowFilter.klien.id'];
+          name?: parameters['rowFilter.klien.name'];
+          jenis_kelamin?: parameters['rowFilter.klien.jenis_kelamin'];
+          phone_number?: parameters['rowFilter.klien.phone_number'];
+          phone_verified?: parameters['rowFilter.klien.phone_verified'];
+          otp?: parameters['rowFilter.klien.otp'];
+          created_at?: parameters['rowFilter.klien.created_at'];
+          updated_at?: parameters['rowFilter.klien.updated_at'];
         };
         body: {
           /** klien */
-          klien?: definitions["klien"];
+          klien?: definitions['klien'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -543,37 +543,37 @@ export interface paths {
       };
     };
   };
-  "/rendered_service": {
+  '/rendered_service': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.rendered_service.id"];
-          service_id?: parameters["rowFilter.rendered_service.service_id"];
-          appointment_id?: parameters["rowFilter.rendered_service.appointment_id"];
-          created_at?: parameters["rowFilter.rendered_service.created_at"];
-          updated_at?: parameters["rowFilter.rendered_service.updated_at"];
+          id?: parameters['rowFilter.rendered_service.id'];
+          service_id?: parameters['rowFilter.rendered_service.service_id'];
+          appointment_id?: parameters['rowFilter.rendered_service.appointment_id'];
+          created_at?: parameters['rowFilter.rendered_service.created_at'];
+          updated_at?: parameters['rowFilter.rendered_service.updated_at'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["rendered_service"][];
+          schema: definitions['rendered_service'][];
         };
         /** Partial Content */
         206: unknown;
@@ -583,15 +583,15 @@ export interface paths {
       parameters: {
         body: {
           /** rendered_service */
-          rendered_service?: definitions["rendered_service"];
+          rendered_service?: definitions['rendered_service'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -602,15 +602,15 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.rendered_service.id"];
-          service_id?: parameters["rowFilter.rendered_service.service_id"];
-          appointment_id?: parameters["rowFilter.rendered_service.appointment_id"];
-          created_at?: parameters["rowFilter.rendered_service.created_at"];
-          updated_at?: parameters["rowFilter.rendered_service.updated_at"];
+          id?: parameters['rowFilter.rendered_service.id'];
+          service_id?: parameters['rowFilter.rendered_service.service_id'];
+          appointment_id?: parameters['rowFilter.rendered_service.appointment_id'];
+          created_at?: parameters['rowFilter.rendered_service.created_at'];
+          updated_at?: parameters['rowFilter.rendered_service.updated_at'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -621,19 +621,19 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.rendered_service.id"];
-          service_id?: parameters["rowFilter.rendered_service.service_id"];
-          appointment_id?: parameters["rowFilter.rendered_service.appointment_id"];
-          created_at?: parameters["rowFilter.rendered_service.created_at"];
-          updated_at?: parameters["rowFilter.rendered_service.updated_at"];
+          id?: parameters['rowFilter.rendered_service.id'];
+          service_id?: parameters['rowFilter.rendered_service.service_id'];
+          appointment_id?: parameters['rowFilter.rendered_service.appointment_id'];
+          created_at?: parameters['rowFilter.rendered_service.created_at'];
+          updated_at?: parameters['rowFilter.rendered_service.updated_at'];
         };
         body: {
           /** rendered_service */
-          rendered_service?: definitions["rendered_service"];
+          rendered_service?: definitions['rendered_service'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -642,38 +642,38 @@ export interface paths {
       };
     };
   };
-  "/service": {
+  '/service': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.service.id"];
-          name?: parameters["rowFilter.service.name"];
-          cost_estimate?: parameters["rowFilter.service.cost_estimate"];
-          created_at?: parameters["rowFilter.service.created_at"];
-          updated_at?: parameters["rowFilter.service.updated_at"];
-          service_category_id?: parameters["rowFilter.service.service_category_id"];
+          id?: parameters['rowFilter.service.id'];
+          name?: parameters['rowFilter.service.name'];
+          cost_estimate?: parameters['rowFilter.service.cost_estimate'];
+          created_at?: parameters['rowFilter.service.created_at'];
+          updated_at?: parameters['rowFilter.service.updated_at'];
+          service_category_id?: parameters['rowFilter.service.service_category_id'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["service"][];
+          schema: definitions['service'][];
         };
         /** Partial Content */
         206: unknown;
@@ -683,15 +683,15 @@ export interface paths {
       parameters: {
         body: {
           /** service */
-          service?: definitions["service"];
+          service?: definitions['service'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -702,16 +702,16 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.service.id"];
-          name?: parameters["rowFilter.service.name"];
-          cost_estimate?: parameters["rowFilter.service.cost_estimate"];
-          created_at?: parameters["rowFilter.service.created_at"];
-          updated_at?: parameters["rowFilter.service.updated_at"];
-          service_category_id?: parameters["rowFilter.service.service_category_id"];
+          id?: parameters['rowFilter.service.id'];
+          name?: parameters['rowFilter.service.name'];
+          cost_estimate?: parameters['rowFilter.service.cost_estimate'];
+          created_at?: parameters['rowFilter.service.created_at'];
+          updated_at?: parameters['rowFilter.service.updated_at'];
+          service_category_id?: parameters['rowFilter.service.service_category_id'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -722,20 +722,20 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.service.id"];
-          name?: parameters["rowFilter.service.name"];
-          cost_estimate?: parameters["rowFilter.service.cost_estimate"];
-          created_at?: parameters["rowFilter.service.created_at"];
-          updated_at?: parameters["rowFilter.service.updated_at"];
-          service_category_id?: parameters["rowFilter.service.service_category_id"];
+          id?: parameters['rowFilter.service.id'];
+          name?: parameters['rowFilter.service.name'];
+          cost_estimate?: parameters['rowFilter.service.cost_estimate'];
+          created_at?: parameters['rowFilter.service.created_at'];
+          updated_at?: parameters['rowFilter.service.updated_at'];
+          service_category_id?: parameters['rowFilter.service.service_category_id'];
         };
         body: {
           /** service */
-          service?: definitions["service"];
+          service?: definitions['service'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -744,36 +744,36 @@ export interface paths {
       };
     };
   };
-  "/service_category": {
+  '/service_category': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.service_category.id"];
-          name?: parameters["rowFilter.service_category.name"];
-          created_at?: parameters["rowFilter.service_category.created_at"];
-          updated_at?: parameters["rowFilter.service_category.updated_at"];
+          id?: parameters['rowFilter.service_category.id'];
+          name?: parameters['rowFilter.service_category.name'];
+          created_at?: parameters['rowFilter.service_category.created_at'];
+          updated_at?: parameters['rowFilter.service_category.updated_at'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["service_category"][];
+          schema: definitions['service_category'][];
         };
         /** Partial Content */
         206: unknown;
@@ -783,15 +783,15 @@ export interface paths {
       parameters: {
         body: {
           /** service_category */
-          service_category?: definitions["service_category"];
+          service_category?: definitions['service_category'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -802,14 +802,14 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.service_category.id"];
-          name?: parameters["rowFilter.service_category.name"];
-          created_at?: parameters["rowFilter.service_category.created_at"];
-          updated_at?: parameters["rowFilter.service_category.updated_at"];
+          id?: parameters['rowFilter.service_category.id'];
+          name?: parameters['rowFilter.service_category.name'];
+          created_at?: parameters['rowFilter.service_category.created_at'];
+          updated_at?: parameters['rowFilter.service_category.updated_at'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -820,18 +820,18 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.service_category.id"];
-          name?: parameters["rowFilter.service_category.name"];
-          created_at?: parameters["rowFilter.service_category.created_at"];
-          updated_at?: parameters["rowFilter.service_category.updated_at"];
+          id?: parameters['rowFilter.service_category.id'];
+          name?: parameters['rowFilter.service_category.name'];
+          created_at?: parameters['rowFilter.service_category.created_at'];
+          updated_at?: parameters['rowFilter.service_category.updated_at'];
         };
         body: {
           /** service_category */
-          service_category?: definitions["service_category"];
+          service_category?: definitions['service_category'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -840,45 +840,45 @@ export interface paths {
       };
     };
   };
-  "/stylish": {
+  '/stylish': {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.stylish.id"];
-          name?: parameters["rowFilter.stylish.name"];
-          phone_number?: parameters["rowFilter.stylish.phone_number"];
-          senin_available?: parameters["rowFilter.stylish.senin_available"];
-          selasa_available?: parameters["rowFilter.stylish.selasa_available"];
-          rabu_available?: parameters["rowFilter.stylish.rabu_available"];
-          kamis_available?: parameters["rowFilter.stylish.kamis_available"];
-          jumat_available?: parameters["rowFilter.stylish.jumat_available"];
-          sabtu_available?: parameters["rowFilter.stylish.sabtu_available"];
-          minggu_available?: parameters["rowFilter.stylish.minggu_available"];
-          created_at?: parameters["rowFilter.stylish.created_at"];
-          updated_at?: parameters["rowFilter.stylish.updated_at"];
-          cabang_id?: parameters["rowFilter.stylish.cabang_id"];
+          id?: parameters['rowFilter.stylish.id'];
+          name?: parameters['rowFilter.stylish.name'];
+          phone_number?: parameters['rowFilter.stylish.phone_number'];
+          senin_available?: parameters['rowFilter.stylish.senin_available'];
+          selasa_available?: parameters['rowFilter.stylish.selasa_available'];
+          rabu_available?: parameters['rowFilter.stylish.rabu_available'];
+          kamis_available?: parameters['rowFilter.stylish.kamis_available'];
+          jumat_available?: parameters['rowFilter.stylish.jumat_available'];
+          sabtu_available?: parameters['rowFilter.stylish.sabtu_available'];
+          minggu_available?: parameters['rowFilter.stylish.minggu_available'];
+          created_at?: parameters['rowFilter.stylish.created_at'];
+          updated_at?: parameters['rowFilter.stylish.updated_at'];
+          cabang_id?: parameters['rowFilter.stylish.cabang_id'];
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
           /** Ordering */
-          order?: parameters["order"];
+          order?: parameters['order'];
           /** Limiting and Pagination */
-          offset?: parameters["offset"];
+          offset?: parameters['offset'];
           /** Limiting and Pagination */
-          limit?: parameters["limit"];
+          limit?: parameters['limit'];
         };
         header: {
           /** Limiting and Pagination */
-          Range?: parameters["range"];
+          Range?: parameters['range'];
           /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
+          'Range-Unit'?: parameters['rangeUnit'];
           /** Preference */
-          Prefer?: parameters["preferCount"];
+          Prefer?: parameters['preferCount'];
         };
       };
       responses: {
         /** OK */
         200: {
-          schema: definitions["stylish"][];
+          schema: definitions['stylish'][];
         };
         /** Partial Content */
         206: unknown;
@@ -888,15 +888,15 @@ export interface paths {
       parameters: {
         body: {
           /** stylish */
-          stylish?: definitions["stylish"];
+          stylish?: definitions['stylish'];
         };
         query: {
           /** Filtering Columns */
-          select?: parameters["select"];
+          select?: parameters['select'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -907,23 +907,23 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.stylish.id"];
-          name?: parameters["rowFilter.stylish.name"];
-          phone_number?: parameters["rowFilter.stylish.phone_number"];
-          senin_available?: parameters["rowFilter.stylish.senin_available"];
-          selasa_available?: parameters["rowFilter.stylish.selasa_available"];
-          rabu_available?: parameters["rowFilter.stylish.rabu_available"];
-          kamis_available?: parameters["rowFilter.stylish.kamis_available"];
-          jumat_available?: parameters["rowFilter.stylish.jumat_available"];
-          sabtu_available?: parameters["rowFilter.stylish.sabtu_available"];
-          minggu_available?: parameters["rowFilter.stylish.minggu_available"];
-          created_at?: parameters["rowFilter.stylish.created_at"];
-          updated_at?: parameters["rowFilter.stylish.updated_at"];
-          cabang_id?: parameters["rowFilter.stylish.cabang_id"];
+          id?: parameters['rowFilter.stylish.id'];
+          name?: parameters['rowFilter.stylish.name'];
+          phone_number?: parameters['rowFilter.stylish.phone_number'];
+          senin_available?: parameters['rowFilter.stylish.senin_available'];
+          selasa_available?: parameters['rowFilter.stylish.selasa_available'];
+          rabu_available?: parameters['rowFilter.stylish.rabu_available'];
+          kamis_available?: parameters['rowFilter.stylish.kamis_available'];
+          jumat_available?: parameters['rowFilter.stylish.jumat_available'];
+          sabtu_available?: parameters['rowFilter.stylish.sabtu_available'];
+          minggu_available?: parameters['rowFilter.stylish.minggu_available'];
+          created_at?: parameters['rowFilter.stylish.created_at'];
+          updated_at?: parameters['rowFilter.stylish.updated_at'];
+          cabang_id?: parameters['rowFilter.stylish.cabang_id'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -934,27 +934,27 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.stylish.id"];
-          name?: parameters["rowFilter.stylish.name"];
-          phone_number?: parameters["rowFilter.stylish.phone_number"];
-          senin_available?: parameters["rowFilter.stylish.senin_available"];
-          selasa_available?: parameters["rowFilter.stylish.selasa_available"];
-          rabu_available?: parameters["rowFilter.stylish.rabu_available"];
-          kamis_available?: parameters["rowFilter.stylish.kamis_available"];
-          jumat_available?: parameters["rowFilter.stylish.jumat_available"];
-          sabtu_available?: parameters["rowFilter.stylish.sabtu_available"];
-          minggu_available?: parameters["rowFilter.stylish.minggu_available"];
-          created_at?: parameters["rowFilter.stylish.created_at"];
-          updated_at?: parameters["rowFilter.stylish.updated_at"];
-          cabang_id?: parameters["rowFilter.stylish.cabang_id"];
+          id?: parameters['rowFilter.stylish.id'];
+          name?: parameters['rowFilter.stylish.name'];
+          phone_number?: parameters['rowFilter.stylish.phone_number'];
+          senin_available?: parameters['rowFilter.stylish.senin_available'];
+          selasa_available?: parameters['rowFilter.stylish.selasa_available'];
+          rabu_available?: parameters['rowFilter.stylish.rabu_available'];
+          kamis_available?: parameters['rowFilter.stylish.kamis_available'];
+          jumat_available?: parameters['rowFilter.stylish.jumat_available'];
+          sabtu_available?: parameters['rowFilter.stylish.sabtu_available'];
+          minggu_available?: parameters['rowFilter.stylish.minggu_available'];
+          created_at?: parameters['rowFilter.stylish.created_at'];
+          updated_at?: parameters['rowFilter.stylish.updated_at'];
+          cabang_id?: parameters['rowFilter.stylish.cabang_id'];
         };
         body: {
           /** stylish */
-          stylish?: definitions["stylish"];
+          stylish?: definitions['stylish'];
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters['preferReturn'];
         };
       };
       responses: {
@@ -1050,7 +1050,7 @@ export interface definitions {
      */
     id: number;
     name: string;
-    jenis_kelamin: "PRIA" | "WANITA";
+    jenis_kelamin: 'PRIA' | 'WANITA';
     phone_number: string;
     phone_verified?: boolean;
     otp?: string;
@@ -1129,11 +1129,11 @@ export interface definitions {
 
 export interface parameters {
   /** Preference */
-  preferParams: "params=single-object";
+  preferParams: 'params=single-object';
   /** Preference */
-  preferReturn: "return=representation" | "return=minimal" | "return=none";
+  preferReturn: 'return=representation' | 'return=minimal' | 'return=none';
   /** Preference */
-  preferCount: "count=none";
+  preferCount: 'count=none';
   /** Filtering Columns */
   select: string;
   /** On Conflict */
@@ -1149,88 +1149,88 @@ export interface parameters {
   /** Limiting and Pagination */
   limit: string;
   /** admin */
-  "body.admin": definitions["admin"];
-  "rowFilter.admin.id": string;
-  "rowFilter.admin.supabase_user_id": string;
-  "rowFilter.admin.name": string;
-  "rowFilter.admin.phone_number": string;
-  "rowFilter.admin.otp": string;
-  "rowFilter.admin.created_at": string;
-  "rowFilter.admin.updated_at": string;
-  "rowFilter.admin.cabang_id": string;
+  'body.admin': definitions['admin'];
+  'rowFilter.admin.id': string;
+  'rowFilter.admin.supabase_user_id': string;
+  'rowFilter.admin.name': string;
+  'rowFilter.admin.phone_number': string;
+  'rowFilter.admin.otp': string;
+  'rowFilter.admin.created_at': string;
+  'rowFilter.admin.updated_at': string;
+  'rowFilter.admin.cabang_id': string;
   /** appointment */
-  "body.appointment": definitions["appointment"];
-  "rowFilter.appointment.id": string;
-  "rowFilter.appointment.date": string;
-  "rowFilter.appointment.cancel": string;
-  "rowFilter.appointment.done": string;
-  "rowFilter.appointment.note": string;
-  "rowFilter.appointment.created_at": string;
-  "rowFilter.appointment.updated_at": string;
-  "rowFilter.appointment.cabang_id": string;
-  "rowFilter.appointment.klien_id": string;
-  "rowFilter.appointment.stylish_id": string;
-  "rowFilter.appointment.jam_id": string;
+  'body.appointment': definitions['appointment'];
+  'rowFilter.appointment.id': string;
+  'rowFilter.appointment.date': string;
+  'rowFilter.appointment.cancel': string;
+  'rowFilter.appointment.done': string;
+  'rowFilter.appointment.note': string;
+  'rowFilter.appointment.created_at': string;
+  'rowFilter.appointment.updated_at': string;
+  'rowFilter.appointment.cabang_id': string;
+  'rowFilter.appointment.klien_id': string;
+  'rowFilter.appointment.stylish_id': string;
+  'rowFilter.appointment.jam_id': string;
   /** cabang */
-  "body.cabang": definitions["cabang"];
-  "rowFilter.cabang.id": string;
-  "rowFilter.cabang.name": string;
-  "rowFilter.cabang.created_at": string;
-  "rowFilter.cabang.updated_at": string;
+  'body.cabang': definitions['cabang'];
+  'rowFilter.cabang.id': string;
+  'rowFilter.cabang.name': string;
+  'rowFilter.cabang.created_at': string;
+  'rowFilter.cabang.updated_at': string;
   /** jam */
-  "body.jam": definitions["jam"];
-  "rowFilter.jam.id": string;
-  "rowFilter.jam.jam_ke": string;
-  "rowFilter.jam.pukul": string;
-  "rowFilter.jam.created_at": string;
-  "rowFilter.jam.updated_at": string;
-  "rowFilter.jam.cabang_id": string;
+  'body.jam': definitions['jam'];
+  'rowFilter.jam.id': string;
+  'rowFilter.jam.jam_ke': string;
+  'rowFilter.jam.pukul': string;
+  'rowFilter.jam.created_at': string;
+  'rowFilter.jam.updated_at': string;
+  'rowFilter.jam.cabang_id': string;
   /** klien */
-  "body.klien": definitions["klien"];
-  "rowFilter.klien.id": string;
-  "rowFilter.klien.name": string;
-  "rowFilter.klien.jenis_kelamin": string;
-  "rowFilter.klien.phone_number": string;
-  "rowFilter.klien.phone_verified": string;
-  "rowFilter.klien.otp": string;
-  "rowFilter.klien.created_at": string;
-  "rowFilter.klien.updated_at": string;
+  'body.klien': definitions['klien'];
+  'rowFilter.klien.id': string;
+  'rowFilter.klien.name': string;
+  'rowFilter.klien.jenis_kelamin': string;
+  'rowFilter.klien.phone_number': string;
+  'rowFilter.klien.phone_verified': string;
+  'rowFilter.klien.otp': string;
+  'rowFilter.klien.created_at': string;
+  'rowFilter.klien.updated_at': string;
   /** rendered_service */
-  "body.rendered_service": definitions["rendered_service"];
-  "rowFilter.rendered_service.id": string;
-  "rowFilter.rendered_service.service_id": string;
-  "rowFilter.rendered_service.appointment_id": string;
-  "rowFilter.rendered_service.created_at": string;
-  "rowFilter.rendered_service.updated_at": string;
+  'body.rendered_service': definitions['rendered_service'];
+  'rowFilter.rendered_service.id': string;
+  'rowFilter.rendered_service.service_id': string;
+  'rowFilter.rendered_service.appointment_id': string;
+  'rowFilter.rendered_service.created_at': string;
+  'rowFilter.rendered_service.updated_at': string;
   /** service */
-  "body.service": definitions["service"];
-  "rowFilter.service.id": string;
-  "rowFilter.service.name": string;
-  "rowFilter.service.cost_estimate": string;
-  "rowFilter.service.created_at": string;
-  "rowFilter.service.updated_at": string;
-  "rowFilter.service.service_category_id": string;
+  'body.service': definitions['service'];
+  'rowFilter.service.id': string;
+  'rowFilter.service.name': string;
+  'rowFilter.service.cost_estimate': string;
+  'rowFilter.service.created_at': string;
+  'rowFilter.service.updated_at': string;
+  'rowFilter.service.service_category_id': string;
   /** service_category */
-  "body.service_category": definitions["service_category"];
-  "rowFilter.service_category.id": string;
-  "rowFilter.service_category.name": string;
-  "rowFilter.service_category.created_at": string;
-  "rowFilter.service_category.updated_at": string;
+  'body.service_category': definitions['service_category'];
+  'rowFilter.service_category.id': string;
+  'rowFilter.service_category.name': string;
+  'rowFilter.service_category.created_at': string;
+  'rowFilter.service_category.updated_at': string;
   /** stylish */
-  "body.stylish": definitions["stylish"];
-  "rowFilter.stylish.id": string;
-  "rowFilter.stylish.name": string;
-  "rowFilter.stylish.phone_number": string;
-  "rowFilter.stylish.senin_available": string;
-  "rowFilter.stylish.selasa_available": string;
-  "rowFilter.stylish.rabu_available": string;
-  "rowFilter.stylish.kamis_available": string;
-  "rowFilter.stylish.jumat_available": string;
-  "rowFilter.stylish.sabtu_available": string;
-  "rowFilter.stylish.minggu_available": string;
-  "rowFilter.stylish.created_at": string;
-  "rowFilter.stylish.updated_at": string;
-  "rowFilter.stylish.cabang_id": string;
+  'body.stylish': definitions['stylish'];
+  'rowFilter.stylish.id': string;
+  'rowFilter.stylish.name': string;
+  'rowFilter.stylish.phone_number': string;
+  'rowFilter.stylish.senin_available': string;
+  'rowFilter.stylish.selasa_available': string;
+  'rowFilter.stylish.rabu_available': string;
+  'rowFilter.stylish.kamis_available': string;
+  'rowFilter.stylish.jumat_available': string;
+  'rowFilter.stylish.sabtu_available': string;
+  'rowFilter.stylish.minggu_available': string;
+  'rowFilter.stylish.created_at': string;
+  'rowFilter.stylish.updated_at': string;
+  'rowFilter.stylish.cabang_id': string;
 }
 
 export interface operations {}

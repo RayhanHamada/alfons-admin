@@ -15,7 +15,7 @@ export const AppointmentCreate: React.FC = (_props) => {
   const { jamId, serviceIds, klienId, note, stylishId, tanggal } =
     useCreateAppointmentStore();
 
-  const { data: adminData } = useGetIdentity<IUserIdentity>();
+  const { data: currentAdminData } = useGetIdentity<IUserIdentity>();
   const router = useRouter();
 
   const createAppointment: MouseEventHandler<HTMLButtonElement> = async (e) => {
@@ -25,7 +25,7 @@ export const AppointmentCreate: React.FC = (_props) => {
       klienId !== '' &&
       stylishId &&
       tanggal &&
-      adminData
+      currentAdminData
     ) {
       console.log('clicked');
       /**
@@ -57,7 +57,7 @@ export const AppointmentCreate: React.FC = (_props) => {
           .from('appointment')
           .insert({
             jam_id: parseInt(jamId),
-            cabang_id: adminData.cabangId,
+            cabang_id: currentAdminData.cabangId,
             date: tanggal.format('MM/DD/YYYY'),
             klien_id: parseInt(klienId),
             stylish_id: stylishId,

@@ -4,6 +4,7 @@ import {
   AdminShow,
   AppointmentCreate,
   AppointmentList,
+  CabangCreate,
   CabangList,
   KlienCreate,
   KlienList,
@@ -41,7 +42,7 @@ const resources: RefineProps['resources'] = [
     options: { label: 'Cabang' },
     canDelete: true,
     list: CabangList,
-    create: KlienCreate,
+    create: CabangCreate,
   },
   {
     name: 'service_category',

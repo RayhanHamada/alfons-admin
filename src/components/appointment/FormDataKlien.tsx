@@ -30,9 +30,9 @@ const FormDataKlien: React.FC = (_props) => {
     isLoading: isKlienLoading,
   } = useOne<IKlien>({
     resource: 'klien',
-    id: klienId,
+    id: klienId?.toString() ?? '',
     queryOptions: {
-      enabled: klienId !== '',
+      enabled: !!klienId,
     },
   });
 
@@ -78,7 +78,7 @@ const FormDataKlien: React.FC = (_props) => {
     // }
 
     // setFutureAppointment(dayjs(data[0].date, 'MM/DD/YYYY'));
-    setKlienId(value);
+    setKlienId(parseInt(value));
   };
 
   const onFinish = (v: CreateAppointmentUserDataFormValue) => {};

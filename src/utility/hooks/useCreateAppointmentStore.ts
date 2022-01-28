@@ -15,11 +15,12 @@ const useCreateAppointmentStore = create(
 
       serviceIds: [] as number[],
 
-      klienId: '',
+      klienId: undefined as number | undefined,
 
       stylishId: undefined as number | undefined,
       jamId: undefined as string | undefined,
       tanggal: undefined as Dayjs | undefined,
+
       note: '',
     },
     (set, get) => ({
@@ -54,7 +55,7 @@ const useCreateAppointmentStore = create(
           serviceIds: serviceIds.filter((v) => v !== id),
         })),
 
-      setKlienId: (id: string) => set({ klienId: id }),
+      setKlienId: (klienId: number) => set({ klienId }),
 
       setSchedule: ({
         stylishId,

@@ -1,14 +1,11 @@
 import type { Query, Res } from '@customTypes/api/deleteAdmin';
 import { definitions } from '@customTypes/supabase';
-import { baseURL } from '@utility/constant';
 import { supabaseServerClient } from '@utility/supabaseServerClient';
 import type { NextApiHandler } from 'next';
 import cors from 'nextjs-cors';
 
 const deleteAdmin: NextApiHandler<Res> = async (req, res) => {
-  await cors(req, res, {
-    origin: baseURL,
-  });
+  await cors(req, res, {});
 
   const { uid } = req.query as Query;
 
@@ -18,16 +15,30 @@ const deleteAdmin: NextApiHandler<Res> = async (req, res) => {
       process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
-  if (userError) return res.status(500).end('Error when deleting from users');
-  if (!userData) return res.status(404).end();
+  if (userError) {
+    res.status(500).end('Error when deleting from users');
+    return;
+  }
+
+  if (!userData) {
+    res.status(404).end();
+    return;
+  }
 
   const { data: adminData, error: adminError } = await supabaseServerClient
     .from<definitions['admin']>('admin')
     .delete({ returning: 'representation' })
     .eq('supabase_user_id', uid);
 
-  if (adminError) return res.status(500).end('Error when deleting from admin');
-  if (!adminData) return res.status(404).end();
+  if (adminError) {
+    res.status(500).end('Error when deleting from admin');
+    return;
+  }
+
+  if (!adminData) {
+    res.status(404).end();
+    return;
+  }
 
   res.status(200).end();
 };

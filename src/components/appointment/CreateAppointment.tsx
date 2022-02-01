@@ -6,9 +6,9 @@ import { MouseEventHandler } from 'react';
 import { CreateUserDrawer } from './CreateUserDrawer';
 import FormDataKlien from './FormDataKlien';
 import { Note } from './Note';
-import OrderedServiceList from './OrderedServiceList';
+import OrderedServiceList from './orderedServiceList';
 import { Schedule } from './Schedule';
-import ServiceDrawer from './ServiceDrawer';
+import ServiceDrawer from './serviceDrawer';
 
 export const AppointmentCreate: React.FC = (_props) => {
   const { jamId, serviceIds, klienId, note, stylishId, tanggal } =

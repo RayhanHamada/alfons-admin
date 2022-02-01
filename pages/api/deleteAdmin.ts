@@ -10,10 +10,7 @@ const deleteAdmin: NextApiHandler<Res> = async (req, res) => {
   const { uid } = req.query as Query;
 
   const { data: userData, error: userError } =
-    await supabaseServerClient.auth.api.deleteUser(
-      uid,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
+    await supabaseServerClient.auth.api.deleteUser(uid);
 
   if (userError) {
     res.status(500).end('Error when deleting from users');
